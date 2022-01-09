@@ -1,0 +1,39 @@
+html {
+    height: 100%;
+}
+
+
+/* fonts */
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo-font{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: xx-large;
+    color: white;
+}
+
+/* Colours */
+.bg-lilac{
+    background-color: #B1B8FC;
+}
+
+.lilac-txt{
+    color: #B1B8FC;
+}
+
+.lilac-txt-dark{
+    color: #9DA6FB;
+}
+
+/* from Bulma for icons*/
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
