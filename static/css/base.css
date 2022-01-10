@@ -12,8 +12,17 @@ body{
 .logo-font{
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 3rem;
     color: white;
+    letter-spacing: 2px;
+}
+
+.mobile-logo-font{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    letter-spacing: 1px;
 }
 
 /* Colours */
@@ -29,6 +38,10 @@ body{
     color: #9DA6FB;
 }
 
+.bg-white{
+    background-color: white;
+}
+
 /* from Bulma for icons*/
 .icon {
     align-items: center;
@@ -36,4 +49,17 @@ body{
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+#navsearch input, 
+#navsearch button{
+    display: inline;
+}
+
+#accountOptions{
+    color: white;
+}
+
+#classesLink{
+    color: #9DA6FB;
 }
