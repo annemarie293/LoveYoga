@@ -6,4 +6,11 @@ from .models import Trainer
 
 def trainers(request):
     """ A view to return the page displaying the yoga trainers """
-    return render(request, 'trainers/trainers.html')
+
+    trainers = Trainer.objects.all()
+
+    context = {
+        'trainers': trainers,
+    }
+
+    return render(request, 'trainers/trainers.html', context)

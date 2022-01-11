@@ -42,6 +42,13 @@ body{
     background-color: white;
 }
 
+.mint-txt{
+    color: #8BF8B5;
+}
+.bg-mint{
+    background-color: #8BF8B5;
+}
+
 /* from Bulma for icons*/
 .icon {
     align-items: center;
@@ -63,3 +70,26 @@ body{
 #classesLink{
     color: #9DA6FB;
 }
+
+.header-container{
+    padding-top: 6rem
+}
+
+/* --------------------------Buttons page */
+
+.btn-mint{
+    background-color: #8BF8B5;
+    color:white;
+}
+/* --------------------------Trainers page */
+
+.trainer-card{
+    padding-bottom: 1.5rem;    
+}
+
+/* Wider card display on xl screens */
+@media (min-width: 1300px) {
+    .trainer-card {
+        width: 23rem !important;
+    }
+  }
