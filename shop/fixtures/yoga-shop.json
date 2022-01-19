@@ -1,0 +1,146 @@
+[
+  {
+    "model": "shop.ShopProducts",
+    "id": 1,
+    "fields": { "sku": "yog/kit/min",
+    "name": "mini yoga kit",
+    "description": "Set containing blue yoga mat and a pair of yoga blocks",
+    "price": 23.5,
+    "image": "yoga-mini-kit.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 2,
+    "fields": { "sku": "yog/bal",
+    "name": "yoga ball",
+    "description": "Inflatable silver yogal ball, 80cm diameter once inflated",
+    "price": 12.99,
+    "image": "yoga-ball.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 3,
+    "fields": { "sku": "yog/kit/a",
+    "name": "yoga kit - set a",
+    "description": "Full yoga accessory kit including mat, weights, yoga block, straps and water bottle",
+    "price": 65,
+    "image": "yoga-kit-a.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 4,
+    "fields": { "sku": "yog/kit/b",
+    "name": "yoga kit - set b",
+    "description": "Yoga accessory kit containing yoga ball, mat, ab-roller and water bottle",
+    "price": 52.5,
+    "image": "yoga-kit-b.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 5,
+    "fields": { "sku": "yog/kit/c",
+    "name": "yoga kit - set c",
+    "description": "Yoga accessory kit containing yoga ball, mat and light weights.",
+    "price": 50,
+    "image": "yoga-kit-c.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 6,
+    "fields": { "sku": "yog/kit/d",
+    "name": "yoga kit - set d",
+    "description": "Pink themed yoga kit, containing mat, weights, yoga block and towel",
+    "price": 45.99,
+    "image": "yoga-kit-d.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 7,
+    "fields": { "sku": "yog/kit/e",
+    "name": "yoga kit - set e",
+    "description": "Blue themed yoga kit, containing mat, straps, yoga block and water block",
+    "price": 45.99,
+    "image": "yoga-kit-e.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 8,
+    "fields": { "sku": "yog/kit/f",
+    "name": "yoga kit - set f",
+    "description": "Yoga accessory kit containing blue yoga mat and pair of 1kg purple dumbells, water bottle",
+    "price": 38.5,
+    "image": "yoga-kit-f.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 9,
+    "fields": { "sku": "yog/kit/g",
+    "name": "yoga kit - set g",
+    "description": "Set containing purple yoga mat, straps, and a pair of yoga blocks",
+    "price": 19.5,
+    "image": "yoga-kit-g.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 10,
+    "fields": { "sku": "yog/mat/blu",
+    "name": "yoga mat",
+    "description": "Blue yoga mat, 1.5m length",
+    "price": 15.5,
+    "image": "yoga-mat-blue.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 11,
+    "fields": { "sku": "yog/mat/pin",
+    "name": "yoga mat",
+    "description": "Pink yoga mat, 1.5m length",
+    "price": 15.5,
+    "image": "yoga-mat-pink.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 12,
+    "fields": { "sku": "yog/mat/pur",
+    "name": "yoga mat",
+    "description": "Purple yoga mat, 1.5m length",
+    "price": 15.5,
+    "image": "yoga-mat-purple.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 13,
+    "fields": { "sku": "yog/mat/gre",
+    "name": "yoga mat",
+    "description": "Green yoga mat, 1.5m length",
+    "price": 15.5,
+    "image": "yoga-mat-green.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 14,
+    "fields": { "sku": "yog/mat/gal",
+    "name": "yoga mat",
+    "description": "Limited edition galaxy printed yoga mat, 1.5m length",
+    "price": 19.99,
+    "image": "yoga-mat-galaxy.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 15,
+    "fields": { "sku": "yog/mat/wei",
+    "name": "yoga mat and weights",
+    "description": "Blue yoga mat pair of 1kg green dumbells",
+    "price": 32.6,
+    "image": "yoga-mat-weights.jpg"
+  }},
+  {
+    "model": "shop.ShopProducts",
+    "id": 16,
+    "fields": { "sku": "yog/wei",
+    "name": "yoga weights",
+    "description": "A pair of pink  1kg dumbells",
+    "price": 21.99,
+    "image": "weights.jpg"
+  }},
+]
