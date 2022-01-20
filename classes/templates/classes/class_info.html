@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col">
+            
+            <div class="row my-5 text-center page-title ">
+                <h2>Our Classes</h2>             
+            </div>
+            
+
+            <div class="row"> 
+                    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                        <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                            <img src="{{ MEDIA_URL }}{{ classes.image }}" class="trainer-img" alt="image for {{ classes.name }}">
+                            <div class="card-body bg-lilac">
+                            <h4 class="card-title text-white fw-bold">{{ classes.name }}</h4>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center">{{ classes.description }}</li>
+                            <li class="list-group-item text-center">Trainer: {{ classes.trainer }} </li>
+                            <li class="list-group-item text-center">Level {{ classes.level }}</li>
+                            <li class="list-group-item text-center">Intensity: {{ classes.intensity }}</li>
+                            <li class="list-group-item text-center">Session Length: {{ classes.session_duration }} minutes </li>
+                            <li class="list-group-item text-center">{{ classes.series_duration }} sessions</li>
+                            <li class="list-group-item text-center">Equipment needed: {{ classes.equipment }}</li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

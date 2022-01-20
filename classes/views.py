@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import YogaClass
 
 # Create your views here.
@@ -14,3 +14,15 @@ def classes(request):
     }
 
     return render(request, 'classes/classes.html', context)
+
+
+def class_info(request, classes_id):
+    """ A view to show full details for each class """
+
+    classes = get_object_or_404(YogaClass, id=classes_id)
+
+    context = {
+        'classes': classes,
+    }
+
+    return render(request, 'classes/class_info.html', context)
