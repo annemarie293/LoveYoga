@@ -77,7 +77,7 @@
                         </ul>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="">
+                        <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="{% url 'view_basket' %}">
                             <i class="fas fa-shopping-basket fa-lg text-white"></i>
                             <span class="text-white my-0">
                                 {% if grand_total %}
