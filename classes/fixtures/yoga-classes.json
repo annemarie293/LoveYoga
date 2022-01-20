@@ -11,7 +11,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "9",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "1.jpg"
   }},
   {
@@ -26,7 +27,8 @@
     "series_duration": 6,
     "equipment": "none",
     "trainer": "7",
-    "price": 15,
+    "price": 30,
+    "class_or_product" : "class",
     "image": "2.jpg"
   }},
   {
@@ -41,7 +43,8 @@
     "series_duration": 8,
     "equipment": "none",
     "trainer": "11",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "3.jpg"
   }},
   {
@@ -56,7 +59,8 @@
     "series_duration": 8,
     "equipment": "none",
     "trainer": "10",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "4.jpg"
   }},
   {
@@ -71,7 +75,8 @@
     "series_duration": 10,
     "equipment": "block, blanket, straps",
     "trainer": "8",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "5.jpg"
   }},
   {
@@ -86,7 +91,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "8",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "6.jpg"
   }},
   {
@@ -101,7 +107,8 @@
     "series_duration": 12,
     "equipment": "block, blanket",
     "trainer": "9",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "7.jpeg"
   }},
   {
@@ -116,7 +123,8 @@
     "series_duration": 12,
     "equipment": "block, resistance loop",
     "trainer": "5",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "8.jpeg"
   }},
   {
@@ -131,7 +139,8 @@
     "series_duration": 12,
     "equipment": "ball, weights, blocks",
     "trainer": "6",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "9.jpeg"
   }},
   {
@@ -147,6 +156,7 @@
     "equipment": "weights, resistance loop, blocks",
     "trainer": "9",
     "price": 25,
+    "class_or_product" : "class",
     "image": "10.jpeg"
   }},
   {
@@ -162,6 +172,7 @@
     "equipment": "blocks, weights, chair",
     "trainer": "5",
     "price": 20,
+    "class_or_product" : "class",
     "image": "11.jpg"
   }},
   {
@@ -176,7 +187,8 @@
     "series_duration": 8,
     "equipment": "blanket",
     "trainer": "5",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "12.jpg"
   }},
   {
@@ -191,7 +203,8 @@
     "series_duration": 10,
     "equipment": "blanket",
     "trainer": "1",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "13.jpg"
   }},
   {
@@ -206,7 +219,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "4",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "14.jpg"
   }},
   {
@@ -221,7 +235,8 @@
     "series_duration": 12,
     "equipment": "weights",
     "trainer": "1",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "15.jpg"
   }},
   {
@@ -236,7 +251,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "10",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "16.jpg"
   }},
   {
@@ -251,7 +267,8 @@
     "series_duration": 8,
     "equipment": "weights",
     "trainer": "10",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "17.jpg"
   }},
   {
@@ -266,7 +283,8 @@
     "series_duration": 10,
     "equipment": "weights",
     "trainer": "12",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "18.jpg"
   }},
   {
@@ -281,7 +299,8 @@
     "series_duration": 12,
     "equipment": "none",
     "trainer": "4",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "19.jpg"
   }},
   {
@@ -296,7 +315,8 @@
     "series_duration": 8,
     "equipment": "none",
     "trainer": "7",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "20.jpg"
   }},
   {
@@ -311,7 +331,8 @@
     "series_duration": 10,
     "equipment": "weights",
     "trainer": "11",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "21.jpg"
   }},
   {
@@ -326,7 +347,8 @@
     "series_duration": 8,
     "equipment": "weights",
     "trainer": "11",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "22.jpg"
   }},
   {
@@ -341,7 +363,8 @@
     "series_duration": 12,
     "equipment": "none",
     "trainer": "6",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "23.jpg"
   }},
   {
@@ -356,7 +379,8 @@
     "series_duration": 8,
     "equipment": "none",
     "trainer": "6",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "24.jpg"
   }},
   {
@@ -371,7 +395,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "8",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "25.jpg"
   }},
   {
@@ -386,7 +411,8 @@
     "series_duration": 6,
     "equipment": "none",
     "trainer": "12",
-    "price": 15,
+    "price": 30,
+    "class_or_product" : "class",
     "image": "26.jpg"
   }},
   {
@@ -401,7 +427,8 @@
     "series_duration": 10,
     "equipment": "blocks",
     "trainer": "11",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "27.jpg"
   }},
   {
@@ -416,7 +443,8 @@
     "series_duration": 6,
     "equipment": "block, blanket",
     "trainer": "9",
-    "price": 15,
+    "price": 30,
+    "class_or_product" : "class",
     "image": "28.jpg"
   }},
   {
@@ -431,7 +459,8 @@
     "series_duration": 8,
     "equipment": "block, strap",
     "trainer": "7",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "29.jpg"
   }},
   {
@@ -446,7 +475,8 @@
     "series_duration": 10,
     "equipment": "blocks",
     "trainer": "1",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "30.jpg"
   }},
   {
@@ -461,7 +491,8 @@
     "series_duration": 10,
     "equipment": "blocks",
     "trainer": "5",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "31.jpg"
   }},
   {
@@ -476,7 +507,8 @@
     "series_duration": 8,
     "equipment": "none",
     "trainer": "4",
-    "price": 17,
+    "price": 35,
+    "class_or_product" : "class",
     "image": "32.jpg"
   }},
   {
@@ -491,7 +523,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "7",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "33.jpg"
   }},
   {
@@ -506,7 +539,8 @@
     "series_duration": 12,
     "equipment": "blocks",
     "trainer": "1",
-    "price": 25,
+    "price": 50,
+    "class_or_product" : "class",
     "image": "34.jpg"
   }},
   {
@@ -521,7 +555,8 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "8",
-    "price": 20,
+    "price": 40,
+    "class_or_product" : "class",
     "image": "35.jpg"
   }}
 ]

@@ -18,25 +18,21 @@
         <div class="col">
             
             <div class="row my-5 text-center page-title ">
-                <h2>Shop Yoga Gear</h2>             
+                <h2>Our Classes</h2>             
             </div>
             
 
-            <div class="row">
-                {% for product in shop_products %}   
+            <div class="row"> 
                     <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
                         <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                            <img src="{{ MEDIA_URL }}{{ product.image }}" class="trainer-img" alt="image of the shop product{{ product.name }}">
+                            <img src="{{ MEDIA_URL }}{{ product.image }}" class="trainer-img" alt="image for {{ product.name }}">
                             <div class="card-body bg-lilac">
-                            <h4 class="card-title text-white fw-bold">{{ product.name|title }}</h4>
+                            <h4 class="card-title text-white fw-bold">{{ product.name }}</h4>
                             </div>
-                            <ul class="list-group list-group-flush">
                             <li class="list-group-item text-center">{{ product.description }}</li>
-                            </ul>
-                            <a href="{% url 'product_info' product.id %}" class="btn btn-mint">More Info</a>
+                            <li class="list-group-item text-center">Price: €{{ product.price }} </li>
                         </div>
                     </div>
-                {% endfor %}
             </div>
         </div>
     </div>
