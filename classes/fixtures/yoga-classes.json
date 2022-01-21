@@ -539,7 +539,7 @@
     "series_duration": 12,
     "equipment": "blocks",
     "trainer": "1",
-    "price": 50,
+    "price": 50,    
     "class_or_product" : "class",
     "image": "34.jpg"
   }},
@@ -555,7 +555,7 @@
     "series_duration": 10,
     "equipment": "none",
     "trainer": "8",
-    "price": 40,
+    "price": 40,    
     "class_or_product" : "class",
     "image": "35.jpg"
   }}
