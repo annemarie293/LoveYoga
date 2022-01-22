@@ -13,7 +13,7 @@ class YogaClassAdmin(admin.ModelAdmin):
         'equipment',
         'trainer',
         'price',
-        'class_or_product',
+        'category',
         'image',
     )
 

@@ -15,22 +15,21 @@ def view_basket(request):
 
 
 def add_product_to_basket(request, item_id):
-    """ Add a quantity of the specified product to the basket"""
+    """ Add a class or a quantity of the specified product to the basket"""
 
     product = get_object_or_404(ShopProducts, id=item_id)
-    c_or_p = product.class_or_product
     quantity = int(request.POST.get('quantity'))
-    # class_or_product = request.POST.get('class_or_product')
+    category = request.POST.get('category')
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
 
    
     if item_id in list(basket.keys()):
-        if c_or_p in basket[item_id]['class_or_product'] == "product":
+        if category in basket[item_id]['category'] == "product":
             basket[item_id]['quantity'] += quantity
-            # messages.success(request, f'{product.name} quantity is increased to {basket[item_id]}')
+            # messages.success(request, f'{product.name} quantity is increased to {basket[item_id]['quantity']}')
     else:
-        basket[item_id] = {'quantity': quantity, 'class_or_product': c_or_p}
+        basket[item_id] = {'quantity': quantity, 'category': category}
         # messages.success(request, f'{product.name} is now added to your basket')
 
     request.session['basket'] = basket
@@ -38,24 +37,21 @@ def add_product_to_basket(request, item_id):
     return redirect(redirect_url)
 
 def add_class_to_basket(request, item_id):
-    """ Add a quantity of the specified class to the basket"""
-
+    """ Add a class to the basket"""
+    
     classes = get_object_or_404(YogaClass, id=item_id)
-    # c_or_p = classes.class_or_product
-    # item_id = c_or_p + item_id
     quantity = int(request.POST.get('quantity'))
-    class_or_product = request.POST.get('class_or_product')
+    category = request.POST.get('category')
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
-
-   
+ 
     if item_id in list(basket.keys()):
-        if c_or_p in basket[item_id]['class_or_product'] == "class":
-            basket[item_id]['quantity'] += quantity
-            # messages.success(request, f'{product.name} quantity is increased to {basket[item_id]}')
+            if category in basket[item_id]['category'] == "class":
+                basket[item_id]['quantity'] += quantity
+                # messages.success(request, f'{classes.name} quantity is increased to {basket[item_id]['quantity']}')
     else:
-        basket[item_id] = {'quantity': quantity, 'class_or_product': c_or_p}
-        # messages.success(request, f'{product.name} is now added to your basket')
+        basket[item_id] = {'quantity': quantity, 'category': category}
+         # messages.success(request, f'{classes.name} is now added to your basket')
 
     request.session['basket'] = basket
     print(basket)

@@ -36,8 +36,7 @@
                             <li class="list-group-item text-center">Intensity: {{ classes.intensity }}</li>
                             <li class="list-group-item text-center">Session Length: {{ classes.session_duration }} minutes </li>
                             <li class="list-group-item text-center">{{ classes.series_duration }} sessions</li>
-                            <li class="list-group-item text-center">Equipment needed: {{ classes.equipment }}</li>
-                            <li class="list-group-item text-center">Productor class: {{ classes.class_or_product }}</li>
+                            <li class="list-group-item text-center">Equipment needed: {{ classes.equipment }}</li>                        
                             </ul>
                             <h3 class="card-body text-center">Price: €{{ classes.price }}</h3>
                             <div>
@@ -55,7 +54,7 @@
                                                         data-item_id="{{ classes.id }}"
                                                         id="id_qty_{{ classes.id }}">
 
-                                                    <input type="hidden" name="class_or_product" value="{{ classes.class_or_product }}">
+                                                    <input type="hidden" name="category" value="{{ classes.category }}">
                                                 
                                                 </div>
                                             </div>

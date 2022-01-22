@@ -7,7 +7,7 @@ class ShopProductsAdmin(admin.ModelAdmin):
         'name',
         'description',
         'price',
-        'class_or_product',
+        'category',
         'image',
     )
 
