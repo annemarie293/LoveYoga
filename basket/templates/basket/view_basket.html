@@ -61,18 +61,8 @@
                                         <td class="py-3">
                                             <p class="my-0">€{{ item.classes.price }}</p>
                                         </td>
-                                        <td class="py-3 w-25">
-                                            <form class="form update-form" method="POST" action="">
-                                                {% csrf_token %}
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input class="form-control form-control-sm qty_input" type="number"
-                                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                            data-item_id="{{ item.item_id }}"
-                                                            id="id_qty_{{ item.item_id }}">
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        <td class="py-3 w-15">
+                                            <p class="my-0">{{ item.quantity }}</p>
                                             <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                         </td>
                                         <td class="py-3">
@@ -83,13 +73,13 @@
                                 {% endif %}
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-end {% if classes_total == 0 %} d-none {% endif %}">
+                                <td colspan="5" class="text-end {% if classes_total == 0 %} d-none {% endif %}">
                                     <h5><strong>Classes Total: ${{ classes_total }}</strong></h5>
                                 </td>
                             </tr>
                                
                             <tr>
-                                <td colspan="5" class="pt-5 text-start">
+                                <td colspan="5" class="pt-2 text-start">
                                     <h4 class="mt-2 {% if products_total == 0 %} d-none {% endif %}"><strong>Products</strong></h4>
                                 </td>
                             </tr> 
@@ -115,7 +105,7 @@
                                         <td class="py-3">
                                             <p class="my-0">€{{ item.products.price }}</p>
                                         </td>
-                                        <td class="py-3 w-25">
+                                        <td class="py-3 w-15">
                                             <form class="form update-form" method="POST" action="">
                                                 {% csrf_token %}
                                                 <div class="form-group">
@@ -154,7 +144,7 @@
                                 {% endif %}
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-end {% if products_total == 0 %} d-none {% endif %}">
+                                <td colspan="5" class="text-end {% if products_total == 0 %} d-none {% endif %}">
                                     <h5><strong>Products Total: ${{ products_total }}</strong></h5>
                                 </td>
                             </tr>
