@@ -62,6 +62,10 @@ body{
     background-color:#D2D4C8;
 }
 
+.text-grey{
+    color:#6F725A;
+}
+
 /* from Bulma for icons*/
 .icon {
     align-items: center;
@@ -88,10 +92,6 @@ body{
     padding-top: 6rem
 }
 
-.page-title {
-    background-color: #FCD0BF;
-    margin: 0;
-}
 
 /* --------------------------Buttons  */
 

@@ -14,9 +14,13 @@ def checkout(request):
         return redirect(reverse('classes'))
 
     order_form = OrderForm()
+    stripe_public_key = 'pk_test_51K85HOFENeI7e0FkJtphWpl6HgVPaTD713uiD2XfcFfLlCFUFXvPecg2g7SZB6APxcRo2EPGBUwOmxcUPNAYOTx600RVp7jXTJ'
+    client_secret = "test_client_secret"
 
     context = {
-        'order_form': order_form
+        'order_form': order_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': client_secret
     }
 
     return render (request, 'checkout/checkout.html', context)

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -18,7 +23,7 @@
         <div class="col bg-blush">
             
             <div class="row my-4 text-center">
-                <h2 class="mb-0 text-white">
+                <h2 class="mb-0 text-grey">
                     Checkout
                 </h2>             
             </div>
@@ -105,7 +110,7 @@
                             </tr>  
                             <thead class="text-black bg-grey {% if classes_total == 0 %} d-none {% endif %}">
                                 <tr>
-                                    <th scope="col">Product Info</th>
+                                    <th scope="col">Details</th>
                                     <th scope="col"></th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Qty</th>
@@ -119,9 +124,7 @@
                                             <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
                                         </td>
                                         <td class="py-3">
-                                            <p class="my-0"><strong>{{ item.classes.name }}</strong></p>            
-                                            <p class="my-0 small text-muted">{{ item.classes.series_duration }} videos </p>
-                                            <p class="my-0 small text-muted">{{ item.classes.session_duration }} mins each </p>
+                                            <p class="my-0"><strong>{{ item.classes.name }}</strong></p>
                                         </td>
                                         <td class="py-3">
                                             <p class="my-0">€{{ item.classes.price }}</p>
@@ -149,7 +152,7 @@
                             </tr> 
                             <thead class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
                                 <tr>
-                                    <th scope="col">Product Info</th>
+                                    <th scope="col">Details</th>
                                     <th scope="col"></th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Qty</th>
@@ -163,8 +166,7 @@
                                             <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
                                         </td>
                                         <td class="py-3">
-                                            <p class="my-0"><strong>{{ item.products.name }}</strong></p>            
-                                            <p class="my-0 small text-muted">{{ item.products.description }}</p>
+                                            <p class="my-0"><strong>{{ item.products.name }}</strong></p>
                                         </td>
                                         <td class="py-3">
                                             <p class="my-0">€{{ item.products.price }}</p>
@@ -189,7 +191,7 @@
                                 <td colspan="5" class="pt-5 text-end">
                                     <h6><strong>SubTotal: ${{ sub_total }}</strong></h6>
                                     <h6>Delivery: ${{ delivery }}</h6>
-                                    <h4 class="mt-4 bg-pink"><strong>Total to pay: ${{ grand_total }}</strong></h4>
+                                    <h4 class="mt-4"><strong>Total to pay: ${{ grand_total }}</strong></h4>
                                 </td>
                             </tr>
                             <tr>
@@ -229,4 +231,11 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
