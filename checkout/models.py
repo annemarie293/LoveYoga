@@ -2,13 +2,13 @@ import uuid
 
 from django.db import models
 from django.db.models import Sum
-from django.conf import settings
 from django_countries.fields import CountryField
 
 from shop.models import ShopProducts
 from classes.models import YogaClass
 
 # Create your models here.
+
 
 class Order(models.Model):
     
@@ -45,6 +45,7 @@ class Order(models.Model):
         self.grand_total = self.order_total + self.delivery
         self.save()
 
+
     def save(self, *args, **kwargs):
         """
         Override the default save to generate the order number if it does not already exist
@@ -52,6 +53,10 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super.save(*args, **kwargs)
+
+
+    def __str__(self):
+        return self.order_number
 
 class OrderLineItem(models.Model):
 
@@ -63,8 +68,18 @@ class OrderLineItem(models.Model):
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
+        """
+        Override the default save and calculates line item total for each order line
+        """
         if self.category == 'product':
             self.lineitem_total = self.product.price * self.quantity
         elif self.category == 'class':
             self.lineitem_total = self.classes.price * self.quantity
         super.save(*args, **kwargs)
+
+    
+    def __str__(self):
+        if self.category == 'product':
+            return f'SKU {self.product.sku} on order {self.order.order_number}'
+        elif self.category == 'class':
+            return f'SKU {self.classes.sku} on order {self.order.order_number}'
