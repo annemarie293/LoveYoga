@@ -1,6 +1,10 @@
+import stripe
+
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
-from .forms import OrderForm
+from django.conf import settings
+from .forms import OrderForm 
+from basket.contexts import basket_contents
 
 # Create your views here.
 
@@ -12,6 +16,11 @@ def checkout(request):
     if not basket:
         # messages.error(request, "You havent added anything to your basket yet!")
         return redirect(reverse('classes'))
+
+    current_basket = basket_contents(request)
+    total = current_basket['grand_total']
+
+    stripe_total = round(total * 100)
 
     order_form = OrderForm()
     stripe_public_key = 'pk_test_51K85HOFENeI7e0FkJtphWpl6HgVPaTD713uiD2XfcFfLlCFUFXvPecg2g7SZB6APxcRo2EPGBUwOmxcUPNAYOTx600RVp7jXTJ'
