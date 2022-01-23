@@ -12,31 +12,30 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container-fluid h-100">
+<div class="overlay"></div>
+<div class="container-fluid h-100 ">
     <div class="row h-100">
-        <div class="col">
+        <div class="col bg-blush">
             
-            <div class="row my-5 text-center page-title ">
-                <h2>Our Classes</h2>             
+            <div class="row my-4 text-center">
+                <h2 class="mb-0 text-white">Our Classes</h2>             
             </div>
             
-
-            <div class="row">
-                {% for class in classes %}   
-                    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                        <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                            <img src="{{ MEDIA_URL }}{{ class.image }}" class="trainer-img" alt="image for {{ class.name }} class">
-                            <div class="card-body bg-lilac">
-                            <h4 class="card-title text-white fw-bold">{{ class.name }}</h4>
-                            </div>
-                            <div class="card-body">
-                                <a href="{% url 'class_info' class.id %}" class="btn btn-mint">More Info</a>
-                            </div>
+        </div>
+        <div class="row">
+            {% for class in classes %}   
+                <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                    <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                        <img src="{{ MEDIA_URL }}{{ class.image }}" class="trainer-img" alt="image for {{ class.name }} class">
+                        <div class="card-body bg-lilac">
+                        <h4 class="card-title text-white fw-bold">{{ class.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <a href="{% url 'class_info' class.id %}" class="btn btn-mint">More Info</a>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>

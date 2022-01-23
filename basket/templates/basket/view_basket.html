@@ -12,216 +12,219 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container-fluid h-100">
+<div class="overlay"></div>
+<div class="container-fluid h-100 ">
     <div class="row h-100">
-        <div class="col">
+        <div class="col bg-blush">
             
-            <div class="row my-5 text-center page-title ">
-                <h2>Shopping Basket</h2>             
+            <div class="row my-4 text-center">
+                <h2 class="mb-0 text-white">
+                    Your Shopping Basket
+                </h2>             
             </div>
             
+        </div>
+        <div class="row">
+            <div class="col col-lg-10 offset-lg-1">
 
-            <div class="row">
-                <div class="col col-lg-10 offset-lg-1">
-
-                    {% if basket_items %}
-                        <div class="table-responsive rounded">
-                            <table class="table table-sm table-borderless">
-                                <thead class="text-black">
-                                    <tr class="d-none"></tr>
-                                </thead>                                                             
+                {% if basket_items %}
+                    <div class="table-responsive rounded mt-2">
+                        <table class="table table-sm table-borderless">
+                            <thead class="text-black">
+                                <tr class="d-none"></tr>
+                            </thead> 
+                            <tr>
+                                <td colspan="5" class="pt-5 text-start">
+                                    <h4 class="mt-2"><strong>Classes</strong></h4>
+                                </td>
+                            </tr>  
+                            <thead class="text-black bg-grey">
                                 <tr>
-                                    <td><h4>Classes</h4></td>
+                                    <th scope="col">Product Info</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Subtotal</th>
                                 </tr>
-                                <thead class="text-black">
+                            </thead>
+                            {% for item in basket_items %}
+                                {% if item.category == 'class' %}                                        
                                     <tr>
-                                        <th scope="col">Product Info</th>
-                                        <th scope="col"></th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                {% for item in basket_items %}
-                                    {% if item.category == 'class' %}                                        
-                                        <tr>
-                                            <td class="p-3 w-25">
-                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0"><strong>{{ item.classes.name }}</strong></p>            
-                                                <p class="my-0 small text-muted">{{ item.classes.series_duration }} videos </p>
-                                                <p class="my-0 small text-muted">{{ item.classes.session_duration }} mins each </p>
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0">€{{ item.classes.price }}</p>
-                                            </td>
-                                            <td class="py-3 w-25">
-                                                <form class="form update-form" method="POST" action="">
-                                                    {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                                                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                                    <span>
-                                                                        <i class="fas fa-minus fa-sm"></i>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                            <input class="form-control form-control-sm qty_input" type="number"
-                                                                name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                                data-item_id="{{ item.item_id }}"
-                                                                id="id_qty_{{ item.item_id }}">
-                                                            <div class="input-group-append">
-                                                                <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                                                    data-item_id=" item.item_id " id="increment-qty_{{ item.item_id }}">
-                                                                    <span>
-                                                                        <i class="fas fa-plus fa-sm"></i>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
+                                        <td class="p-3 w-25">
+                                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0"><strong>{{ item.classes.name }}</strong></p>            
+                                            <p class="my-0 small text-muted">{{ item.classes.series_duration }} videos </p>
+                                            <p class="my-0 small text-muted">{{ item.classes.session_duration }} mins each </p>
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0">€{{ item.classes.price }}</p>
+                                        </td>
+                                        <td class="py-3 w-25">
+                                            <form class="form update-form" method="POST" action="">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-minus fa-sm"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <input class="form-control form-control-sm qty_input" type="number"
+                                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                            data-item_id="{{ item.item_id }}"
+                                                            id="id_qty_{{ item.item_id }}">
+                                                        <div class="input-group-append">
+                                                            <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                                data-item_id=" item.item_id " id="increment-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-plus fa-sm"></i>
+                                                                </span>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                </form>
-                                                <a class="update-link text-info"><small>Update</small></a>
-                                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0">$ {{item.classes.price}} </p>
-                                            </td>
-                                        </tr>
-                                        
-                                    {% endif %}
-                                {% endfor %}
-                                <tr>
-                                    <td colspan="5" class="pt-5 text-end">
-                                        <h5><strong>Classes Total: ${{ classes_total }}</strong></h5>
-                                    </td>
-                                </tr>
-                                   
-                                <tr>
-                                    <td><h4>Products</h4></td>
-                                </tr>
-                                <thead class="text-black">
-                                    <tr>
-                                        <th scope="col">Product Info</th>
-                                        <th scope="col"></th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Subtotal</th>
+                                                </div>
+                                            </form>
+                                            <a class="update-link text-info"><small>Update</small></a>
+                                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0">$ {{item.classes.price}} </p>
+                                        </td>
                                     </tr>
-                                </thead>
-                                {% for item in basket_items %}
-                                    {% if item.category == 'product' %}                                        
-                                        <tr>
-                                            <td class="p-3 w-25">
-                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0"><strong>{{ item.products.name }}</strong></p>            
-                                                <p class="my-0 small text-muted">{{ item.products.description }}</p>
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0">€{{ item.products.price }}</p>
-                                            </td>
-                                            <td class="py-3 w-25">
-                                                <form class="form update-form" method="POST" action="">
-                                                    {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <button class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                                                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                                    <span>
-                                                                        <i class="fas fa-minus fa-sm"></i>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                            <input class="form-control form-control-sm qty_input" type="number"
-                                                                name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                                data-item_id="{{ item.item_id }}"
-                                                                id="id_qty_{{ item.item_id }}">
-                                                            <div class="input-group-append">
-                                                                <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                                                    data-item_id=" item.item_id " id="increment-qty_{{ item.item_id }}">
-                                                                    <span>
-                                                                        <i class="fas fa-plus fa-sm"></i>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
+                                    
+                                {% endif %}
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5" class="pt-5 text-end">
+                                    <h5><strong>Classes Total: ${{ classes_total }}</strong></h5>
+                                </td>
+                            </tr>
+                               
+                            <tr>
+                                <td colspan="5" class="pt-5 text-start">
+                                    <h4 class="mt-2"><strong>Products</strong></h4>
+                                </td>
+                            </tr> 
+                            <thead class="text-black bg-grey">
+                                <tr>
+                                    <th scope="col">Product Info</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            {% for item in basket_items %}
+                                {% if item.category == 'product' %}                                        
+                                    <tr>
+                                        <td class="p-3 w-25">
+                                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0"><strong>{{ item.products.name }}</strong></p>            
+                                            <p class="my-0 small text-muted">{{ item.products.description }}</p>
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0">€{{ item.products.price }}</p>
+                                        </td>
+                                        <td class="py-3 w-25">
+                                            <form class="form update-form" method="POST" action="">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-minus fa-sm"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <input class="form-control form-control-sm qty_input" type="number"
+                                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                            data-item_id="{{ item.item_id }}"
+                                                            id="id_qty_{{ item.item_id }}">
+                                                        <div class="input-group-append">
+                                                            <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                                data-item_id=" item.item_id " id="increment-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-plus fa-sm"></i>
+                                                                </span>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                </form>
-                                                <a class="update-link text-info"><small>Update</small></a>
-                                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0">$ {{item.products.price}} </p>
-                                            </td>
-                                        </tr>
-                                        </hr>
-                                    {% endif %}
-                                {% endfor %}
-                                <tr>
-                                    <td colspan="5" class="pt-5 text-end">
-                                        <h5><strong>Products Total: ${{ products_total }}</strong></h5>
-                                    </td>
-                                </tr>
-                                
-                                
-                                <tr>
-                                    <td colspan="5" class="pt-5 text-end">
-                                        <h6><strong>SubTotal: ${{ sub_total }}</strong></h6>
-                                        <h6>Delivery: ${{ delivery }}</h6>
-                                        <h4 class="mt-4"><strong>Total to pay: ${{ grand_total }}</strong></h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" class="text-right">
-                                        <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                                            <span class="icon">
-                                                <i class="fas fa-chevron-left"></i>
-                                            </span>
-                                            <span class="text-uppercase">View our shop</span>
-                                        </a>
-                                        <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                                            <span class="icon">
-                                                <i class="fas fa-chevron-left"></i>
-                                            </span>
-                                            <span class="text-uppercase">Find a class</span>
-                                        </a>
-                                        <a href="" class="btn btn-black rounded-0 btn-lg">
-                                            <span class="text-uppercase">Secure Checkout</span>
-                                            <span class="icon">
-                                                <i class="fas fa-lock"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    {% else %}
-                        <p class="lead mb-5">Your bag is empty.</p>
-                        <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">View our shop</span>
-                        </a>
-                        <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Find a class</span>
-                    {% endif %}
-                </div>
+                                                </div>
+                                            </form>
+                                            <a class="update-link text-info"><small>Update</small></a>
+                                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0">$ {{item.products.price}} </p>
+                                        </td>
+                                    </tr>
+                                    </hr>
+                                {% endif %}
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5" class="pt-5 text-end">
+                                    <h5><strong>Products Total: ${{ products_total }}</strong></h5>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td colspan="5" class="pt-5 text-end">
+                                    <h6><strong>SubTotal: ${{ sub_total }}</strong></h6>
+                                    <h6>Delivery: ${{ delivery }}</h6>
+                                    <h4 class="mt-4"><strong>Total to pay: ${{ grand_total }}</strong></h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-right">
+                                    <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">View our shop</span>
+                                    </a>
+                                    <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Find a class</span>
+                                    </a>
+                                    <a href="" class="btn btn-black rounded-0 btn-lg">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="lead mb-5">Your bag is empty.</p>
+                    <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">View our shop</span>
+                    </a>
+                    <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Find a class</span>
+                {% endif %}
             </div>
-
-
         </div>
     </div>
-</div>  
+</div>
 
 {% endblock %}

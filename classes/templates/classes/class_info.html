@@ -12,75 +12,71 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container-fluid h-100">
+<div class="overlay"></div>
+<div class="container-fluid h-100 ">
     <div class="row h-100">
-        <div class="col">
+        <div class="col bg-blush">
             
-            <div class="row my-5 text-center page-title ">
-                <h2>Our Classes</h2>             
+            <div class="row my-4 text-center">
+                <h2 class="mb-0 text-white">{{ classes.name }}</h2>             
             </div>
             
-
-            <div class="row"> 
-                    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                        <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                            <img src="{{ MEDIA_URL }}{{ classes.image }}" class="trainer-img" alt="image for {{ classes.name }}">
-                            <div class="card-body bg-lilac">
-                            <h4 class="card-title text-white fw-bold">{{ classes.name }}</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">{{ classes.description }}</li>
-                            <li class="list-group-item text-center">Trainer: {{ classes.trainer }} </li>
-                            <li class="list-group-item text-center">Level {{ classes.level }}</li>
-                            <li class="list-group-item text-center">Intensity: {{ classes.intensity }}</li>
-                            <li class="list-group-item text-center">Session Length: {{ classes.session_duration }} minutes </li>
-                            <li class="list-group-item text-center">{{ classes.series_duration }} sessions</li>
-                            <li class="list-group-item text-center">Equipment needed: {{ classes.equipment }}</li>                        
-                            </ul>
-                            <h3 class="card-body text-center">Price: €{{ classes.price }}</h3>
-                            <div>
-                                <form class="form" action="{% url 'add_class_to_basket' classes.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <div class="form-row">
-                                       
-                                        <div class="col-12">
-                                            <p class="mt-3"><strong>Quantity:</strong></p>
-                                            <div class="form-group w-50">
-                                                <div class="input-group">
-                                                    
-                                                    <input class="form-control qty_input" type="number"
-                                                        name="quantity" value="1" min="1" max="99"
-                                                        data-item_id="{{ classes.id }}"
-                                                        id="id_qty_{{ classes.id }}">
-
-                                                    <input type="hidden" name="category" value="{{ classes.category }}">
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-            
-                                        <div class="col{% if s %}-12 mt-2{% endif %}">
-                                            <a href="{% url 'classes' %}" class="btn rounded-0 mt-5">
-                                                <span class="icon">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                                <span class="text-uppercase">Find more classes</span>
-                                            </a>
-                                            <input type="submit" class="btn text-uppercase mt-5" value="Add to Basket">
-                                        </div>
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                    <img src="{{ MEDIA_URL }}{{ classes.image }}" class="trainer-img" alt="image for {{ classes.name }}">
+                    <div class="card-body bg-lilac">
+                    <h4 class="card-title text-white fw-bold">{{ classes.name }}</h4>
                     </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center">{{ classes.description }}</li>
+                    <li class="list-group-item text-center">Trainer: {{ classes.trainer }} </li>
+                    <li class="list-group-item text-center">Level {{ classes.level }}</li>
+                    <li class="list-group-item text-center">Intensity: {{ classes.intensity }}</li>
+                    <li class="list-group-item text-center">Session Length: {{ classes.session_duration }} minutes </li>
+                    <li class="list-group-item text-center">{{ classes.series_duration }} sessions</li>
+                    <li class="list-group-item text-center">Equipment needed: {{ classes.equipment }}</li>                        
+                    </ul>
+                    <h3 class="card-body text-center">Price: €{{ classes.price }}</h3>
+                    <div>
+                        <form class="form" action="{% url 'add_class_to_basket' classes.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                               
+                                <div class="col-12">
+                                    <p class="mt-3"><strong>Quantity:</strong></p>
+                                    <div class="form-group w-50">
+                                        <div class="input-group">
+                                            
+                                            <input class="form-control qty_input" type="number"
+                                                name="quantity" value="1" min="1" max="99"
+                                                data-item_id="{{ classes.id }}"
+                                                id="id_qty_{{ classes.id }}">
+
+                                            <input type="hidden" name="category" value="{{ classes.category }}">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="col{% if s %}-12 mt-2{% endif %}">
+                                    <a href="{% url 'classes' %}" class="btn rounded-0 mt-5">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Find more classes</span>
+                                    </a>
+                                    <input type="submit" class="btn text-uppercase mt-5" value="Add to Basket">
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
 {% endblock %}

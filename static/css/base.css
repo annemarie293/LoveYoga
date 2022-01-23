@@ -49,6 +49,19 @@ body{
     background-color: #8BF8B5;
 }
 
+.bg-orange{
+    background-color: #FFA38B;
+}
+.bg-pink{
+    background-color: #E0527C;
+}
+.bg-blush{
+    background-color: #FCD0BF;
+}
+.bg-grey{
+    background-color:#D2D4C8;
+}
+
 /* from Bulma for icons*/
 .icon {
     align-items: center;
@@ -68,19 +81,75 @@ body{
 }
 
 #classesLink{
-    color: #9DA6FB;
+    
 }
 
 .header-container{
     padding-top: 6rem
 }
 
-/* --------------------------Buttons page */
+.page-title {
+    background-color: #FCD0BF;
+    margin: 0;
+}
+
+/* --------------------------Buttons  */
 
 .btn-mint{
     background-color: #8BF8B5;
     color:white;
 }
+
+.btn-teal{
+    background-color: #01B6A3;
+    color:white;
+}
+
+.btn-pink{
+    background-color: #E0527C;
+    color:white;
+}
+
+/* --------------------------General/multi page*/
+
+
+body{
+    height: calc(100vh - 10rem);
+    width: 100%;
+    background: url('/media/home2.jpeg') no-repeat center center fixed;
+    background-size: cover; /* or contain depending on what you want */
+    background-position: center center;
+    background-repeat: no-repeat;
+    text-align:center;
+    margin:auto;
+    padding-top:1rem;
+}
+
+/* to display page title on small screenss */
+@media (max-width: 370px) {
+    body {
+        padding-top:2rem;
+    }
+  }
+
+  @media (min-width: 425px) and (max-width: 635px){
+    body {
+        padding-top: .5rem;
+    }
+  }
+
+
+/* To hide background home image */
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
+
 /* --------------------------Trainers page */
 
 .trainer-card{
@@ -93,3 +162,4 @@ body{
         width: 23rem !important;
     }
   }
+

@@ -46,6 +46,8 @@ def basket_contents(request):
             })
         
     delivery = 5
+    if products_total == 0:
+        delivery = 0
     sub_total = classes_total + products_total
     grand_total = sub_total + delivery
 

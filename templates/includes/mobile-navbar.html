@@ -1,5 +1,5 @@
 
-<ul class="list-inline list-unstyled text-end my-0 bg-lilac d-md-none">
+<ul class="list-inline list-unstyled text-end my-0 bg-orange d-md-none">
     
     <li class="list-inline-item dropdown">
         <a class="text-white nav-link dropdown-toggle d-block d-md-none" data-bs-toggle="dropdown" href="#" id="mobileNavSearch" role="button" aria-expanded="false">
@@ -11,7 +11,7 @@
                     <input class="form-control border-0" type="text" name="q" placeholder="Search">
                     <button class="form-control form-control btn" type="submit">
                         <span class="icon">
-                            <i class="lilac-txt-dark fas fa-search"></i>
+                            <i class="fas fa-search"></i>
                         </span>
                     </button>
                 </div>
@@ -22,7 +22,7 @@
         <a class="text-white nav-link dropdown-toggle d-block d-md-none" data-bs-toggle="dropdown" href="#" id="accountOptions" role="button" aria-expanded="false">
             <i class="fas fa-user fa-lg text-white"></i>
         </a>
-        <ul class="dropdown-menu bg-lilac border-0">
+        <ul class="dropdown-menu bg-orange border-0">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                         <li><a href="" class="dropdown-item text-white">Site Management</a></li>
