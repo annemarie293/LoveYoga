@@ -35,10 +35,10 @@
                             </thead> 
                             <tr>
                                 <td colspan="5" class="pt-5 text-start">
-                                    <h4 class="mt-2 {% if classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h4>
+                                    <h4 class="mt-2"><strong>Classes</strong></h4>
                                 </td>
                             </tr>  
-                            <thead class="text-black bg-grey {% if classes_total == 0 %} d-none {% endif %}">
+                            <thead class="text-black bg-grey">
                                 <tr>
                                     <th scope="col">Product Info</th>
                                     <th scope="col"></th>
@@ -100,17 +100,17 @@
                                 {% endif %}
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-end {% if classes_total == 0 %} d-none {% endif %}">
+                                <td colspan="5" class="pt-5 text-end">
                                     <h5><strong>Classes Total: ${{ classes_total }}</strong></h5>
                                 </td>
                             </tr>
                                
                             <tr>
                                 <td colspan="5" class="pt-5 text-start">
-                                    <h4 class="mt-2 {% if products_total == 0 %} d-none {% endif %}"><strong>Products</strong></h4>
+                                    <h4 class="mt-2"><strong>Products</strong></h4>
                                 </td>
                             </tr> 
-                            <thead class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                            <thead class="text-black bg-grey">
                                 <tr>
                                     <th scope="col">Product Info</th>
                                     <th scope="col"></th>
@@ -171,7 +171,7 @@
                                 {% endif %}
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-end {% if products_total == 0 %} d-none {% endif %}">
+                                <td colspan="5" class="pt-5 text-end">
                                     <h5><strong>Products Total: ${{ products_total }}</strong></h5>
                                 </td>
                             </tr>
@@ -186,19 +186,19 @@
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                    <a href="{% url 'shop' %}" class="btn btn-lg">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">View our shop</span>
                                     </a>
-                                    <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                    <a href="{% url 'classes' %}" class="btn  btn-lg">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">Find a class</span>
                                     </a>
-                                    <a href="" class="btn btn-black rounded-0 btn-lg">
+                                    <a href="{% url 'checkout' %}" class="btn btn-lg">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
