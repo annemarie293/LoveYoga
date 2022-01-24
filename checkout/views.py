@@ -35,9 +35,9 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+        print(order_form)
         if order_form.is_valid():
             print('AAAAAAAAAAAAAAAAAAAA   ORDER IS VALID AAAAAAAAAAAAAAAAAAAAAAA')
-            print(order_form.errors)
             order = order_form.save(commit=False)
             # pid = request.POST.get('client_secret').split('_secret')[0]
             # order.stripe_pid = pid
@@ -45,35 +45,35 @@ def checkout(request):
             order.save()
             for item_id, item_data in basket.items():
                 category = item_data['category']
+                print(category)
                 try:
                     if category == 'class':
-                        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
                         quantity = item_data['quantity']
-                        print(quantity)
                         classes = get_object_or_404(YogaClass, id=item_id)
-                        print(classes)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
-                            product='null',
                             classes=classes,
                             quantity=quantity,
                         )
-                        print(order_line_item)
                         order_line_item.save()
-                        print ("ppppppppppppp order line is saved ppppppppppppp")
+                        print("OOOOOOOOOOOOOOOOOOOOOOOOO classes working ok OOOOOOOOOOOOOOOOOOOOO")                        
                     elif category == 'product':
                         print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
                         quantity = item_data['quantity']
-                        products = get_object_or_404(ShopProducts, id=item_id)
+                        print(quantity)
+                        product = get_object_or_404(ShopProducts, id=item_id)
+                        print(product)                     
+                        print("MMMMMMMMMMMMMMMMM   This is the last step before order line MMMMMMMMMMMMMMMMMM")
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
-                            product= product,
-                            classes='null',
+                            product=product,
                             quantity=quantity,
                         )
+                        print("BBBBBBBBBBBBBBBBBBBBBBBBBBBB   Order Line ITem did work BBBBBBBBBBBBBBBB")
                         order_line_item.save()
+                        print ("ppppppppppppp order line is saved ppppppppppppp")
                 except:
                     # messages.error(request, (
                     #     "It looks like we can't process this order"

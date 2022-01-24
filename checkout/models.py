@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 
 from shop.models import ShopProducts
 from classes.models import YogaClass
+from basket.contexts import basket_contents
 
 # Create your models here.
 
@@ -27,8 +28,8 @@ class Order(models.Model):
     delivery = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    original_bag = models.TextField(null=False, blank=False, default=0)
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default=0)
+    # original_bag = models.TextField(null=False, blank=False, default=0)
+    # stripe_pid = models.CharField(max_length=254, null=False, blank=False, default=0)
 
     def _generate_order_number(self):
         """
@@ -36,15 +37,14 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
 
-
-    def update_total (self):
+    def update_total(self):
         """
         Update the order total from the line item values
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.delivery = 5
         self.grand_total = self.order_total + self.delivery
         self.save()
-
 
     def save(self, *args, **kwargs):
         """
@@ -54,9 +54,9 @@ class Order(models.Model):
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
 
-
     def __str__(self):
         return self.order_number
+
 
 class OrderLineItem(models.Model):
 
@@ -73,10 +73,11 @@ class OrderLineItem(models.Model):
         """
         if self.category == 'product':
             self.lineitem_total = self.product.price * self.quantity
+            print(self.lineitem_total)
         elif self.category == 'class':
             self.lineitem_total = self.classes.price * self.quantity
-        super.save(*args, **kwargs)
-
+            print(self.lineitem_total)
+        super().save(*args, **kwargs)
     
     def __str__(self):
         if self.category == 'product':
