@@ -44,9 +44,12 @@ class Order(models.Model):
         Update the order total from the line item values
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        self.delivery = 5
-        if self.classes_total == 0:
-            self.delivery = 0
+        self.delivery = 0
+        print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
+        print(self.products_total)
+        if self.products_total != 0:
+            self.delivery = 5
+        print(self.delivery)
         self.grand_total = self.order_total + self.delivery
         self.save()
 
@@ -77,10 +80,8 @@ class OrderLineItem(models.Model):
         """
         if self.category == 'product':
             self.lineitem_total = self.product.price * self.quantity
-            print(self.lineitem_total)
         elif self.category == 'class':
             self.lineitem_total = self.classes.price * self.quantity
-            print(self.lineitem_total)
         super().save(*args, **kwargs)
     
     def __str__(self):

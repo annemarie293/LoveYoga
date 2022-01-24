@@ -45,7 +45,7 @@
                                     <h5 class="mt-2 {% if order.classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h5>
                                 </td>
                             </tr>  
-                            <thead class="text-black bg-grey">
+                            <thead class="text-black bg-grey {% if order.classes_total == 0 %} d-none {% endif %}">
                                 <tr>
                                     <th scope="col">Details</th>
                                     <th scope="col"></th>
@@ -70,7 +70,7 @@
                                             <p class="my-0">{{ line_item.quantity }}</p>
                                         </td>
                                         <td class="py-3">
-                                            <p class="my-0">$ {{ line_item.lineitem_total }} </p>
+                                            <p class="my-0">€ {{ line_item.lineitem_total }} </p>
                                         </td>
                                     </tr>
                                     
@@ -78,7 +78,7 @@
                             {% endfor %}
                             <tr>
                                 <td colspan="5" class="text-end {% if order.classes_total == 0 %} d-none {% endif %}">
-                                    <p><strong>Classes Total: ${{ order.classes_total }}</strong></p>
+                                    <p><strong>Classes Total: € {{ order.classes_total }}</strong></p>
                                 </td>
                             </tr>
                                
@@ -112,7 +112,7 @@
                                             <p class="my-0">{{ line_item.quantity }}</p>
                                         </td>
                                         <td class="py-3">
-                                            <p class="my-0">$ {{line_item.lineitem_total }} </p>
+                                            <p class="my-0">€ {{line_item.lineitem_total }} </p>
                                         </td>
                                     </tr>
                                     </hr>
@@ -120,15 +120,15 @@
                             {% endfor %}
                             <tr>
                                 <td colspan="5" class="text-end {% if order.products_total == 0 %} d-none {% endif %}">
-                                    <p><strong>Products Total: ${{ order.products_total }}</strong></p>
+                                    <p><strong>Products Total: € {{ order.products_total }}</strong></p>
                                 </td>
                             </tr>
                             
                             <tr>
                                 <td colspan="5" class="pt-5 text-end">
-                                    <h6><strong>SubTotal: ${{ order.order_total }}</strong></h6>
+                                    <h6><strong>SubTotal: € {{ order.order_total }}</strong></h6>
                                     <h6>Delivery: ${{ order.delivery }}</h6>
-                                    <h4 class="mt-4"><strong>Total paid: ${{ order.grand_total }}</strong></h4>
+                                    <h4 class="mt-4"><strong>Total paid: € {{ order.grand_total }}</strong></h4>
                                 </td>
                             </tr>
                             <tr>

@@ -23,6 +23,7 @@ def checkout(request):
     
     if request.method == 'POST':
         basket = request.session.get('basket', {})
+        
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -34,13 +35,13 @@ def checkout(request):
             'county': request.POST['county'],
             'postcode': request.POST['postcode'],
             'country': request.POST['country'],
-            'products_total': current_basket['products_total'],
-            'classes_total': current_basket['classes_total'],
         }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+            order.products_total = current_basket['products_total']
+            order.classes_total = current_basket['classes_total']
             # pid = request.POST.get('client_secret').split('_secret')[0]
             # order.stripe_pid = pid
             # order.original_bag = json.dumps(bag)
@@ -60,7 +61,6 @@ def checkout(request):
                         order_line_item.save()                    
                     elif category == 'product':
                         quantity = item_data['quantity']
-                        print(quantity)
                         product = get_object_or_404(ShopProducts, id=item_id)
                         order_line_item = OrderLineItem(
                             order=order,
