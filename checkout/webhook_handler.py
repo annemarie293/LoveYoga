@@ -32,27 +32,37 @@ class StripeWH_Handler:
                 shipping_details.address[field] = None
 
         order_exists = False
-        try:
-            order = Order.objects.get(
-                full_name__iexact=shipping_details.name,
-                email__iexact=billing_details.email,
-                phone_number__iexact=shipping_details.phone,
-                street_address1__iexact=shipping_details.address.line1,
-                street_address2__iexact=shipping_details.address.line2,
-                town_or_city__iexact=shipping_details.address.city,
-                county__iexact=shipping_details.address.state,
-                postcode__iexact=shipping_details.address.postal_code,
-                country__iexact=shipping_details.address.country,
-                grand_total=grand_total,
-                original_basket=basket,
-                stripe_pid=pid,
-            )
-            order_exists = True
-            return HttpResponse(
-                content = f'Webhook recieved:{event["type"]}| SUCCESS: the verified order has been dound in the database',
-                status=200       
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=shipping_details.name,
+                    email__iexact=billing_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    street_address1__iexact=shipping_details.address.line1,
+                    street_address2__iexact=shipping_details.address.line2,
+                    town_or_city__iexact=shipping_details.address.city,
+                    county__iexact=shipping_details.address.state,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    country__iexact=shipping_details.address.country,
+                    grand_total=grand_total,
+                    original_basket=basket,
+                    stripe_pid=pid,
                 )
-        except Order.DoesNotExist:
+                order_exists = True
+                break
+            except Order.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
+                
+        if order_exists: 
+                return HttpResponse(
+                    content = f'Webhook recieved:{event["type"]}| SUCCESS: the verified order has been dound in the database',
+                    status=200       
+                    )
+
+        else:
+            order = None
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
@@ -97,14 +107,11 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
                     status=500       
-                    )
-           
-
-
+                    )     
 
         return HttpResponse(
-            content=f'Webhook recieved: {event["type"]}', status=200
-        )
+            content=f'Webhook received: {event["type"]} | SUCCESS: Order created in webhook',
+            status=200)
 
     def handle_payment_intent_payment_failed(self, event):
         """
