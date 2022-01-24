@@ -36,59 +36,50 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
+            print('AAAAAAAAAAAAAAAAAAAA   ORDER IS VALID AAAAAAAAAAAAAAAAAAAAAAA')
+            print(order_form.errors)
             order = order_form.save(commit=False)
             # pid = request.POST.get('client_secret').split('_secret')[0]
             # order.stripe_pid = pid
             # order.original_bag = json.dumps(bag)
             order.save()
             for item_id, item_data in basket.items():
+                category = item_data['category']
                 try:
-                    category = item_data['category']
                     if category == 'class':
-                        try:
-                            quantity = item_data['quantity']
-                            category = item_data['category']
-                            classes = get_object_or_404(YogaClass, id=item_id)
-
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                classes=classes,
-                                quantity=quantity,
-                                category=category,
-                            )
-                            order_line_item.save()
-                        except classes.DoesNotExist:
-                            # messages.error(request, (
-                            #    "Oops! We can't find one of the classes you've selected,"
-                            #   "Please get in touch for help on this issue, thanks")
-                            # )
-                            order.delete()
-                            return redirect(reverse('view_basket'))
-
+                        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+                        quantity = item_data['quantity']
+                        print(quantity)
+                        classes = get_object_or_404(YogaClass, id=item_id)
+                        print(classes)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            category=category,
+                            product='null',
+                            classes=classes,
+                            quantity=quantity,
+                        )
+                        print(order_line_item)
+                        order_line_item.save()
+                        print ("ppppppppppppp order line is saved ppppppppppppp")
                     elif category == 'product':
-                        try:
-                            quantity = item_data['quantity']
-                            category = item_data['category']
-                            products = get_object_or_404(ShopProducts, id=item_id)
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                products=products,                                
-                                quantity=quantity,
-                                category=category,
-                            )
-                            order_line_item.save()
-                        except classes.DoesNotExist:
-                            # messages.error(request, (
-                            #    "Oops! We can't find one of the classes you've selected,"
-                            #   "Please get in touch for help on this issue, thanks")
-                            # )
-                            order.delete()
-                            return redirect(reverse('view_basket'))
-                except category.DoesNotExist:
+                        print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
+                        quantity = item_data['quantity']
+                        products = get_object_or_404(ShopProducts, id=item_id)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            category=category,
+                            product= product,
+                            classes='null',
+                            quantity=quantity,
+                        )
+                        order_line_item.save()
+                except:
                     # messages.error(request, (
                     #     "It looks like we can't process this order"
                     #     "Please contact us for more help")
                     # )
+                    print ("XXXXXXXXXXXXXXXX  Did not try orderLines   XXXXXXXXXXXXXXXXX")
                     order.delete()
                     return redirect(reverse('view_basket'))
 
@@ -96,11 +87,12 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
+            print ("XXXXXXXXXXXXXXXX  ORDER IS NOT VALID XXXXXXXXXXXXXXXXX")
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
-
+        print ("QQQQQQQQQQQQQQQQ   whats wrong QQQQQQQQQQQQQQQQQQqq")
         if not basket:
             # messages.error(request, "You havent added anything to your basket yet!")
             return redirect(reverse('classes'))
@@ -131,3 +123,25 @@ def checkout(request):
     }
 
     return render (request, 'checkout/checkout.html', context)
+
+
+def checkout_success(request, order_number):
+    """
+    A view to display successful orders
+    """
+
+    save_info = request.session.get('save_info')
+    order = get_object_or_404(Order, order_number=order_number)
+
+    # messgaes
+
+    if 'basket' in request.session:
+        del request.session['basket']
+
+    template ='checkout/checkout_success.html'
+
+    context = {
+        'order': order
+    }
+
+    return render(request, template, context)

@@ -27,7 +27,7 @@
                     Your order has been successfully processed!
                 </h2>             
             </div>
-            
+            {{ order }}
         </div>
         <div class="row">
             <div class=" mt-3 col col-md-6">
