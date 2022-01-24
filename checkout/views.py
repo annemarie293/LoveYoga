@@ -17,7 +17,7 @@ from basket.contexts import basket_contents
 @require_POST
 def cache_checkout_data(request):
     try:
-        pid = request.POST.get('client_secret').split('secret')[0]    
+        pid = request.POST.get('client_secret').split('_secret')[0]    
         stripe_secret_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata = {
             'username': request.user,
