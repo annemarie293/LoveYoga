@@ -45,11 +45,8 @@ class Order(models.Model):
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.delivery = 0
-        print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
-        print(self.products_total)
         if self.products_total != 0:
             self.delivery = 5
-        print(self.delivery)
         self.grand_total = self.order_total + self.delivery
         self.save()
 

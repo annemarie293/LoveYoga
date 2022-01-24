@@ -18,7 +18,7 @@ def checkout(request):
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
+    
     current_basket = basket_contents(request)
     
     if request.method == 'POST':
