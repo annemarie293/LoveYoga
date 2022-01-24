@@ -1,4 +1,12 @@
 from django.http import HttpResponse
+from django.conf import settings
+
+from .models import Order, OrderLineItem
+from shop.models import ShopProducts
+from classes.models import YogaClass
+
+import json
+import time
 
 class StripeWH_Handler:
     """
@@ -24,7 +32,7 @@ class StripeWH_Handler:
         basket = intent.metadata.basket
         save_info = intent.metadata.save_info
         billing_details = intent.charges.data[0].billing_details
-        shipping_details = intent.shipping_details
+        shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount/100, 2)
 
         for field, value in shipping_details.address.items():

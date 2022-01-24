@@ -60,9 +60,9 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.products_total = current_basket['products_total']
             order.classes_total = current_basket['classes_total']
-            # pid = request.POST.get('client_secret').split('_secret')[0]
-            # order.stripe_pid = pid
-            # order.original_bag = json.dumps(bag)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_basket = json.dumps(basket)
             order.save()
             for item_id, item_data in basket.items():
                 category = item_data['category']
