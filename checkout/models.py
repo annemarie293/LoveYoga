@@ -28,6 +28,8 @@ class Order(models.Model):
     delivery = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    products_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    classes_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     # original_bag = models.TextField(null=False, blank=False, default=0)
     # stripe_pid = models.CharField(max_length=254, null=False, blank=False, default=0)
 
@@ -43,6 +45,8 @@ class Order(models.Model):
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.delivery = 5
+        if self.classes_total == 0:
+            self.delivery = 0
         self.grand_total = self.order_total + self.delivery
         self.save()
 

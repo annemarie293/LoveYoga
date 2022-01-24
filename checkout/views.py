@@ -19,6 +19,8 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    current_basket = basket_contents(request)
+    
     if request.method == 'POST':
         basket = request.session.get('basket', {})
 
@@ -32,12 +34,12 @@ def checkout(request):
             'county': request.POST['county'],
             'postcode': request.POST['postcode'],
             'country': request.POST['country'],
+            'products_total': current_basket['products_total'],
+            'classes_total': current_basket['classes_total'],
         }
 
         order_form = OrderForm(form_data)
-        print(order_form)
         if order_form.is_valid():
-            print('AAAAAAAAAAAAAAAAAAAA   ORDER IS VALID AAAAAAAAAAAAAAAAAAAAAAA')
             order = order_form.save(commit=False)
             # pid = request.POST.get('client_secret').split('_secret')[0]
             # order.stripe_pid = pid
@@ -45,7 +47,6 @@ def checkout(request):
             order.save()
             for item_id, item_data in basket.items():
                 category = item_data['category']
-                print(category)
                 try:
                     if category == 'class':
                         quantity = item_data['quantity']
@@ -56,30 +57,23 @@ def checkout(request):
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save()
-                        print("OOOOOOOOOOOOOOOOOOOOOOOOO classes working ok OOOOOOOOOOOOOOOOOOOOO")                        
+                        order_line_item.save()                    
                     elif category == 'product':
-                        print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
                         quantity = item_data['quantity']
                         print(quantity)
                         product = get_object_or_404(ShopProducts, id=item_id)
-                        print(product)                     
-                        print("MMMMMMMMMMMMMMMMM   This is the last step before order line MMMMMMMMMMMMMMMMMM")
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
                             product=product,
                             quantity=quantity,
                         )
-                        print("BBBBBBBBBBBBBBBBBBBBBBBBBBBB   Order Line ITem did work BBBBBBBBBBBBBBBB")
                         order_line_item.save()
-                        print ("ppppppppppppp order line is saved ppppppppppppp")
                 except:
                     # messages.error(request, (
                     #     "It looks like we can't process this order"
                     #     "Please contact us for more help")
                     # )
-                    print ("XXXXXXXXXXXXXXXX  Did not try orderLines   XXXXXXXXXXXXXXXXX")
                     order.delete()
                     return redirect(reverse('view_basket'))
 
@@ -87,19 +81,15 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            print ("XXXXXXXXXXXXXXXX  ORDER IS NOT VALID XXXXXXXXXXXXXXXXX")
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
-        print ("QQQQQQQQQQQQQQQQ   whats wrong QQQQQQQQQQQQQQQQQQqq")
         if not basket:
             # messages.error(request, "You havent added anything to your basket yet!")
             return redirect(reverse('classes'))
 
-    current_basket = basket_contents(request)
     total = current_basket['grand_total']
-
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
 
@@ -109,9 +99,7 @@ def checkout(request):
         payment_method_types=['card'],
     )
 
-    print(intent)
     order_form = OrderForm()
-    
     
     # if not stripe_public_key:
         # messages.warning(request, "no public key found, please check")
@@ -129,16 +117,15 @@ def checkout_success(request, order_number):
     """
     A view to display successful orders
     """
-
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    # messgaes
+    # messages
 
     if 'basket' in request.session:
         del request.session['basket']
-
-    template ='checkout/checkout_success.html'
+ 
+    template = 'checkout/checkout_success.html'
 
     context = {
         'order': order
