@@ -10,7 +10,7 @@
       <div class="row pt-2 bg-blush">
         <strong><h5>{{ message }}</h5</strong>
       </div>
-      {% if basket_items %}
+      {% if basket_items and not on_profile %}
            <div class="row pt-2 bg-grey">
              <div class="col text-center">
               <h6><strong>Your Basket</strong></h6>

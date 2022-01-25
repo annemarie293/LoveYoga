@@ -25,7 +25,7 @@
     <div class="row">
         <div class="mt-3 col col-lg-10 offset-lg-1">
 
-            <h6>Your order confirmation number is {{ order.order_number }}</h6>
+            <h6>Your order confirmation number is {{ order.order_number|truncatechars:10 }}</h6>
 
             <h5>Order summary</h5>
             
