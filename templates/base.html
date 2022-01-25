@@ -63,16 +63,16 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="accountOptions" role="button" aria-expanded="false">
                             <i class="fas fa-user fa-lg text-white"></i><span class="text-white my-0">&nbsp; My Account</span>
                         </a>
-                        <ul class="dropdown-menu bg-orange border-0">
+                        <ul class="dropdown-menu border-0">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <li><a href="" class="dropdown-item text-white">Site Management</a></li>
+                                    <li><a href="" class="dropdown-item text-orange">Site Management</a></li>
                                 {% endif %}
-                                    <li><a href="" class="dropdown-item text-white">My Profile</a></li>
-                                    <li><a href="{% url 'account_logout' %}" class="dropdown-item text-white">Logout</a></li>
+                                    <li><a href="" class="dropdown-item text-orange">My Profile</a></li>
+                                    <li><a href="{% url 'account_logout' %}" class="dropdown-item text-orange">Logout</a></li>
                             {% else %}    
-                                <li><a href="{% url 'account_signup' %}" class="dropdown-item text-white">Register</a></li>
-                                <li><a href="{% url 'account_login' %}" class="dropdown-item text-white">Login</a></li>
+                                <li><a href="{% url 'account_signup' %}" class="dropdown-item text-orange">Register</a></li>
+                                <li><a href="{% url 'account_login' %}" class="dropdown-item text-orange">Login</a></li>
                             {% endif %}
                         </ul>
                     </li>

@@ -52,6 +52,9 @@ body{
 .bg-orange{
     background-color: #FFA38B;
 }
+.text-orange{
+    color: #FFA38B;
+}
 .bg-pink{
     background-color: #E0527C;
 }

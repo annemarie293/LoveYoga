@@ -2,14 +2,16 @@
     <div class="w-100 toast-capper bg-success"></div>
     <div class="toast-header ">
 
-      <strong class="me-auto">Success!</strong>   
+      <h5 class="me-auto text-orange"><strong>Success!</strong></h5>  
 
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body pt-0">
-      <strong><h5>{{ message }}</h5</strong>
+      <div class="row pt-2 bg-blush">
+        <strong><h5>{{ message }}</h5</strong>
+      </div>
       {% if basket_items %}
-           <div class="row pt-2 bg-blush text-grey">
+           <div class="row pt-2 bg-grey">
              <div class="col text-center">
               <h6><strong>Your Basket</strong></h6>
              </div>
