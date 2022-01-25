@@ -27,7 +27,7 @@ def add_product_to_basket(request, item_id):
     if item_id in list(basket.keys()):
         if category in basket[item_id]['category'] == "product":
             basket[item_id]['quantity'] += quantity
-            messages.success(request, f'{product.name} quantity is increased to {basket[item_id]["quantity"]}')
+            messages.success(request, f'You now have {basket[item_id]["quantity"]} x {product.name} in your basket')
     else:
         basket[item_id] = {'quantity': quantity, 'category': category}
         messages.success(request, f'{product.name} is now added to your basket')
@@ -47,7 +47,7 @@ def add_class_to_basket(request, item_id):
     if item_id in list(basket.keys()):
             if category in basket[item_id]['category'] == "class":
                 basket[item_id]['quantity'] += quantity
-                messages.success(request, f'{classes.name} quantity is increased to {basket[item_id]["quantity"]}')
+                messages.success(request, f'You now have {basket[item_id]["quantity"]} x {classes.name} in your basket')
     else:
         basket[item_id] = {'quantity': quantity, 'category': category}
         messages.success(request, f'{classes.name} is now added to your basket')

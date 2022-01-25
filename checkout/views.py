@@ -92,10 +92,10 @@ def checkout(request):
                         )
                         order_line_item.save()
                 except:
-                    # messages.error(request, (
-                    #     "It looks like we can't process this order"
-                    #     "Please contact us for more help")
-                    # )
+                    messages.error(request, (
+                        "It looks like we can't process this order right now"
+                        "Please contact us for more help")
+                    )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
@@ -123,8 +123,8 @@ def checkout(request):
 
     order_form = OrderForm()
     
-    # if not stripe_public_key:
-        # messages.warning(request, "no public key found, please check")
+    if not stripe_public_key:
+        messages.warning(request, "Stripe public key not found, please check")
 
     context = {
         'order_form': order_form,
@@ -142,7 +142,9 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    # messages
+    messages.info(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
 
     if 'basket' in request.session:
         del request.session['basket']

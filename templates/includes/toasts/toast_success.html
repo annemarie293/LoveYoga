@@ -1,13 +1,83 @@
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="w-100 toast-capper bg-info"></div>
-    <div class="toast-header">
+<div class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+    <div class="w-100 toast-capper bg-success"></div>
+    <div class="toast-header bg-orange text-grey">
       
-      <strong class="me-auto">Bootstrap</strong>
+      <div class="row">
+        <div class="col">
+          <strong><h5>{{ message }}</h5</strong>
+        </div>
+      </div>
       
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">
-      {{ message }}
-    </div>
-  </div>
+    <div class="toast-body pt-0">
+           <div class="row pt-2 bg-blush text-grey">
+             <div class="col text-center">
+              <h6><strong>Your Basket</strong></h6>
+             </div>
+           </div>
+      {% if basket_items %}
+      <div class="row mt-2">
+        <div class="col-6">
+          <h6><strong>Details</strong></h6>
+        </div>
+        <div class="col-3">
+          <h6>
+            <strong>Qty</strong>
+          </h6>
+        </div>
+        <div class="col-3">
+          <h6><strong>Price</strong></h6>
+        </div>
+      </div>
 
+      {% for item in basket_items %}
+        {% if item.category == 'class' %}
+
+          <div class="row my-1">
+            <div class="col-3">
+              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
+            </div>
+            <div class="col-4">
+              <p class="small"><strong>{{ item.classes.name|title }}</strong></p>
+            </div>
+            <div class="col-2">
+              <h6>
+                {{ item.quantity }}
+              </h6>
+            </div>
+            <div class="col-3">
+              <h6>€ {{item.classes.price }}</h6>
+            </div>
+          </div>
+        {% elif item.category == 'product' %}
+
+          <div class="row my-1">
+            <div class="col-3">
+              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
+            </div>
+            <div class="col-4">
+              <p class="small"><strong>{{ item.products.name|title }}</strong></p>
+            </div>
+            <div class="col-2">
+              <h6>
+                {{ item.quantity }}
+              </h6>
+            </div>
+            <div class="col-3">
+              <h6>€ {{item.products.price }}</h6>
+            </div>
+          </div>
+        {% endif %}
+        {% endfor %}  
+          
+          <div class="row">
+            <div class="col text-end">
+              <h6><strong>SubTotal: €{{ sub_total }}</strong></h6>
+              <h6>Delivery: €{{ delivery }}</h6>
+              <h4 class="mt-4"><strong>Total to pay: €{{ grand_total }}</strong></h4>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+  </div> 
