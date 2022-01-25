@@ -42,7 +42,7 @@
     "session_duration": 25,
     "series_duration": 8,
     "equipment": "none",
-    "trainer": "11",
+    "trainer": "2",
     "price": 35,
     "sku" : "3CLE/KUN/LAU", "category" : "class",
     "image": "3.jpg"
@@ -282,7 +282,7 @@
     "session_duration": 20,
     "series_duration": 10,
     "equipment": "weights",
-    "trainer": "12",
+    "trainer": "3",
     "price": 40,
     "sku" : "18BEG/CON/MEG", "category" : "class",
     "image": "18.jpg"
@@ -330,7 +330,7 @@
     "session_duration": 20,
     "series_duration": 10,
     "equipment": "weights",
-    "trainer": "11",
+    "trainer": "3",
     "price": 40,
     "sku" : "21YOG/CON/LAU", "category" : "class",
     "image": "21.jpg"
@@ -346,7 +346,7 @@
     "session_duration": 30,
     "series_duration": 8,
     "equipment": "weights",
-    "trainer": "11",
+    "trainer": "10",
     "price": 35,
     "sku" : "22SCU/CON/LAU", "category" : "class",
     "image": "22.jpg"
@@ -410,7 +410,7 @@
     "session_duration": 30,
     "series_duration": 6,
     "equipment": "none",
-    "trainer": "12",
+    "trainer": "3",
     "price": 30,
     "sku" : "26HYD/HAT/MEG", "category" : "class",
     "image": "26.jpg"
@@ -426,7 +426,7 @@
     "session_duration": 40,
     "series_duration": 10,
     "equipment": "blocks",
-    "trainer": "11",
+    "trainer": "10",
     "price": 40,
     "sku" : "27REC/HAT/LAU", "category" : "class",
     "image": "27.jpg"

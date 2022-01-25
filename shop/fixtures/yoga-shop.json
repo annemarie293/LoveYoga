@@ -6,7 +6,7 @@
     "name": "mini yoga kit",
     "description": "Set containing blue yoga mat and a pair of yoga blocks",
     "price": 23.5,
-    "image": "yoga-mini-kit.jpg", "class_or_product" : "product"
+    "image": "yoga-mini-kit.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -15,7 +15,7 @@
     "name": "yoga ball",
     "description": "Inflatable silver yogal ball, 80cm diameter once inflated",
     "price": 12.99,
-    "image": "yoga-ball.jpg", "class_or_product" : "product"
+    "image": "yoga-ball.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -24,7 +24,7 @@
     "name": "yoga kit - set a",
     "description": "Full yoga accessory kit including mat, weights, yoga block, straps and water bottle",
     "price": 65,
-    "image": "yoga-kit-a.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-a.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -33,7 +33,7 @@
     "name": "yoga kit - set b",
     "description": "Yoga accessory kit containing yoga ball, mat, ab-roller and water bottle",
     "price": 52.5,
-    "image": "yoga-kit-b.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-b.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -42,7 +42,7 @@
     "name": "yoga kit - set c",
     "description": "Yoga accessory kit containing yoga ball, mat and light weights.",
     "price": 50,
-    "image": "yoga-kit-c.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-c.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -51,7 +51,7 @@
     "name": "yoga kit - set d",
     "description": "Pink themed yoga kit, containing mat, weights, yoga block and towel",
     "price": 45.99,
-    "image": "yoga-kit-d.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-d.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -60,7 +60,7 @@
     "name": "yoga kit - set e",
     "description": "Blue themed yoga kit, containing mat, straps, yoga block and water block",
     "price": 45.99,
-    "image": "yoga-kit-e.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-e.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -69,7 +69,7 @@
     "name": "yoga kit - set f",
     "description": "Yoga accessory kit containing blue yoga mat and pair of 1kg purple dumbells, water bottle",
     "price": 38.5,
-    "image": "yoga-kit-f.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-f.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -78,7 +78,7 @@
     "name": "yoga kit - set g",
     "description": "Set containing purple yoga mat, straps, and a pair of yoga blocks",
     "price": 19.5,
-    "image": "yoga-kit-g.jpg", "class_or_product" : "product"
+    "image": "yoga-kit-g.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -87,7 +87,7 @@
     "name": "yoga mat",
     "description": "Blue yoga mat, 1.5m length",
     "price": 15.5,
-    "image": "yoga-mat-blue.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-blue.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -96,7 +96,7 @@
     "name": "yoga mat",
     "description": "Pink yoga mat, 1.5m length",
     "price": 15.5,
-    "image": "yoga-mat-pink.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-pink.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -105,7 +105,7 @@
     "name": "yoga mat",
     "description": "Purple yoga mat, 1.5m length",
     "price": 15.5,
-    "image": "yoga-mat-purple.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-purple.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -114,7 +114,7 @@
     "name": "yoga mat",
     "description": "Green yoga mat, 1.5m length",
     "price": 15.5,
-    "image": "yoga-mat-green.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-green.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -123,7 +123,7 @@
     "name": "yoga mat",
     "description": "Limited edition galaxy printed yoga mat, 1.5m length",
     "price": 19.99,
-    "image": "yoga-mat-galaxy.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-galaxy.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -132,7 +132,7 @@
     "name": "yoga mat and weights",
     "description": "Blue yoga mat pair of 1kg green dumbells",
     "price": 32.6,
-    "image": "yoga-mat-weights.jpg", "class_or_product" : "product"
+    "image": "yoga-mat-weights.jpg", "category" : "product"
   }},
   {
     "model": "shop.ShopProducts",
@@ -141,6 +141,6 @@
     "name": "yoga weights",
     "description": "A pair of pink  1kg dumbells",
     "price": 21.99,
-    "image": "weights.jpg", "class_or_product" : "product"
-  }},
+    "image": "weights.jpg", "category" : "product"
+  }}
 ]
