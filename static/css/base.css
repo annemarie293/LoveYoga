@@ -68,14 +68,6 @@ body{
     color:#6F725A;
 }
 
-/* from Bulma for icons*/
-.icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
-}
 
 #navsearch input, 
 #navsearch button{
@@ -242,3 +234,25 @@ body{
     }
   }
 
+/* --------------------------Profile page */
+
+  .profile-input {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background-color: blue;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+    
+  .profile-input:focus,
+  .profile-input:active {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+    
+  .profile-input::placeholder {
+      color: #B4B7A4
+  }
