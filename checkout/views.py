@@ -19,10 +19,15 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]    
         stripe_secret_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata = {
+        current_basket = basket_contents(request)
+        products_total = current_basket['products_total']
+        classes_total = current_basket['classes_total']
+        stripe.PaymentIntent.modify(pid, metadata={
             'username': request.user,
             'save_info': request.POST.get('save_info'),
-            'basket': json.dumps(request.session.get('basket', {}))
+            'basket': json.dumps(request.session.get('basket', {})),
+            'products_total':products_total, 
+            'classes_total':classes_total, 
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -42,7 +47,6 @@ def checkout(request):
     if request.method == 'POST':
         basket = request.session.get('basket', {})
         
-
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],

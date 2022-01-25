@@ -30,6 +30,8 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         basket = intent.metadata.basket
+        products_total = intent.metadata.products_total
+        classes_total = intent.metadata.classes_total
         save_info = intent.metadata.save_info
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
@@ -85,13 +87,15 @@ class StripeWH_Handler:
                     grand_total=grand_total,
                     original_basket=basket,
                     stripe_pid=pid,
+                    products_total=products_total,
+                    classes_total=classes_total,
                     )
 
                 for item_id, item_data in json.loads(basket).items():
                     category = item_data['category']
                     if category == 'class':
                         quantity = item_data['quantity']
-                        classes = get_object_or_404(YogaClass, id=item_id)
+                        classes = YogaClass.objects.get(id=item_id)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
@@ -101,7 +105,7 @@ class StripeWH_Handler:
                         order_line_item.save()                    
                     elif category == 'product':
                         quantity = item_data['quantity']
-                        product = get_object_or_404(ShopProducts, id=item_id)
+                        product = ShopProducts.objects.get(id=item_id)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
