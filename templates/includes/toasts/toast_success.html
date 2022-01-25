@@ -1,22 +1,20 @@
 <div class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
     <div class="w-100 toast-capper bg-success"></div>
-    <div class="toast-header bg-orange text-grey">
-      
-      <div class="row">
-        <div class="col">
-          <strong><h5>{{ message }}</h5</strong>
-        </div>
-      </div>
-      
+    <div class="toast-header ">
+
+      <strong class="me-auto">Success!</strong>   
+
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body pt-0">
+      <strong><h5>{{ message }}</h5</strong>
+      {% if basket_items %}
            <div class="row pt-2 bg-blush text-grey">
              <div class="col text-center">
               <h6><strong>Your Basket</strong></h6>
              </div>
            </div>
-      {% if basket_items %}
+      
       <div class="row mt-2">
         <div class="col-6">
           <h6><strong>Details</strong></h6>

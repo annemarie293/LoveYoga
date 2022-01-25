@@ -61,7 +61,6 @@ body{
 .bg-grey{
     background-color:#D2D4C8;
 }
-
 .text-grey{
     color:#6F725A;
 }
@@ -84,13 +83,17 @@ body{
     color: white;
 }
 
-#classesLink{
-    
-}
 
 .header-container{
-    padding-top: 6rem
+    padding-top: 6.5rem
 }
+
+/* to reduce on med screens where navbar is smaller */
+@media (min-width: 370px) and (max-width: 750px) {
+    .header-container{
+        padding-top:5.5rem;
+    }
+  }
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
@@ -133,6 +136,7 @@ body{
 }
 
 /* --------------------------General/multi page*/
+
 
 
 body{
