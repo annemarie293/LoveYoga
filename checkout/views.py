@@ -6,9 +6,11 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from .forms import OrderForm
+from profile.forms import UserProfileForm
 
 from shop.models import ShopProducts
 from classes.models import YogaClass
+from profiles.models import UserProfile
 from .models import Order, OrderLineItem
 from basket.contexts import basket_contents
 
@@ -99,7 +101,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_basket'))
 
-            # Save the info to the user's profile if all is well
+            # Save info to the user profile if everythig is ok
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
@@ -108,7 +110,7 @@ def checkout(request):
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            # messages.error(request, "You havent added anything to your basket yet!")
+            messages.error(request, "You havent added anything to your basket yet!")
             return redirect(reverse('classes'))
 
     total = current_basket['grand_total']
@@ -132,7 +134,7 @@ def checkout(request):
         'client_secret': intent.client_secret
     }
 
-    return render (request, 'checkout/checkout.html', context)
+    return render(request, 'checkout/checkout.html', context)
 
 
 def checkout_success(request, order_number):
@@ -148,6 +150,32 @@ def checkout_success(request, order_number):
 
     if 'basket' in request.session:
         del request.session['basket']
+
+    if request.user.is_authenticated:
+        # Get the order profile and save it to the order
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile
+        order.save()
+
+        # if the 'save-info' box is saved on checkout order form
+        if save_info:
+            profile_data = {
+                'default_phone_number': order.phone_number,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+                'default_town_or_city': order.town_or_city,
+                'default_county': order.county,
+                'default_postcode': order.postcode,
+                'default_country': order.country,
+            }
+
+        # Create instance of the user profile formm using above profile_data
+
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+
+        # use form to update the user profile
+        if user_profile_form.is_valid():
+            user_profile_form.save()
  
     template = 'checkout/checkout_success.html'
 
