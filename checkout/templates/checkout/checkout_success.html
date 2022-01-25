@@ -139,6 +139,14 @@
                                     </span>
                                     <span class="text-uppercase">Find a class</span>
                                 </a>
+                                {% if from_profile_page %}
+                                <a href="{% url 'profile' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Back to Profile</span>
+                                </a>
+                                {% endif %}
                             </td>
                         </tr>
                     </table>
