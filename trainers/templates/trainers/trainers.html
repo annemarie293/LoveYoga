@@ -2,47 +2,39 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col">
-            
-        </div>
-    </div>
-</div>
+<div class="container header-container"></div>
 {% endblock %}
 
 {% block content %}
 
 <div class="overlay"></div>
 <div class="container-fluid h-100 ">
-    <div class="row h-100">
-        <div class="col bg-blush">
-            
+    <div class="row">
+        <div class="col bg-blush">            
             <div class="row my-4 text-center">
                 <h2 class="mb-0 text-grey">Meet our Trainers</h2>             
-            </div>
-            
+            </div>            
         </div>
-        <div class="row">
-            {% for trainer in trainers %}   
-                <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                    <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}{{ trainer.image }}" class="trainer-img" alt="headshot image of the trainer {{ trainer.name }}">
-                        <div class="card-body bg-lilac">
-                        <h4 class="card-title text-white fw-bold">{{ trainer.name }}</h4>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-center">Years practicing: {{ trainer.years_practicing }}</li>
-                        <li class="list-group-item text-center">Years teaching: {{ trainer.years_teaching }} </li>
-                        <li class="list-group-item text-center">{{ trainer.bio }}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-mint">{{ trainer.name }}'s classes</a>
-                        </div>
+    </div>
+    <div class="row">
+        {% for trainer in trainers %}   
+            <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                    <img src="{{ MEDIA_URL }}{{ trainer.image }}" class="trainer-img" alt="headshot image of the trainer {{ trainer.name }}">
+                    <div class="card-body bg-lilac">
+                    <h4 class="card-title text-white fw-bold">{{ trainer.name }}</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center">Years practicing: {{ trainer.years_practicing }}</li>
+                    <li class="list-group-item text-center">Years teaching: {{ trainer.years_teaching }} </li>
+                    <li class="list-group-item text-center">{{ trainer.bio }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-mint">{{ trainer.name }}'s classes</a>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 

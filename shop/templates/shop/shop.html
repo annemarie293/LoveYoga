@@ -2,43 +2,35 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col">
-            
-        </div>
-    </div>
-</div>
+<div class="container header-container"></div>
 {% endblock %}
 
 {% block content %}
 
 <div class="overlay"></div>
 <div class="container-fluid h-100 ">
-    <div class="row h-100">
-        <div class="col bg-blush">
-            
+    <div class="row">
+        <div class="col bg-blush">            
             <div class="row my-4 text-center">
                 <h2 class="pt-3 mb-0 text-grey">Shop Yoga Gear</h2>             
-            </div>
-            
+            </div>            
         </div>
-        <div class="row">
-            {% for product in shop_products %}   
-                    <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                        <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                            <img src="{{ MEDIA_URL }}{{ product.image }}" class="trainer-img" alt="image of the shop product{{ product.name }}">
-                            <div class="card-body bg-lilac">
-                            <h4 class="card-title text-white fw-bold">{{ product.name|title }}</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">{{ product.description }}</li>
-                            </ul>
-                            <a href="{% url 'product_info' product.id %}" class="btn btn-mint">More Info</a>
+    </div>
+    <div class="row">
+        {% for product in shop_products %}   
+                <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                    <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                        <img src="{{ MEDIA_URL }}{{ product.image }}" class="trainer-img" alt="image of the shop product{{ product.name }}">
+                        <div class="card-body bg-lilac">
+                        <h4 class="card-title text-white fw-bold">{{ product.name|title }}</h4>
                         </div>
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">{{ product.description }}</li>
+                        </ul>
+                        <a href="{% url 'product_info' product.id %}" class="btn btn-mint">More Info</a>
                     </div>
-                {% endfor %}
-        </div>
+                </div>
+            {% endfor %}
     </div>
 </div>
 

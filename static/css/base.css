@@ -129,14 +129,64 @@ body{
     color:white;
 }
 
+.btn-pink:hover {	
+	color: #fff;
+    background-color: #E77497;
+    border-color: #E77497;
+}
+
 /* --------------------------images */
 .order-summary-img{
     max-width: 10rem;
     max-height: 6rem;
 }
 
-/* --------------------------General/multi page*/
 
+/* ------------------------------- All auth pages */
+
+.allauth-form-inner-content label:not([for='id_remember']){
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder{
+    color: #B4B7A4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #E0527C;
+    border: 1px solid #E0527C;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: #E77497;
+    border-color: #E77497;
+}
+
+.allauth-form-inner-content a {
+	color: #17a2b8; /* text-info */
+}
+
+/* --------------------------General/multi page*/
 
 
 body{

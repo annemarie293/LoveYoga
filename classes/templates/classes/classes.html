@@ -2,41 +2,33 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col">
-            
-        </div>
-    </div>
-</div>
+<div class="container header-container"></div>
 {% endblock %}
 
 {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid h-100 ">
-    <div class="row h-100">
-        <div class="col bg-blush">
-            
+    <div class="row">
+        <div class="col bg-blush">            
             <div class="row my-4 text-center">
                 <h2 class="mb-0 text-grey">Our Classes</h2>             
-            </div>
-            
+            </div>            
         </div>
-        <div class="row">
-            {% for class in classes %}   
-                <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                    <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                        <img src="{{ MEDIA_URL }}{{ class.image }}" class="trainer-img" alt="image for {{ class.name }} class">
-                        <div class="card-body bg-lilac">
-                        <h4 class="card-title text-white fw-bold">{{ class.name }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <a href="{% url 'class_info' class.id %}" class="btn btn-mint">More Info</a>
-                        </div>
+    </div>
+    <div class="row">
+        {% for class in classes %}   
+            <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+                <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
+                    <img src="{{ MEDIA_URL }}{{ class.image }}" class="trainer-img" alt="image for {{ class.name }} class">
+                    <div class="card-body bg-lilac">
+                    <h4 class="card-title text-white fw-bold">{{ class.name }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'class_info' class.id %}" class="btn btn-mint">More Info</a>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
