@@ -58,7 +58,7 @@ body{
     background-color: #E0527C;
 }
 .pink-under{
-    border-bottom: 2px solid #E0527C;
+    border-bottom: 2px solid #E77497;
 }
 .bg-blush{
     background-color: #FCD0BF;
@@ -128,13 +128,26 @@ body{
 
 .btn-pink{
     background-color: #E0527C;
+    border: 2px solid #E0527C;
     color:white;
 }
 
 .btn-pink:hover {	
 	color: #fff;
     background-color: #E77497;
-    border-color: #E77497;
+    border: 2px solid #E77497;
+}
+
+.btn-outline-pink{
+    background-color: white;
+    color:#E0527C;
+    border: 2px solid #E0527C
+}
+
+.btn-outline-pink:hover {	
+    background-color: white;
+    color: #E77497;
+    border: 2px solid #E77497
 }
 
 /* --------------------------images */

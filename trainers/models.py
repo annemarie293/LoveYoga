@@ -4,10 +4,10 @@ from django.db import models
 
 
 class Trainer(models.Model):
-    name = models.CharField(max_length=254)
-    years_practicing = models.IntegerField()
-    years_teaching = models.IntegerField()
-    bio = models.TextField()
+    name = models.CharField(max_length=254, null=False, blank=False)
+    years_practicing = models.IntegerField(null=False, blank=False)
+    years_teaching = models.IntegerField(null=False, blank=False)
+    bio = models.TextField(null=False, blank=False)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
