@@ -4,6 +4,7 @@ from django.conf import settings
 from .models import Order, OrderLineItem
 from shop.models import ShopProducts
 from classes.models import YogaClass
+from profiles.models import UserProfile
 
 import json
 import time
@@ -17,7 +18,7 @@ class StripeWH_Handler:
 
     def handle_event(self, event):
         """
-        To handle a generic or unkown webhook even
+        To handle a generic or unkown webhook event
         """
         return HttpResponse(
             content=f'Unhandled webhook recieved: {event["type"]}', status=200
@@ -30,17 +31,37 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         basket = intent.metadata.basket
-        products_total = intent.metadata.products_total
-        classes_total = intent.metadata.classes_total
-        save_info = intent.metadata.save_info
+        
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount/100, 2)
+        save_info = intent.metadata.save_info
 
+        products_total = intent.metadata.products_total
+        classes_total = intent.metadata.classes_total
+        delivery = intent.metadata.delivery
+
+        # Replace Blank shipping values with 'None'
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
 
+        # Create User Profile from details in order form
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.default_phone_number = shipping_details.phone.strip(),
+                profile.default_street_address1 = shipping_details.address.line1.strip(),
+                profile.default_street_address2 = shipping_details.address.line2.strip(),
+                profile.default_town_or_city = shipping_details.address.city.strip(),
+                profile.default_county = shipping_details.address.state.strip(),
+                profile.default_postcode = shipping_details.address.postal_code.strip(),
+                profile.default_country = shipping_details.address.country.strip(),
+                profile.save()
+
+        # Check if order has been created (5 times)
         order_exists = False
         attempt = 1
         while attempt <= 5:
@@ -71,10 +92,12 @@ class StripeWH_Handler:
                     status=200       
                     )
 
+        # Create order if not found in database
         else:
             order = None
             try:
                 order = Order.objects.create(
+                    user_profile=profile,
                     full_name=shipping_details.name,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
@@ -89,6 +112,7 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                     products_total=products_total,
                     classes_total=classes_total,
+                    delivery=delivery,
                     )
 
                 for item_id, item_data in json.loads(basket).items():
@@ -102,7 +126,7 @@ class StripeWH_Handler:
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save()                    
+                        order_line_item.save()                 
                     elif category == 'product':
                         quantity = item_data['quantity']
                         product = ShopProducts.objects.get(id=item_id)
@@ -118,9 +142,8 @@ class StripeWH_Handler:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
-                    status=500       
-                    )     
-
+                    status=500)
+        
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Order created in webhook',
             status=200)
@@ -130,5 +153,5 @@ class StripeWH_Handler:
         To handle payment_intent_payment_failed webhook from stripe
         """
         return HttpResponse(
-            content=f'Webhook recieved: {event["type"]}', status= 200
+            content=f'Webhook recieved: {event["type"]}', status=200
         )

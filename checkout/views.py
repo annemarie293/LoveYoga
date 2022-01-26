@@ -24,12 +24,19 @@ def cache_checkout_data(request):
         current_basket = basket_contents(request)
         products_total = current_basket['products_total']
         classes_total = current_basket['classes_total']
+        # Adds delivery if there are products in the order
+        delivery = 0
+        if products_total > 0:
+            delivery = 5
+        print('MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM')
+        print(delivery)
         stripe.PaymentIntent.modify(pid, metadata={
             'username': request.user,
             'save_info': request.POST.get('save_info'),
             'basket': json.dumps(request.session.get('basket', {})),
-            'products_total':products_total, 
-            'classes_total':classes_total, 
+            'products_total': products_total,
+            'classes_total': classes_total,
+            'delivery': delivery,
         })
         return HttpResponse(status=200)
     except Exception as e:
