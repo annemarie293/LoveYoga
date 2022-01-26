@@ -2,7 +2,6 @@ html {
     height: 100%;
 }
 
-
 /* fonts */
 
 body{
@@ -58,6 +57,9 @@ body{
 .bg-pink{
     background-color: #E0527C;
 }
+.pink-under{
+    border-bottom: 2px solid #E0527C;
+}
 .bg-blush{
     background-color: #FCD0BF;
 }
@@ -78,17 +80,22 @@ body{
     color: white;
 }
 
-
 .header-container{
-    padding-top: 6.5rem
+    padding-top: 6rem
 }
 
 /* to reduce on med screens where navbar is smaller */
-@media (min-width: 370px) and (max-width: 750px) {
+@media (min-width: 300px) and (max-width: 374px) {
     .header-container{
-        padding-top:5.5rem;
+        padding-top:3rem;
     }
   }
+
+@media (min-width: 375px) and (max-width: 750px) {
+    .header-container{
+        padding-top:3.75rem;
+    }
+}
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
@@ -256,3 +263,15 @@ body{
   .profile-input::placeholder {
       color: #B4B7A4
   }
+
+  #user-order-link{
+    text-decoration: none;
+    color: black;
+
+  }
+
+  #user-order-link:hover {
+    color:#FFA38B;
+    text-decoration:none; 
+    cursor:pointer;  
+}

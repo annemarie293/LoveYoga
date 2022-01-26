@@ -24,10 +24,11 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-12 col-lg-6 pt-2 px-3">
-            <h5 class="py-2">Your Saved Contact Details</h5>
+        <div class="col-sm-12 col-lg-6 pt-3 px-3">
+            <h4 class="py-2 pink-under">Your Saved Contact Details</h4>
 
-            <form action="{% url 'profile' %}" method='POST' id='update-contact-form'>
+            <form action="{% url 'profile' %}" method='POST' id='update-contact-form'
+            class="pt-3">
                 {% csrf_token %}
                 <fieldset class="rounded px-3 mb-5">
                     {{ form|crispy }}
@@ -36,12 +37,47 @@
                 <button class="btn btn-pink" type="submit">Update Details</button>
             </form>
         </div>
-        <div class="col-sm-12 col-lg-6 pt-2 px-3">
-            <h5 class="py-2">Your Orders</h5>
+        <div class="col-sm-12 col-lg-6 pt-3 px-3">
+            <h4 class="py-2 pink-under">Your Orders</h4>
 
-            <div class="user-orders table-responsive">
+            <div class="user-orders">
+                <div class="row mb-1">
+                    <div class="col-4 col-md-3">Order Number</div>
+                    <div class="col-4 col-md-3">Date</div>
+                    <div class="d-none d-md-block col-md-3">Items</div>
+                    <div class="col-4 col-md-3">Total</div>
+                </div>
+                
+                {% for order in orders %}
+                    <div class="row fw-normal py-1">
+                        <div class="col-4 col-md-3">
+                            <a id="user-order-link" href="{% url 'user_orders' order.order_number %}"
+                            title="{{ order.order_number }}">
+                                {{ order.order_number|truncatechars:10 }}
+                            </a>
+                        </div>
+                        <div class="col-4 col-md-3">{{ order.date|date:'Y-m-d' }}</div>
+                        <div class="d-none d-md-block col-md-3">
+                            <ul class="list-unstyled d-sm-none d-md-block">
+                                {% for item in order.lineitems.all %}
+                                    <li class="small">
+                                        {% if item.category == 'product' %}
+                                            {{ item.product.name|truncatechars:15 }} x {{ item.quantity }}
+                                        {% elif item.category == 'class' %}
+                                            {{ item.classes.name|truncatechars:15 }} x {{ item.quantity }}
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-4 col-md-3">€{{ order.grand_total }}</div>
+                    </div>
+                {% endfor %}
+            </div> 
+
+           <!--- <div class="user-orders table-responsive">
                 <table class="table table-sm table-borderless">
-                    <thead>
+                    <thead class="bg-grey">
                         <tr>
                             <th>Order Number</th>
                             <th>Date</th>
@@ -51,33 +87,33 @@
                     </thead>
                     <tbody>
                         {% for order in orders %}
-                            <tr>
+                            <tr class="fw-normal">
                                 <td>
                                     <a href="{% url 'user_orders' order.order_number %}"
                                     title="{{ order.order_number }}">
                                         {{ order.order_number|truncatechars:10 }}
                                     </a>
                                 </td>
-                                <td>{{ order.date }}</td>
+                                <td>{{ order.date|date:'Y-m-d H:i' }}</td>
                                 <td>
                                     <ul class="list-unstyled">
                                         {% for item in order.lineitems.all %}
                                             <li class="small">
                                                 {% if item.category == 'product' %}
-                                                    {{ item.product.name }} x {{ item.quantity }}
+                                                    {{ item.product.name|truncatechars:15 }} x {{ item.quantity }}
                                                 {% elif item.category == 'class' %}
-                                                    {{ item.classes.name }} x {{ item.quantity }}
+                                                    {{ item.classes.name|truncatechars:15 }} x {{ item.quantity }}
                                                 {% endif %}
                                             </li>
                                         {% endfor %}
                                     </ul>
                                 </td>
-                                <td>${{ order.grand_total }}</td>
+                                <td>€{{ order.grand_total }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
+            </div> --->
 
         </div>
     </div>
