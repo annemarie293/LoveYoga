@@ -4,12 +4,12 @@ Thanks for ordering from LoveYoga, your order confrimation number is {{ order.or
 
 Your order summary:
 Order date: {{ order.date }}
-Total spend on products: {{ order.products_total }}
-Total spend on products: {{ order.classes_total }}
-Order total: {{ order.grand_total }}
+Total spend on products: €{{ order.products_total }}
+Total spend on classes: €{{ order.classes_total }}
+Order total: €{{ order.grand_total }}
 
 If you have ordered products from us, they will be shipped to the below address:
-{{ order.address_line_1 }}
+{{ order.street_address1 }}
 {{ order.town_or_city }}
 {{ order.postcode }}
 {{ order.country }}

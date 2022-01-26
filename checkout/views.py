@@ -28,8 +28,6 @@ def cache_checkout_data(request):
         delivery = 0
         if products_total > 0:
             delivery = 5
-        print('MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM')
-        print(delivery)
         stripe.PaymentIntent.modify(pid, metadata={
             'username': request.user,
             'save_info': request.POST.get('save_info'),
@@ -40,7 +38,8 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, "Sorry we can't process your payment right now, please contact us for support")
+        messages.error(request, "Sorry we can't process your payment right now"
+                                ", please contact us for support")
         return HttpResponse(content=e, status=400)
 
 

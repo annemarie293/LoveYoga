@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from .models import Order, OrderLineItem
 from shop.models import ShopProducts
@@ -15,6 +17,28 @@ class StripeWH_Handler:
     """
     def __init__(self, request):
         self.request = request
+
+    def _send_confirmation_email(self, order):
+        """
+        Send order confirmation email to the user
+        """
+        cust_email = order.email
+        subject = render_to_string(
+            "checkout/confirmation_emails/"
+            "confirmation_email_subject.txt",
+            {'order': order})
+        body = render_to_string(
+            "checkout/confirmation_emails/"
+            "confirmation_email_body.txt",
+            {'order': order,
+             'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
 
     def handle_event(self, event):
         """
@@ -61,7 +85,7 @@ class StripeWH_Handler:
                 profile.default_country = shipping_details.address.country.strip(),
                 profile.save()
 
-        # Check if order has been created (5 times)
+        # Check if order has already been created (5 times)
         order_exists = False
         attempt = 1
         while attempt <= 5:
@@ -87,10 +111,12 @@ class StripeWH_Handler:
                 time.sleep(1)
                 
         if order_exists: 
-                return HttpResponse(
-                    content = f'Webhook recieved:{event["type"]}| SUCCESS: the verified order has been dound in the database',
-                    status=200       
-                    )
+            self._send_confirmation_email(order)
+            return HttpResponse(
+                content=f'Webhook recieved:{event["type"]}|'
+                ' SUCCESS: the verified order has been dound in the database',
+                status=200       
+                )
 
         # Create order if not found in database
         else:
@@ -144,8 +170,10 @@ class StripeWH_Handler:
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
                     status=500)
         
-        return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Order created in webhook',
+        self._send_confirmation_email(order)
+        return HttpResponse(            
+            content=f'Webhook received: {event["type"]} |'
+            ' SUCCESS: Order created in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
@@ -155,3 +183,5 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook recieved: {event["type"]}', status=200
         )
+
+
