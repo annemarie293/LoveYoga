@@ -17,7 +17,11 @@
         <div class="col bg-blush">            
             <div class="row my-4 text-center">
                 <h2 class="mb-0 text-grey">
-                    Your order has been successfully processed!
+                    {% if from_profile_page %}
+                        Order History Details for {{ order.order_number|truncatechars:10 }}
+                    {% else %}
+                        Your order has been successfully processed!
+                    {% endif %}
                 </h2>             
             </div>
         </div>
