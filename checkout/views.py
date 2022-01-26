@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from .forms import OrderForm
-from profile.forms import UserProfileForm
+from profiles.forms import UserProfileForm
 
 from shop.models import ShopProducts
 from classes.models import YogaClass
@@ -127,18 +127,18 @@ def checkout(request):
     # uses this info to prefill the order form
     if request.user.is_authenticated:
         try:
-            profile = UserProfile_objects.get(user=request.user)
+            profile = UserProfile.objects.get(user=request.user)
 
             order_form = OrderForm(initial={
                 'full_name': profile.user.get_full_name(),
                 'email': profile.user.email,
-                'phone_number': profile.user.default_phone_number,
-                'street_address1': profile.user.default_street_address1,
-                'street_address2': profile.user.default_street_address2,
-                'town_or_city': profile.user.default_town_or_city,
-                'county': profile.user.default_county,
-                'postcode': profile.user.default_postcode,
-                'country': profile.user.default_country,
+                'phone_number': profile.default_phone_number,
+                'street_address1': profile.default_street_address1,
+                'street_address2': profile.default_street_address2,
+                'town_or_city': profile.default_town_or_city,
+                'county': profile.default_county,
+                'postcode': profile.default_postcode,
+                'country': profile.default_country,
             })
         except UserProfile.DoesNotExist:
             order_form = OrderForm()
