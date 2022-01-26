@@ -1,0 +1,1 @@
+Your order # {{ order.order_number|truncatechars:10 }} is confirmed!
