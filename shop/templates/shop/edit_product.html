@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container"></div>
+{% endblock %}
+
+{% block content %}
+
+<div class="overlay"></div>
+<div class="container-fluid h-100 ">
+    <div class="row">
+        <div class="col bg-blush">            
+            <div class="row my-4 text-center">
+                <h2 class="mb-0 text-grey">Update Product</h2>             
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+
+            <h4 class="pink-under my-3 py-2">Complete the below form to update this product record</h4>
+
+            <form action="{% url 'edit_product' product.id %}" method="POST"
+            class="form mt-3 mb-5 py-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div>
+                    <a class="btn btn-outline-pink" href="{% url 'shop' %}">Cancel</a>
+                    <button class="btn btn-pink" type="submit">Update Product</button>
+                </div>
+            </form>
+        </div>
+        
+
+    </div>
+</div>
+
+{% endblock %}
