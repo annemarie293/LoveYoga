@@ -78,3 +78,11 @@ def edit_class(request, classes_id):
 
     return render(request, template, context)
 
+
+def delete_classes(request, classes_id):
+
+    classes = get_object_or_404(YogaClass, id=classes_id)
+    classes.delete()
+    messages.success(request, 'Class details successfully deleted')
+    return redirect(reverse('classes'))
+

@@ -66,3 +66,14 @@ def edit_trainer(request, trainer_id):
     }
 
     return render(request, template, context)
+
+
+def delete_trainer(request, trainer_id):
+
+    trainer = get_object_or_404(Trainer, id=trainer_id)
+    trainer.delete()
+    messages.success(request, 'Trainer details successfully deleted')
+    return redirect(reverse('trainers'))
+
+
+ 

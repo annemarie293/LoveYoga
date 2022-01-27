@@ -78,3 +78,11 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+
+    product = get_object_or_404(ShopProducts, id=product_id)
+    product.delete()
+    messages.success(request, 'Product details successfully deleted')
+    return redirect(reverse('product'))
