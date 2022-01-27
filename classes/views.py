@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import YogaClass
 from .forms import ClassForm
 # Create your views here.
@@ -29,8 +30,14 @@ def class_info(request, classes_id):
     return render(request, 'classes/class_info.html', context)
 
 
+@login_required
 def add_class(request):
     """ A view to return the admin page to add a new class """
+
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = ClassForm(request.POST, request.FILES)
@@ -53,7 +60,14 @@ def add_class(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_class(request, classes_id):
+
+    
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
 
     classes = get_object_or_404(YogaClass, id=classes_id)
     
@@ -79,7 +93,14 @@ def edit_class(request, classes_id):
     return render(request, template, context)
 
 
-def delete_classes(request, classes_id):
+@login_required
+def delete_class(request, classes_id):
+
+
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
 
     classes = get_object_or_404(YogaClass, id=classes_id)
     classes.delete()

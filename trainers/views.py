@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Trainer
 from .forms import TrainerForm
@@ -18,9 +19,15 @@ def trainers(request):
     return render(request, 'trainers/trainers.html', context)
 
 
+@login_required
 def add_trainer(request):
     """ A view to return the admin page to add a new trainer """
 
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
+        
     if request.method == 'POST':
         form = TrainerForm(request.POST, request.FILES)
         if form.is_valid():
@@ -42,7 +49,14 @@ def add_trainer(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_trainer(request, trainer_id):
+    """ A view to edit the trainer details in the database """
+
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
 
     trainer = get_object_or_404(Trainer, id=trainer_id)
     
@@ -68,7 +82,14 @@ def edit_trainer(request, trainer_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_trainer(request, trainer_id):
+    """ A view to delete the trainer details from the database """
+
+    # Only superuser can access this view
+    if not request.user.is_superuser:
+        msgs.error(request, 'This action is restricted to site admin users')
+        return redirect(reverse('home'))
 
     trainer = get_object_or_404(Trainer, id=trainer_id)
     trainer.delete()
