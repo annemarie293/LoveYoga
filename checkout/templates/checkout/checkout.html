@@ -88,7 +88,7 @@
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
-                        <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                        <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
                     </p>
                 </div>
             </form>
@@ -132,7 +132,7 @@
                                         <p class="my-0">{{ item.quantity }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">$ {{item.classes.price}} </p>
+                                        <p class="my-0">€ {{item.classes.price}} </p>
                                     </td>
                                 </tr>
                                 
@@ -140,7 +140,7 @@
                         {% endfor %}
                         <tr>
                             <td colspan="5" class="text-end {% if classes_total == 0 %} d-none {% endif %}">
-                                <p><strong>Classes Total: ${{ classes_total }}</strong></p>
+                                <p><strong>Classes Total: €{{ classes_total }}</strong></p>
                             </td>
                         </tr>
                             
@@ -174,7 +174,7 @@
                                         <p class="my-0">{{ item.quantity }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">$ {{item.products.price}} </p>
+                                        <p class="my-0">€ {{item.products.price}} </p>
                                     </td>
                                 </tr>
                                 </hr>
@@ -182,15 +182,15 @@
                         {% endfor %}
                         <tr>
                             <td colspan="5" class="text-end {% if products_total == 0 %} d-none {% endif %}">
-                                <p><strong>Products Total: ${{ products_total }}</strong></p>
+                                <p><strong>Products Total: €{{ products_total }}</strong></p>
                             </td>
                         </tr>
                         
                         <tr>
                             <td colspan="5" class="pt-5 text-end">
-                                <h6><strong>SubTotal: ${{ sub_total }}</strong></h6>
-                                <h6>Delivery: ${{ delivery }}</h6>
-                                <h4 class="mt-4"><strong>Total to pay: ${{ grand_total }}</strong></h4>
+                                <h6><strong>SubTotal: €{{ sub_total }}</strong></h6>
+                                <h6>Delivery:€{{ delivery }}</h6>
+                                <h4 class="mt-4"><strong>Total to pay: €{{ grand_total }}</strong></h4>
                             </td>
                         </tr>
                         <tr>

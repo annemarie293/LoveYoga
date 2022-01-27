@@ -48,6 +48,10 @@ body{
     background-color: #8BF8B5;
 }
 
+.teal-text{
+    color:#01B6A3;
+}
+
 .bg-orange{
     background-color: #FFA38B;
 }
@@ -70,6 +74,7 @@ body{
     color:#6F725A;
 }
 
+/* -------------------- Navbar */
 
 #navsearch input, 
 #navsearch button{
@@ -240,6 +245,32 @@ body{
 	background: white;
 	z-index: -1;
 }
+
+/* --------------------------Basket page */
+
+.update-item, 
+.remove-item{
+    cursor:pointer;
+}
+
+.basket-image {
+    max-width: 199.33px;
+    max-height: 132.94px
+}
+
+@media (min-width: 375px) and (max-width: 750px){
+    .basket-image {
+        max-width: 63.58px;
+        max-height: 42.4px;
+    }
+  }
+
+@media (max-width: 375px){
+    .basket-image {
+        max-width: 57.2px;
+        max-height: 38.16px;
+    }
+  }
 
 /* --------------------------Trainers page */
 
