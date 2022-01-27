@@ -25,7 +25,9 @@
         <ul class="dropdown-menu border-0">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                        <li><a href="" class="dropdown-item text-orange">Site Management</a></li>
+                    <li><a href="{% url 'add_trainer' %}" class="dropdown-item text-orange">Add Trainer</a></li>
+                    <li><a href="{% url 'add_product' %}" class="dropdown-item text-orange">Add Product</a></li>
+                    <li><a href="{% url 'add_class' %}" class="dropdown-item text-orange">Add Class</a></li>
                 {% endif %}
                     <li><a href="{% url 'profile' %}" class="dropdown-item text-orange">My Profile</a></li>
                     <li><a href="{% url 'account_logout' %}" class="dropdown-item text-orange">Logout</a></li>
