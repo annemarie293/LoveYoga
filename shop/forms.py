@@ -7,7 +7,7 @@ class ProductForm(forms.ModelForm):
         model = ShopProducts
         fields = "__all__"
 
-    def __init__ (self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         placeholders = {
@@ -30,6 +30,7 @@ class ProductForm(forms.ModelForm):
                 self.fields[field_name].label = False
             else:
                 self.fields[field_name].label = image_label
+            # Hides category field and sets value as "product"
             if field_name == 'category':
                 self.fields[field_name].widget.attrs['class'] = "d-none"
                 self.fields[field_name].widget.attrs['value'] = 'product'

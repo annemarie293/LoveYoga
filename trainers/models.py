@@ -12,3 +12,8 @@ class Trainer(models.Model):
 
     def __str__(self):
         return self.name
+
+    # To return the placeholder label in add_class
+    def get_label_name(self):
+        label = "Trainer: "
+        return label + self.name

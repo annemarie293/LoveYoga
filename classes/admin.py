@@ -19,5 +19,6 @@ class YogaClassAdmin(admin.ModelAdmin):
 
     ordering = ('name'),
 
+
 # Register your models here.
 admin.site.register(YogaClass, YogaClassAdmin)

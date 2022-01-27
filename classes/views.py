@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from .models import YogaClass
-
+from .forms import ClassForm
 # Create your views here.
 
 
@@ -27,3 +27,27 @@ def class_info(request, classes_id):
     }
 
     return render(request, 'classes/class_info.html', context)
+
+
+def add_class(request):
+    """ A view to return the admin page to add a new class """
+
+    if request.method == 'POST':
+        form = ClassForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New class details successfully added')
+            return redirect(reverse('shop'))
+        else:
+            messages.error(request, 'Failed to add new class.'
+                                    ' Please ensure your form is valid.')
+    else:
+        form = ClassForm()
+
+    template = 'classes/add_class.html'
+    
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
