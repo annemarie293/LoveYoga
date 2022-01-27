@@ -27,7 +27,7 @@
           </h6>
         </div>
         <div class="col-3">
-          <h6><strong>Price</strong></h6>
+          <h6><strong>Item Price</strong></h6>
         </div>
       </div>
 
@@ -35,11 +35,11 @@
         {% if item.category == 'class' %}
 
           <div class="row my-1">
-            <div class="col-3">
+            <div class="col-2">
               <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
             </div>
-            <div class="col-4">
-              <p class="small"><strong>{{ item.classes.name|title }}</strong></p>
+            <div class="col-5">
+              <p class="small text-start"><strong>{{ item.classes.name|title }}</strong></p>
             </div>
             <div class="col-2">
               <h6>
@@ -53,11 +53,11 @@
         {% elif item.category == 'product' %}
 
           <div class="row my-1">
-            <div class="col-3">
+            <div class="col-2">
               <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
             </div>
-            <div class="col-4">
-              <p class="small"><strong>{{ item.products.name|title }}</strong></p>
+            <div class="col-5">
+              <p class="small text-start"><strong>{{ item.products.name|title }}</strong></p>
             </div>
             <div class="col-2">
               <h6>
