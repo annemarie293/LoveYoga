@@ -16,28 +16,23 @@
             </div>            
         </div>
     </div>
-    <div class="row">
+    <div class="row mx-2 py-2  g-4 text-center">
         {% for trainer in trainers %}   
-            <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                    <img src="{{ MEDIA_URL }}{{ trainer.image }}" class="trainer-img" alt="headshot image of the trainer {{ trainer.name }}">
-                    <div class="card-body bg-lilac">
-                    <h4 class="card-title text-white fw-bold">{{ trainer.name }}</h4>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Years practicing: {{ trainer.years_practicing }}</li>
-                    <li class="list-group-item text-center">Years teaching: {{ trainer.years_teaching }} </li>
-                    <li class="list-group-item text-center">{{ trainer.bio }}</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-mint">{{ trainer.name }}'s classes</a>
-                    </div>
+        <div class="col d-flex justify-content-center mx-auto">
+            <div class="card p-3 m-4 text-center shadow-sm" style="width: 18rem;">
+                <img src="{{ MEDIA_URL }}{{ trainer.image }}" class="card-img-top" alt="headshot image of the trainer {{ trainer.name }}">
+                <div class="card-body">
+                  <h4 class="card-title text-pink fw-bold">{{ trainer.name }}</h4>
+                  <p class="card-text text-muted my-0">Years practicing: {{ trainer.years_practicing }}</p>
+                  <p class="card-text text-muted my-0">Years teaching: {{ trainer.years_teaching }}</p>
+                  <p class="card-text mt-1">{{ trainer.bio }}</p>
                 </div>
-            </div>
+              </div>
+        </div>
         {% endfor %}
     </div>
 </div>
-
+{{ trainer.years_practicing }}
 
 
 

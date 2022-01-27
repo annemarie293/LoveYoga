@@ -58,6 +58,9 @@ body{
 .text-orange{
     color: #FFA38B;
 }
+.text-pink{
+    color: #E0527C;
+}
 .bg-pink{
     background-color: #E0527C;
 }
@@ -285,7 +288,12 @@ body{
     }
   }
 
-/* --------------------------Profile page */
+/* .trainer-img{
+    max-width: 293px;
+    max-height: 195px;
+}
+
+--------------------------Profile page */
 
   .profile-input {
     box-sizing: border-box;
