@@ -13,10 +13,10 @@ def basket_contents(request):
     classes_count = 0
     basket = request.session.get('basket', {})
 
-    for item_id, item_data in basket.items():
+    for unique_id, item_data in basket.items():
         category = item_data['category']
         if category == 'class':
-
+            item_id = item_data['item_id']
             quantity = item_data['quantity']
             category = item_data['category']
 
@@ -24,6 +24,7 @@ def basket_contents(request):
             classes_total += quantity * classes.price
             classes_count += quantity
             basket_items.append({
+                'unique_id': unique_id,
                 'item_id': item_id, 
                 'quantity': quantity,
                 'category': category,
@@ -31,7 +32,7 @@ def basket_contents(request):
             })
 
         elif category == 'product':
-
+            item_id = item_data['item_id']
             quantity = item_data['quantity']
             category = item_data['category']
 
@@ -39,11 +40,13 @@ def basket_contents(request):
             products_total += quantity * products.price
             products_count += quantity
             basket_items.append({
+                'unique_id': unique_id,
                 'item_id': item_id, 
                 'quantity': quantity,
                 'category': category,
                 'products': products
             })
+
         
     delivery = 5
     if products_total == 0:
@@ -61,5 +64,5 @@ def basket_contents(request):
         'delivery': delivery,
         'grand_total': grand_total,
     }
-
+    
     return context

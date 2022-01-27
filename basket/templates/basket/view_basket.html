@@ -56,13 +56,12 @@
                                     <td class="py-3">
                                         <p class="my-0">€{{ item.classes.price }}</p>
                                     </td>
-                                    <td class="py-3 w-15">
-                                        <p class="my-0" id="id_qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">{{ item.quantity }} &nbsp
-                                            <a class="remove-item text-danger" id="remove_{{ item.item_id }}">
+                                    <td class="py-3 px-2 w-15">
+                                        <p class="my-0 my-1" id="id_qty_{{ item.unique_id }}" data-item_id="{{ item.unique_id }}">{{ item.quantity }} &nbsp
+                                            <a class="remove-item text-danger float-end" id="remove_{{ item.unique_id }}">
                                                 <small><i class="fa fa-trash" aria-hidden="true"></i></small>
                                             </a>
                                         </p>
-                                        
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">€ {{item.classes.price | line_subtotal:item.quantity }} </p>
@@ -105,21 +104,17 @@
                                         <p class="my-0">€{{ item.products.price }}</p>
                                     </td>
                                     <td class="py-3 w-15">
-                                        <form class="form update-form" method="POST" action="">
+                                        <form class="form update-form" method="POST" action="{% url 'update_basket' item.unique_id %}">
                                             {% csrf_token %}
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input class="form-control form-control-sm qty_input" type="number"
-                                                        name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                        data-item_id="{{ item.item_id }}"
-                                                        id="id_qty_{{ item.item_id }}">
-                                                </div>
-                                            </div>
+                                            <input class="form-control form-control-sm qty_input" type="number"
+                                                name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                data-item_id="{{ item.unique_id }}"
+                                                id="id_qty_{{ item.unique_id }}">
                                         </form>
                                         <a class="update-item ">
                                             <small><i class="fa fa-pencil-square-o teal-text" aria-hidden="true"></i></small>
                                         </a>
-                                        <a class="remove-item text-danger float-end" id="remove_{{ item.item_id }}">
+                                        <a class="remove-item text-danger float-end" id="remove_{{ item.unique_id }}">
                                             <small><i class="fa fa-trash" aria-hidden="true"></i></small>
                                         </a>
                                     </td>
@@ -135,8 +130,7 @@
                                 <h5><strong>Products Total: €{{ products_total }}</strong></h5>
                             </td>
                         </tr>
-                        
-                        
+                                                
                         <tr>
                             <td colspan="5" class="pt-5 text-end">
                                 <h6><strong>SubTotal: €{{ sub_total }}</strong></h6>
@@ -202,6 +196,7 @@
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
+        console.log(itemId)
         var url = `/basket/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken};
 

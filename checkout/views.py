@@ -77,7 +77,8 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
-            for item_id, item_data in basket.items():
+            for unique_id, item_data in basket.items():
+                item_id = item_data['item_id']
                 category = item_data['category']
                 try:
                     if category == 'class':
@@ -102,7 +103,7 @@ def checkout(request):
                         order_line_item.save()
                 except:
                     messages.error(request, (
-                        "It looks like we can't process this order right now"
+                        "It looks like we can't process this order right now, "
                         "Please contact us for more help")
                     )
                     order.delete()
@@ -196,13 +197,11 @@ def checkout_success(request, order_number):
                 'default_country': order.country,
             }
 
-        # Create instance of the user profile formm using above profile_data
-
-        user_profile_form = UserProfileForm(profile_data, instance=profile)
-
-        # use form to update the user profile
-        if user_profile_form.is_valid():
-            user_profile_form.save()
+            # Create instance of the user profile formm using above profile_data
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            # use form to update the user profile
+            if user_profile_form.is_valid():
+                user_profile_form.save()
  
     template = 'checkout/checkout_success.html'
 

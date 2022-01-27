@@ -19,7 +19,6 @@ class TrainerForm(forms.ModelForm):
         image_label = "Upload image:"
 
         self.fields['name'].widget.attrs['autofocus'] = True
-        print(self.fields.items())
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = "admin-input"
             if field_name != 'image':                
