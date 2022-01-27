@@ -16,22 +16,21 @@
         </div>
     </div>
     <div class="row">
-        {% for class in classes %}   
-            <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
-                <div class="card trainer-card text-center mx-auto my-4" style="width: 18rem;">
-                    <img src="{{ MEDIA_URL }}{{ class.image }}" class="trainer-img" alt="image for {{ class.name }} class">
-                    <div class="card-body bg-lilac">
-                    <h4 class="card-title text-white fw-bold">{{ class.name }}</h4>
-                    </div>
-                    <div class="card-body">
-                        <a href="{% url 'class_info' class.id %}" class="btn btn-mint">More Info</a>
-                    </div>
+        {% for class in classes %}  
+        <div class="col d-flex justify-content-center mx-auto ">
+            <div class="card p-3 m-3 text-center h-100 border-0" style="width: 18rem;">
+                <a href="{% url 'class_info' class.id %}">
+                    <img src="{{ MEDIA_URL }}{{ class.image }}" class="card-img-top" alt="image for {{ class.name }} class">
+                </a>
+                <div class="card-body">
+                  <h4 class="card-title text-pink fw-bold">{{ class.name|title }}</h4>
+                  <p class="card-text text-muted my-0">€ {{ class.price }}</p>
                 </div>
-            </div>
+              </div>
+        </div>
         {% endfor %}
     </div>
 </div>
-
 
 
 {% endblock %}
