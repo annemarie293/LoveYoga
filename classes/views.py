@@ -51,3 +51,30 @@ def add_class(request):
     }
 
     return render(request, template, context)
+
+
+def edit_class(request, classes_id):
+
+    classes = get_object_or_404(YogaClass, id=classes_id)
+    
+    if request.method == 'POST':
+        form = ClassForm(request.POST, request.FILES, instance=classes)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Class details successfully updated')
+            return redirect(reverse('class_info', args=[classes.id]))
+        else:
+            messages.error(request, 'Failed to update this class.'
+                                    ' Please ensure your form is valid.')
+
+    else:
+        form = ClassForm(instance=classes)
+    
+    template = 'classes/edit_class.html'
+    context = {
+        'form': form,
+        'classes': classes,
+    }
+
+    return render(request, template, context)
+
