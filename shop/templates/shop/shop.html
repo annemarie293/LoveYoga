@@ -28,7 +28,17 @@
                   <p class="card-text text-muted my-0">€ {{ product.price }}</p>
                   <p class="card-text mt-1">{{ product.description }}</p>
                 </div>
-              </div>
+                {% if request.user.is_superuser %}
+                    <div class="col pb-2 pink-under">
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-teal">
+                            Edit
+                        </a>
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-teal">
+                            Delete
+                        </a>
+                    </div>
+                {% endif%}
+            </div>
         </div>
         {% endfor %}
     </div>

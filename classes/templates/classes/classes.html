@@ -17,17 +17,27 @@
     </div>
     <div class="row">
         {% for class in classes %}  
-        <div class="col d-flex justify-content-center mx-auto ">
-            <div class="card p-3 m-3 text-center h-100 border-0" style="width: 18rem;">
-                <a href="{% url 'class_info' class.id %}">
-                    <img src="{{ MEDIA_URL }}{{ class.image }}" class="card-img-top" alt="image for {{ class.name }} class">
-                </a>
-                <div class="card-body">
-                  <h4 class="card-title text-pink fw-bold">{{ class.name|title }}</h4>
-                  <p class="card-text text-muted my-0">€ {{ class.price }}</p>
+            <div class="col d-flex justify-content-center mx-auto ">
+                <div class="card p-3 m-3 text-center h-100 border-0" style="width: 18rem;">
+                    <a href="{% url 'class_info' class.id %}">
+                        <img src="{{ MEDIA_URL }}{{ class.image }}" class="card-img-top" alt="image for {{ class.name }} class">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title text-pink fw-bold">{{ class.name|title }}</h4>
+                        <p class="card-text text-muted my-0">€ {{ class.price }}</p>
+                    </div>
+                    {% if request.user.is_superuser %}
+                        <div class="col pb-2 pink-under">
+                            <a href="{% url 'edit_class' class.id %}" class="btn btn-sm btn-teal">
+                                Edit
+                            </a>
+                            <a href="{% url 'delete_class' class.id %}" class="btn btn-sm btn-teal">
+                                Delete
+                            </a>
+                        </div>
+                    {% endif%}
                 </div>
-              </div>
-        </div>
+            </div>
         {% endfor %}
     </div>
 </div>

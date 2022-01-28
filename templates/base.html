@@ -117,6 +117,7 @@
 
      
     {% if messages %}
+    <!-- To display bootstrap toasts -->
         <div class="message-container">
             {% for message in messages %}
                 {% with message.level as level %}
@@ -138,13 +139,14 @@
     {% endblock %}
 
     {% block postloadjs %}
+    <!-- JS for bootstrap toasts -->
     <script type="text/javascript">
         let toastElList = [].slice.call(document.querySelectorAll('.toast'))
         let toastList = toastElList.map(function (toastEl) {
             let option = {
                 animation: true,
                 autohide: true,
-                delay: 15000,
+                delay: 20000,
             }
         let bsToast = new bootstrap.Toast(toastEl, option)
         bsToast.show();
