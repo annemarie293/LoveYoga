@@ -257,8 +257,8 @@ body{
 }
 
 .basket-image {
-    max-width: 199.33px;
-    max-height: 132.94px
+    max-width: 170px;
+    max-height: 120px
 }
 
 @media (min-width: 375px) and (max-width: 750px){
@@ -276,25 +276,12 @@ body{
     }
   }
 
-/* --------------------------Trainers page */
-
-.trainer-card{
-    padding-bottom: 1.5rem;    
+.qty-td{
+    width:12.5%;
 }
 
-/* Wider card display on xl screens */
-@media (min-width: 1300px) {
-    .trainer-card {
-        width: 23rem !important;
-    }
-  }
 
-/* .trainer-img{
-    max-width: 293px;
-    max-height: 195px;
-}
-
---------------------------Profile page */
+/*--------------------------Profile page */
 
   .profile-input {
     box-sizing: border-box;

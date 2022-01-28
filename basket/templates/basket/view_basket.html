@@ -37,7 +37,7 @@
                                 <th scope="col">Product Info</th>
                                 <th scope="col"></th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
+                                <th scope="col" class="qty-td">Qty</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
                         </thead>
@@ -63,7 +63,7 @@
                                             </a>
                                         </p>
                                     </td>
-                                    <td class="py-3">
+                                    <td class="py-3 qty-td">
                                         <p class="my-0">€ {{item.classes.price | line_subtotal:item.quantity }} </p>
                                     </td>
                                 </tr>
@@ -103,18 +103,35 @@
                                     <td class="py-3">
                                         <p class="my-0">€{{ item.products.price }}</p>
                                     </td>
-                                    <td class="py-3 w-15">
+                                    <td class="py-3 qty-td">
                                         <form class="form update-form" method="POST" action="{% url 'update_basket' item.unique_id %}">
                                             {% csrf_token %}
-                                            <input class="form-control form-control-sm qty_input" type="number"
-                                                name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                data-item_id="{{ item.unique_id }}"
-                                                id="id_qty_{{ item.unique_id }}">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend d-none d-md-inline">
+                                                    <button class="decrement-qty btn btn-sm" 
+                                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                        <span class="icon">
+                                                            <i class="fas fa-minus"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control qty_input text-center p-0" type="number"
+                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                    data-item_id="{{ product.id }}"
+                                                    id="id_qty_{{ product.id }}">
+                                                <div class="input-group-append d-none d-md-inline">
+                                                    <button class="increment-qty btn btn-sm"
+                                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                        <span class="icon">
+                                                            <i class="fas fa-plus"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>                                                                                                                                                          
+                                            </div>
                                         </form>
-                                        <a class="update-item ">
-                                            <small><i class="fa fa-pencil-square-o teal-text" aria-hidden="true"></i></small>
-                                        </a>
-                                        <a class="remove-item text-danger float-end" id="remove_{{ item.unique_id }}">
+                                        <a class="update-item text-center pe-1">
+                                            <small><i class="fa fa-pencil-square-o teal-text" aria-hidden="true"></i></small></a>
+                                        <a class="remove-item text-danger text-center ps-1" id="remove_{{ item.unique_id }}">
                                             <small><i class="fa fa-trash" aria-hidden="true"></i></small>
                                         </a>
                                     </td>
@@ -198,6 +215,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
+{% include 'shop/includes/js_for_qty_change.html' %}
 
 <script type="text/javascript">
     // Update product qty on icon click

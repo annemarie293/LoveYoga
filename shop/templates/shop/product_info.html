@@ -46,7 +46,7 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <input class="form-control qty_input" type="number"
+                                                    <input class="form-control qty_input text-center" type="number"
                                                         name="quantity" value="1" min="1" max="99"
                                                         data-item_id="{{ product.id }}"
                                                         id="id_qty_{{ product.id }}">
@@ -71,14 +71,14 @@
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col">
-                                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
+                            <div class="col text-center">
+                                <a href="{% url 'shop' %}" class="btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Shop more gear</span>
                                 </a>
-                                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
+                                <a href="{% url 'classes' %}" class="btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
@@ -99,33 +99,6 @@
 
 {% block postloadjs %}
 {{ block.super }}
+{% include 'shop/includes/js_for_qty_change.html' %}
 
-
-<script type="text/javascript">
-
-    function handleQtyEnableDisable(itemId) {
-            var currentValue = parseInt($(`#id_qty_${itemId}`).val());
-            var minusDisabled = currentValue == 1;
-            var plusDisabled = currentValue > 98;
-            $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
-            $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-        }
-
-    $('.increment-qty').click(function(e){
-        e.preventDefault();
-        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-        var currentQty = parseInt($(closestInput).val());
-        $(closestInput).val(currentQty +1);
-        var itemId = $(this).data('item_id');
-        handleQtyEnableDisable(itemId);
-    });
-    $('.decrement-qty').click(function(e){
-        e.preventDefault();
-        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
-        var currentQty = parseInt($(closestInput).val());
-        $(closestInput).val(currentQty -1);
-        var itemId = $(this).data('item_id');
-        handleQtyEnableDisable(itemId);
-    });
-</script>
 {% endblock %}

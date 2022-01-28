@@ -1,0 +1,30 @@
+<script type="text/javascript">
+
+    // Disables +/- if the qty is outside the min/max
+    function handleQtyEnableDisable(itemId) {
+            var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+            var minusDisabled = currentValue == 1;
+            var plusDisabled = currentValue > 98;
+            $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+            $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+        }
+    
+    // Increases Qty input by 1
+    $('.increment-qty').click(function(e){
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentQty = parseInt($(closestInput).val());
+        $(closestInput).val(currentQty +1);
+        var itemId = $(this).data('item_id');
+        handleQtyEnableDisable(itemId);
+    });
+    // Decreases Qty input by 1
+    $('.decrement-qty').click(function(e){
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentQty = parseInt($(closestInput).val());
+        $(closestInput).val(currentQty -1);
+        var itemId = $(this).data('item_id');
+        handleQtyEnableDisable(itemId);
+    });
+</script>
