@@ -33,7 +33,7 @@ class YogaClass(models.Model):
     session_duration = models.IntegerField(null=True, blank=False)
     series_duration = models.IntegerField(null=True, blank=False)
     equipment = models.CharField(max_length=250, null=True, blank=False)
-    trainer = models.ForeignKey(Trainer, null=True, blank=False, on_delete=models.SET_NULL)
+    trainer = models.ForeignKey(Trainer, null=True, blank=False, on_delete=models.SET_NULL, related_name='trainers')
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=False)
     image = models.ImageField(null=True, blank=False)
 

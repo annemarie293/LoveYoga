@@ -28,8 +28,8 @@ def add_product_to_basket(request, item_id):
     if unique_id in list(basket.keys()):
         basket[unique_id]['quantity'] += quantity
         messages.success(request,
-                         f'You now have {basket[unique_id]["quantity"]}'
-                         ' x {product.name} in your basket')
+                         f'You now have {basket[unique_id]["quantity"]}\
+                          x {product.name} in your basket')
     else:
         basket[unique_id] = {'item_id': item_id,
                              'quantity': quantity, 
@@ -52,10 +52,14 @@ def add_class_to_basket(request, item_id):
     basket = request.session.get('basket', {})
  
     if unique_id in list(basket.keys()):
-        messages.info(request, f'It looks like you have already added {classes.name} to your basket!')
+        messages.info(request, f"It looks like youve already added\
+                                {classes.name} to your basket!")
     else:
-        basket[unique_id] = {'item_id': item_id, 'quantity': quantity, 'category': category}
-        messages.success(request, f'{classes.name} is now added to your basket')
+        basket[unique_id] = {'item_id': item_id,
+                             'quantity': quantity,
+                             'category': category}
+        messages.success(request,
+                         f'{classes.name} is now added to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)

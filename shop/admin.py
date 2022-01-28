@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import ShopProducts
 
+
 class ShopProductsAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
@@ -12,6 +13,7 @@ class ShopProductsAdmin(admin.ModelAdmin):
     )
 
     ordering = ('name'),
+
 
 # Register your models here.
 admin.site.register(ShopProducts, ShopProductsAdmin)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Trainer
 
+
 class TrainerAdmin(admin.ModelAdmin):
     list_display = (
         'name',
@@ -12,5 +13,7 @@ class TrainerAdmin(admin.ModelAdmin):
 
     ordering = ('name'),
 
+
 # Register your models here.
 admin.site.register(Trainer, TrainerAdmin)
+

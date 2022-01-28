@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .models import YogaClass
+from trainers.models import Trainer
 from .forms import ClassForm
 # Create your views here.
 
@@ -10,9 +12,29 @@ def classes(request):
     """ A view to return the page displaying the yoga classes """
 
     classes = YogaClass.objects.all()
+    trainer_list = Trainer.objects.all()
+    trainer = None
+    query = None
+
+    if request.GET:
+        if 'trainer' in request.GET:
+            trainer = str(request.GET['trainer'])
+            classes = classes.filter(trainer__name=trainer)
+            
+
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request,
+                               'Whoops! you didnt enter any class to search')
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            classes = classes.filter(queries)
 
     context = {
         'classes': classes,
+        'trainer_list': trainer_list,
+        'trainer': trainer
     }
 
     return render(request, 'classes/classes.html', context)
@@ -44,7 +66,7 @@ def add_class(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'New class details successfully added')
-            return redirect(reverse('shop'))
+            return redirect(reverse('classes'))
         else:
             messages.error(request, 'Failed to add new class.'
                                     ' Please ensure your form is valid.')
