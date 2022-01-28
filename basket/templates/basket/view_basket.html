@@ -165,17 +165,18 @@
                 </div>
             {% else %}
                 <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span class="text-uppercase">View our shop</span>
-                </a>
-                <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
                     <span class="text-uppercase">Find a class</span>
+                </a>
+                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Need some gear?</span>
+                </a>
             {% endif %}
         </div>
     </div>    

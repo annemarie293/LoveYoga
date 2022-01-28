@@ -98,7 +98,7 @@
                             {% if line_item.category == 'product' %}                                        
                                 <tr>
                                     <td class="p-3 w-25">
-                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ line_item.product.image }}">
+                                        <img class="img-fluid rounded order-summary-img" src="{{ MEDIA_URL }}{{ line_item.product.image }}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ line_item.product.name }}</strong></p>
@@ -123,7 +123,7 @@
                         </tr>
                         
                         <tr>
-                            <td colspan="5" class="pt-5 text-end">
+                            <td colspan="5" class="pt-1 text-end">
                                 <h6><strong>SubTotal: € {{ order.order_total }}</strong></h6>
                                 <h6>Delivery: € {{ order.delivery }}</h6>
                                 <h4 class="mt-4"><strong>Total paid: € {{ order.grand_total }}</strong></h4>
@@ -131,20 +131,20 @@
                         </tr>
                         <tr>
                             <td colspan="5" class="text-right">
-                                <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <a href="{% url 'classes' %}" class="btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span class="text-uppercase">View our shop</span>
+                                    <span class="text-uppercase">Find another class</span>
                                 </a>
-                                <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <a href="{% url 'shop' %}" class="btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span class="text-uppercase">Find a class</span>
+                                    <span class="text-uppercase">Need some gear?</span>
                                 </a>
                                 {% if from_profile_page %}
-                                <a href="{% url 'profile' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <a href="{% url 'profile' %}" class="btn btn-outline-black rounded-0 btn-lg m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>

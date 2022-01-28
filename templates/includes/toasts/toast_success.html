@@ -75,9 +75,17 @@
             <div class="col text-end">
               <h6><strong>SubTotal: €{{ sub_total }}</strong></h6>
               <h6>Delivery: €{{ delivery }}</h6>
-              <h4 class="mt-4"><strong>Total to pay: €{{ grand_total }}</strong></h4>
+              <h4 class="mt-4 text-center"><strong>Total to pay: €{{ grand_total }}</strong></h4>
             </div>
           </div>
+          <a href="{% url 'checkout' %}" class="btn btn-pink">
+            <span class="text-uppercase">Secure Checkout</span>
+            <span class="icon">
+                <i class="fas fa-lock"></i>
+            </span>
+          </a>
         {% endif %}
+
+        
     </div>
   </div> 
