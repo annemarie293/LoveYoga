@@ -28,7 +28,7 @@
                             <tr class="d-none"></tr>
                         </thead> 
                         <tr>
-                            <td colspan="5" class="pt-5 text-start">
+                            <td colspan="5" class="pt-3 text-start">
                                 <h4 class="mt-2 {% if classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h4>
                             </td>
                         </tr>  
@@ -141,23 +141,35 @@
                         <tr>
                             <td colspan="5" class="text-right mb-4">
 
-                                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
+                                <a href="{% url 'classes' %}" class="d-none d-md-inline btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Find another class</span>
                                 </a>
-                                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
+                                <a href="{% url 'shop' %}" class="d-none d-md-inline btn btn-outline-pink m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Need some gear?</span>
                                 </a>
-                                <a href="{% url 'checkout' %}" class="btn btn-lg btn-pink">
+                                <a href="{% url 'checkout' %}" class="btn btn-lg btn-pink m-1">
                                     <span class="text-uppercase">Secure Checkout</span>
                                     <span class="icon">
                                         <i class="fas fa-lock"></i>
                                     </span>
+                                </a>
+                                <a href="{% url 'classes' %}" class="d-md-none btn btn-outline-pink mt-2 m-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Find another class</span>
+                                </a>
+                                <a href="{% url 'shop' %}" class="d-md-none btn btn-outline-pink m-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Need some gear?</span>
                                 </a>
                             </td>
                         </tr>
