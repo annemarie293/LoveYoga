@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import YogaClass
+from .models import YogaClass, Practice
+
+
+class YogaPracticeAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
+    ordering = ('name'),
+
 
 class YogaClassAdmin(admin.ModelAdmin):
     list_display = (
@@ -22,3 +31,4 @@ class YogaClassAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(YogaClass, YogaClassAdmin)
+admin.site.register(Practice, YogaPracticeAdmin)

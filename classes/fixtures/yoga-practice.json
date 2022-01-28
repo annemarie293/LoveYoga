@@ -1,0 +1,47 @@
+[
+  {
+    "model": "classes.Practice",
+    "id": 1,
+    "fields": {"name": "vinyasa"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 2,
+    "fields": {"name": "kundalini"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 3,
+    "fields": {"name": "iyengar"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 4,
+    "fields": {"name": "prenatal"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 5,
+    "fields": {"name": "postnatal"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 6,
+    "fields": {"name": "conditioning"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 7,
+    "fields": {"name": "vinyasa"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 8,
+    "fields": {"name": "hatha"
+  }},
+  {
+    "model": "classes.Practice",
+    "id": 9,
+    "fields": {"name": "ashtanga"
+  }}
+]

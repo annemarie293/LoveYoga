@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from .models import YogaClass
+from .models import YogaClass, Practice
 from trainers.models import Trainer
 from .forms import ClassForm
 # Create your views here.
@@ -13,13 +13,19 @@ def classes(request):
 
     classes = YogaClass.objects.all()
     trainer_list = Trainer.objects.all()
+    practices = Practice.objects.all()
     trainer = None
+    practice = None
     query = None
 
     if request.GET:
         if 'trainer' in request.GET:
             trainer = str(request.GET['trainer'])
             classes = classes.filter(trainer__name=trainer)
+
+        if 'practice' in request.GET:
+            practice = str(request.GET['practice'])
+            classes = classes.filter(practice__name=practice)
             
 
         if 'q' in request.GET:
@@ -34,7 +40,9 @@ def classes(request):
     context = {
         'classes': classes,
         'trainer_list': trainer_list,
-        'trainer': trainer
+        'trainer': trainer, 
+        'practices': practices,
+        'practice': practice,
     }
 
     return render(request, 'classes/classes.html', context)

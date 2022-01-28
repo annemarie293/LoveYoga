@@ -3,6 +3,15 @@ from trainers.models import Trainer
 
 # Create your models here.
 
+
+class Practice(models.Model):  
+
+    name = models.CharField(max_length=250, null=True, blank=False)
+
+    def __str__(self):
+        return self.name
+
+
 class YogaClass(models.Model):
 
     class Meta:
@@ -27,7 +36,7 @@ class YogaClass(models.Model):
     category = models.CharField(max_length=7, null=True, blank=False)   
     sku = models.CharField(max_length=254, null=True, blank=False)
     description = models.TextField(null=True, blank=False)
-    practice = models.CharField(max_length=250, null=True, blank=False)
+    practice = models.ForeignKey(Practice, max_length=250, null=True, blank=False, on_delete=models.SET_NULL, related_name='practice')
     level = models.CharField(max_length=250, null=True, blank=False, choices=level_choices)
     intensity = models.CharField(max_length=250, null=True, blank=False, choices=intensity_choices)
     session_duration = models.IntegerField(null=True, blank=False)
@@ -39,4 +48,3 @@ class YogaClass(models.Model):
 
     def __str__(self):
         return self.name
-
