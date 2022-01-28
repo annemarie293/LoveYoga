@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.contrib import messages
 from .models import ShopProducts
 from .forms import ProductForm
@@ -11,6 +12,16 @@ def shop(request):
     """ A view to return the page displaying all the shop products"""
 
     shop_products = ShopProducts.objects.all()
+    query = None
+
+    if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request,
+                               'Whoops! you didnt enter anything to search')
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            shop_products = shop_products.filter(queries)
 
     context = {
         'shop_products': shop_products,

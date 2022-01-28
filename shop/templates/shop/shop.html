@@ -17,6 +17,20 @@
         </div>
     </div>
     <div class="row">
+        <div class="row">
+            <div class="col my-3 py-3">
+                <form method="GET" action="{% url 'shop' %}">
+                    <div class="text-center w-100">
+                        <input class="btn btn-outline-pink" type="text" name="q" placeholder="Search Shop">
+                        <button class="btn" type="submit">
+                            <span class="text-start">
+                                <i class="fas fa-search text-pink"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         {% for product in shop_products %}   
         <div class="col d-flex justify-content-center mx-auto ">
             <div class="card p-3 m-3 text-center h-100 border-0" style="width: 18rem;">

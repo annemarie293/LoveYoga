@@ -27,7 +27,6 @@ def classes(request):
             practice = str(request.GET['practice'])
             classes = classes.filter(practice__name=practice)
             
-
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
