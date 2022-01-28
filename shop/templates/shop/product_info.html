@@ -16,67 +16,83 @@
             </div>            
         </div>
     </div>
-    <div class="row">
-        <div class="col text-center mx-auto my-4">
-            <img src="{{ MEDIA_URL }}{{ product.image }}" class="trainer-img" alt="image for {{ product.name }}">
-            <div class="">
-            <h4 class="card-title text-white fw-bold">{{ product.name }}</h4>
-            </div>
-            <ul>
-
-            </ul>
-            <li class=" text-center">{{ product.description }}</li>
-            <li class=" text-center">Price: €{{ product.price }} </li>
-            <form class="form" action="{% url 'add_product_to_basket' product.id %}" method="POST">
-                {% csrf_token %}
-                <div class="form-row">
-                    
-                    <div class="col-12">
-                        <p class="mt-3"><strong>Quantity:</strong></p>
-                        <div class="form-group w-50">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button class="decrement-qty btn" 
-                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                        <span class="icon">
-                                            <i class="fas fa-minus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input class="form-control qty_input" type="number"
-                                    name="quantity" value="1" min="1" max="99"
-                                    data-item_id="{{ product.id }}"
-                                    id="id_qty_{{ product.id }}">
-                                <div class="input-group-append">
-                                    <button class="increment-qty btn"
-                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input type="hidden" name="category" value="{{ product.category }}">
+    <div class="row mt-2">
+        <div class="col-sm-12 col-md-11 mx-auto">
+            <div class="card text-center mx-auto my-4 border-0">
+                <div class="row mt-1">
+                    <div class="col-12 col-md-6">
+                        <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-fluid img-rounded" alt="image for {{ product.name }}">
+                    </div>
+                    <div class="col-12 col-md-6"> 
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center text-center"><h4><strong>{{ product.name|title }}</strong></h4></li>
+                            <li class="list-group-item text-center text-center">{{ product.description }}</li>
+                            <li class="list-group-item text-center text-center"><h5>Price: €{{ product.price }}</h5></li>                       
+                        </ul>
+                        <div class='row'>
+                            <div class="col text-center justify-content-center">
+                                <form class="form text-center" action="{% url 'add_product_to_basket' product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-row">                                        
+                                        <div class="col-6 offset-3 text-center">
+                                            <p class="mt-2"><strong>Quantity</strong></p>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button class="decrement-qty btn" 
+                                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                            <span class="icon">
+                                                                <i class="fas fa-minus"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <input class="form-control qty_input" type="number"
+                                                        name="quantity" value="1" min="1" max="99"
+                                                        data-item_id="{{ product.id }}"
+                                                        id="id_qty_{{ product.id }}">
+                                                    <div class="input-group-append">
+                                                        <button class="increment-qty btn"
+                                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                            <span class="icon">
+                                                                <i class="fas fa-plus"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>                                                                                                                                                          
+                                                </div>   
+                                                <div>
+                                                    <input type="hidden" name="category" value="{{ product.category }}">
+                                                    <input type="submit" class="btn btn-lg btn-pink text-uppercase mt-4" value="Add to Basket">   
+                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}"> 
+                                                </div>                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Shop more gear</span>
+                                </a>
+                                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Try out a class</span>
+                                </a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col{% if s %}-12 mt-2{% endif %}">
-                        <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 mt-5">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Keep Shopping</span>
-                        </a>
-                        <input type="submit" class="btn text-uppercase mt-5" value="Add to Basket">
-                    </div>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     
                 </div>
-            </form>                
+            </div>
         </div>
-    </div>
-</div>
 
 
+        
 
 {% endblock %}

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col bg-blush">            
             <div class="row my-4 text-center">
-                <h2 class="mb-0 text-grey">{{ classes.name }}</h2>             
+                <h2 class="mb-0 text-grey">Yoga Classes</h2>             
             </div>            
         </div>
     </div>
@@ -25,6 +25,7 @@
                     </div>
                     <div class="col-6">                    
                         <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center text-center"><h4><strong>{{ classes.name|title }}</strong></h4></li>
                         <li class="d-none d-lg-block list-group-item text-center">{{ classes.description }} </li>
                         <li class="list-group-item text-center"><strong>Practice:</strong> {{ classes.practice|title }} </li>
                         <li class="list-group-item text-center"><strong>Trainer:</strong> {{ classes.trainer|title }} </li>
@@ -45,14 +46,28 @@
                                     <input type="hidden" name="category" value="{{ classes.category }}">
                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     
-                                    <input type="submit" class="btn btn-pink text-uppercase mt-3" value="Add to Basket">                                    
+                                    <input type="submit" class="btn btn-lg btn-pink text-uppercase mt-3" value="Add to Basket">                                    
                                 </form>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Find another class</span>
+                                </a>
+                                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Need some gear?</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                
             </div>
         </div>
     </div>

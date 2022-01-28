@@ -132,27 +132,28 @@
                         </tr>
                                                 
                         <tr>
-                            <td colspan="5" class="pt-5 text-end">
+                            <td colspan="5" class="pt-1 text-end">
                                 <h6><strong>SubTotal: €{{ sub_total }}</strong></h6>
                                 <h6>Delivery: €{{ delivery }}</h6>
                                 <h4 class="mt-4"><strong>Total to pay: €{{ grand_total }}</strong></h4>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="text-right">
-                                <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                            <td colspan="5" class="text-right mb-4">
+
+                                <a href="{% url 'classes' %}" class="btn btn-outline-pink mx-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span class="text-uppercase">View our shop</span>
+                                    <span class="text-uppercase">Find another class</span>
                                 </a>
-                                <a href="{% url 'classes' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <a href="{% url 'shop' %}" class="btn btn-outline-pink mx-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span class="text-uppercase">Find a class</span>
+                                    <span class="text-uppercase">Need some gear?</span>
                                 </a>
-                                <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                                <a href="{% url 'checkout' %}" class="btn btn-lg btn-pink">
                                     <span class="text-uppercase">Secure Checkout</span>
                                     <span class="icon">
                                         <i class="fas fa-lock"></i>
