@@ -114,7 +114,7 @@ class StripeWH_Handler:
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook recieved:{event["type"]}|'
-                ' SUCCESS: the verified order has been dound in the database',
+                ' SUCCESS: the verified order has been found in the database',
                 status=200       
                 )
 
