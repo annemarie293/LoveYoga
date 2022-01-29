@@ -315,3 +315,24 @@ body{
     text-decoration:none; 
     cursor:pointer;  
 }
+
+/*--------------------------Profile page */
+
+.shop-sort{
+    width: 150px !important;
+}
+.shop-search{
+    width: 175px !important;
+}
+.shop-search input{
+    width: 125px;
+}
+
+@media (max-width: 375px){
+    .shop-search{
+        width: 175px !important;
+    }
+    .shop-search input{
+        width: 125px;
+    }
+  }

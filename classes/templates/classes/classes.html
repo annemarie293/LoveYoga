@@ -27,17 +27,29 @@
                         <a href="{% url 'classes' %}?trainer={{ trainer.name }}" class="dropdown-item">{{ trainer.name|title }}</a>
                     {% endfor %}
                 </div>
-                <div class="dropdown d-inline m-2">
-                    <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuPractice" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter by Practice:
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuPractice">
-                        <a href="{% url 'classes' %}" class="dropdown-item">Clear Filter</a>
-                        {% for practice in practices %}
-                            <a href="{% url 'classes' %}?practice={{ practice.name }}" class="dropdown-item">{{ practice.name|title }}</a>
-                        {% endfor %}
-                    </div>
+            </div>
+            <div class="dropdown d-inline m-2">
+                <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuPractice" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter by Practice:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuPractice">
+                    <a href="{% url 'classes' %}" class="dropdown-item">Clear Filter</a>
+                    {% for practice in practices %}
+                        <a href="{% url 'classes' %}?practice={{ practice.name }}" class="dropdown-item">{{ practice.name|title }}</a>
+                    {% endfor %}
                 </div>
+            </div>
+            <div class="dropdown d-inline m-2">
+                <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuTrainer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort By:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuTrainer">
+                    <a href="{% url 'classes' %}" class="dropdown-item">Reset</a>
+                    <a href="{% url 'classes' %}?sort=price&direction=asc" class="dropdown-item">Price: low-high</a>
+                    <a href="{% url 'classes' %}?sort=price&direction=desc" class="dropdown-item">Price: high-low</a>
+                    <a href="{% url 'classes' %}?sort=name&direction=asc" class="dropdown-item">Class: A-Z</a>
+                    <a href="{% url 'classes' %}?sort=name&direction=desc" class="dropdown-item">Class: Z-A</a>
+                </div> 
             </div>
         </div>
     </div>

@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.db.models.functions import Lower
+
 from .models import YogaClass, Practice
 from trainers.models import Trainer
 from .forms import ClassForm
+
 # Create your views here.
 
 
@@ -17,14 +20,27 @@ def classes(request):
     trainer = None
     practice = None
     query = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                classes = classes.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            classes = classes.order_by(sortkey)
+
         if 'trainer' in request.GET:
-            trainer = str(request.GET['trainer'])
+            trainer = request.GET['trainer']
             classes = classes.filter(trainer__name=trainer)
 
         if 'practice' in request.GET:
-            practice = str(request.GET['practice'])
+            practice = request.GET['practice']
             classes = classes.filter(practice__name=practice)
             
         if 'q' in request.GET:

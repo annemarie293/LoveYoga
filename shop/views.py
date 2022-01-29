@@ -1,7 +1,9 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from django.contrib import messages
+from django.db.models import Q
+from django.db.models.functions import Lower
+
 from .models import ShopProducts
 from .forms import ProductForm
 
@@ -13,15 +15,29 @@ def shop(request):
 
     shop_products = ShopProducts.objects.all()
     query = None
+    sort = None
 
-    if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request,
-                               'Whoops! you didnt enter anything to search')
+    if request.GET:
+        if 'sort' in request.GET:
+                sort = request.GET['sort']
+                sortkey = sort
+                if sortkey == 'name':
+                    sortkey = 'lower_name'
+                    shop_products = shop_products.annotate(lower_name=Lower('name'))
+                if 'direction' in request.GET:
+                    direction = request.GET['direction']
+                    if direction == 'desc':
+                        sortkey = f'-{sortkey}'
+                shop_products = shop_products.order_by(sortkey)
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
-            shop_products = shop_products.filter(queries)
+        if 'q' in request.GET:
+                query = request.GET['q']
+                if not query:
+                    messages.error(request,
+                                    'Whoops! you didnt enter anything to search')
+
+                queries = Q(name__icontains=query) | Q(description__icontains=query)
+                shop_products = shop_products.filter(queries)
 
     context = {
         'shop_products': shop_products,
