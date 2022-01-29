@@ -1,1 +1,1 @@
-web:gunicorn love_yoga.wsgi:application
+web:gunicorn loveyoga.wsgi:application
