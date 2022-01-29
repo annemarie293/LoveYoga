@@ -30,6 +30,7 @@ def basket_contents(request):
             })
 
         elif category == 'product':
+            print(XXXXXXXXXXXXXXXXXXXXXXXXXXXX)
             products = get_object_or_404(ShopProducts, id=item_id)
             products_total += quantity * products.price
             products_count += quantity
