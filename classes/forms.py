@@ -36,7 +36,6 @@ class ClassForm(forms.ModelForm):
         # Gets the practice name label from Practice model
         practices = Practice.objects.all()
         practice_names = [(c.id, c.get_label_name()) for c in practices]
-        print(practice_names)
         self.fields['practice'].choices = practice_names
 
         # Sets autofocus to name field

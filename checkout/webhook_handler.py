@@ -50,12 +50,10 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         """
-        To handle payment_intent_succeeded webhook from stripe
+        To handle payment_intent.succeeded webhook from stripe
         """
         intent = event.data.object
         pid = intent.id
-        print("MMMMMMMMMMMMMMMMMMm")
-        print(pid)
         basket = intent.metadata.basket
         
         billing_details = intent.charges.data[0].billing_details
@@ -78,19 +76,19 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                profile.default_phone_number = shipping_details.phone.strip(),
-                profile.default_street_address1 = shipping_details.address.line1.strip(),
-                profile.default_street_address2 = shipping_details.address.line2.strip(),
-                profile.default_town_or_city = shipping_details.address.city.strip(),
-                profile.default_county = shipping_details.address.state.strip(),
-                profile.default_postcode = shipping_details.address.postal_code.strip(),
-                profile.default_country = shipping_details.address.country.strip(),
+                profile.default_phone_number = shipping_details.phone,
+                profile.default_street_address1 = shipping_details.address.line1,
+                profile.default_street_address2 = shipping_details.address.line2,
+                profile.default_town_or_city = shipping_details.address.city,
+                profile.default_county = shipping_details.address.state,
+                profile.default_postcode = shipping_details.address.postal_code,
+                profile.default_country = shipping_details.address.country,
                 profile.save()
 
         # Check if order has already been created (5 times)
         order_exists = False
         attempt = 1
-        while attempt <= 5:
+        while attempt <= 6:
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -111,7 +109,6 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
-                
         if order_exists: 
             self._send_confirmation_email(order)
             return HttpResponse(
@@ -119,7 +116,6 @@ class StripeWH_Handler:
                 ' SUCCESS: the verified order has been found in the database',
                 status=200       
                 )
-
         # Create order if not found in database
         else:
             order = None
@@ -143,7 +139,7 @@ class StripeWH_Handler:
                     delivery=delivery,
                     )
 
-                for umique_id, item_data in json.loads(basket).items():
+                for unique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
                     item_id = item_data['item_id']
                     if category == 'class':
@@ -172,7 +168,6 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
                     status=500)
-        
         self._send_confirmation_email(order)
         return HttpResponse(            
             content=f'Webhook received: {event["type"]} |'

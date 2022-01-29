@@ -15,11 +15,9 @@ def basket_contents(request):
 
     for unique_id, item_data in basket.items():
         category = item_data['category']
+        item_id = item_data['item_id']
+        quantity = item_data['quantity']
         if category == 'class':
-            item_id = item_data['item_id']
-            quantity = item_data['quantity']
-            category = item_data['category']
-
             classes = get_object_or_404(YogaClass, id=item_id)
             classes_total += quantity * classes.price
             classes_count += quantity
@@ -32,10 +30,6 @@ def basket_contents(request):
             })
 
         elif category == 'product':
-            item_id = item_data['item_id']
-            quantity = item_data['quantity']
-            category = item_data['category']
-
             products = get_object_or_404(ShopProducts, id=item_id)
             products_total += quantity * products.price
             products_count += quantity
@@ -47,7 +41,6 @@ def basket_contents(request):
                 'products': products
             })
 
-        
     delivery = 5
     if products_total == 0:
         delivery = 0
