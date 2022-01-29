@@ -160,6 +160,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        "Expires": "Thu, Dec 2099 20:00:00 GMT",
+        "CacheControl": "max-age=94680800",
+    }
+
     # Bucket storage
     AWS_STORAGE_BUCKET_NAME = 'loveyoga'
     AWS_S3_REGION_NAME = 'eu-west-1'
@@ -197,8 +203,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
