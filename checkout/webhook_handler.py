@@ -54,6 +54,8 @@ class StripeWH_Handler:
         """
         intent = event.data.object
         pid = intent.id
+        print("MMMMMMMMMMMMMMMMMMm")
+        print(pid)
         basket = intent.metadata.basket
         
         billing_details = intent.charges.data[0].billing_details
@@ -141,8 +143,9 @@ class StripeWH_Handler:
                     delivery=delivery,
                     )
 
-                for item_id, item_data in json.loads(basket).items():
+                for umique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
+                    item_id = item_data['item_id']
                     if category == 'class':
                         quantity = item_data['quantity']
                         classes = YogaClass.objects.get(id=item_id)
