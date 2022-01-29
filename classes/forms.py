@@ -1,5 +1,5 @@
 from django import forms
-from .models import YogaClass
+from .models import YogaClass, Practice
 from trainers.models import Trainer
 
 
@@ -32,6 +32,12 @@ class ClassForm(forms.ModelForm):
         trainers = Trainer.objects.all()
         trainer_names = [(c.id, c.get_label_name()) for c in trainers]
         self.fields['trainer'].choices = trainer_names
+
+        # Gets the practice name label from Practice model
+        practices = Practice.objects.all()
+        practice_names = [(c.id, c.get_label_name()) for c in practices]
+        print(practice_names)
+        self.fields['practice'].choices = practice_names
 
         # Sets autofocus to name field
         self.fields['name'].widget.attrs['autofocus'] = True
