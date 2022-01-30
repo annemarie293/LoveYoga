@@ -155,7 +155,7 @@ class StripeWH_Handler:
                 print(json.loads(basket).items())
                 for unique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
-                    item_id = item_data['item_id']
+                    item_id = int(item_data['item_id'])
                     print("item_id")
                     print(item_id)
                     print(type(item_id))
