@@ -354,3 +354,8 @@ footer .copyright{
 .footer-push{
     height: 80vh;
 }
+
+/*--To push down footer on all auth page -*/
+.footer-push-all-auth{
+    height: 60vh;
+}
