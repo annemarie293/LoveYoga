@@ -49,7 +49,7 @@
                                 <h5 class="mt-2 {% if order.classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h5>
                             </td>
                         </tr>  
-                        <tr class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                        <tr class="text-black bg-grey {% if order.products_total == 0 %} d-none {% endif %}">
                             <th scope="col">Details</th>
                             <th scope="col"></th>
                             <th scope="col">Price</th>
@@ -89,7 +89,7 @@
                                 <h5 class="mt-2 {% if order.products_total == 0 %} d-none {% endif %}"><strong>Products</strong></h5>
                             </td>
                         </tr> 
-                        <tr class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                        <tr class="text-black bg-grey {% if order.products_total == 0 %} d-none {% endif %}">
                             <th scope="col">Details</th>
                             <th scope="col"></th>
                             <th scope="col">Price</th>

@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     # Other
     "crispy_forms",
     "crispy_bootstrap5",
-    'storages'
+    'storages',
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -235,3 +236,7 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+  }
