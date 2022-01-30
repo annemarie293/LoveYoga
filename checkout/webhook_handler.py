@@ -90,17 +90,17 @@ class StripeWH_Handler:
                 print("5.c")
                 profile.default_phone_number = shipping_details.phone,
                 print(profile.default_phone_number)
-                profile.default_street_address1 = shipping_details.address.line1,
+                profile.default_street_address1 = shipping_details.address.line1
                 print(profile.default_street_address1)
-                profile.default_street_address2 = shipping_details.address.line2,
+                profile.default_street_address2 = shipping_details.address.line2
                 print(profile.default_street_address2)
-                profile.default_town_or_city = shipping_details.address.city,
+                profile.default_town_or_city = shipping_details.address.city
                 print(profile.default_town_or_city)
-                profile.default_county = shipping_details.address.state,
+                profile.default_county = shipping_details.address.state
                 print(profile.default_county)
-                profile.default_postcode = shipping_details.address.postal_code,
+                profile.default_postcode = shipping_details.address.postal_code
                 print(profile.default_postcode)
-                profile.default_country = shipping_details.address.country,
+                profile.default_country = shipping_details.address.country
                 print(profile.default_country)
                 profile.save()
                 print("6")
