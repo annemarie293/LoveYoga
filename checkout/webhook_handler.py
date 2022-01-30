@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404
 
 from .models import Order, OrderLineItem
 from shop.models import ShopProducts
@@ -160,7 +161,7 @@ class StripeWH_Handler:
                         quantity = item_data['quantity']
                         print("11.b")
                         print(quantity)
-                        classes = YogaClass.objects.get(id=item_id)
+                        classes = get_object_or_404(YogaClass, id=classes_id)
                         print(classes)
                         print("12")
                         order_line_item = OrderLineItem(
@@ -174,7 +175,7 @@ class StripeWH_Handler:
                     elif category == 'product':
                         print("12.c")
                         quantity = item_data['quantity']
-                        product = ShopProducts.objects.get(id=item_id)
+                        product = get_object_or_404(ShopProducts(), id=classes_id)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
