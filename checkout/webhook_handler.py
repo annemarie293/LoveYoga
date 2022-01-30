@@ -56,6 +56,8 @@ class StripeWH_Handler:
         pid = intent.id
         basket = intent.metadata.basket
         print("1")
+        print("1.b")
+        print(basket)
         
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
@@ -148,13 +150,16 @@ class StripeWH_Handler:
                     delivery=delivery,
                     )
                 print("10")
-
+                print("10.b")
+                print(json.loads(basket).items())
                 for unique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
                     item_id = item_data['item_id']
                     print("11")
                     if category == 'class':
                         quantity = item_data['quantity']
+                        print("11.b")
+                        print(quantity)
                         classes = YogaClass.objects.get(id=item_id)
                         print(classes)
                         print("12")
@@ -164,8 +169,10 @@ class StripeWH_Handler:
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save()                 
+                        order_line_item.save() 
+                        print("12.b")                
                     elif category == 'product':
+                        print("12.c")
                         quantity = item_data['quantity']
                         product = ShopProducts.objects.get(id=item_id)
                         order_line_item = OrderLineItem(
