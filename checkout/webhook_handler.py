@@ -161,7 +161,7 @@ class StripeWH_Handler:
                         quantity = item_data['quantity']
                         print("11.b")
                         print(quantity)
-                        classes = get_object_or_404(YogaClass, id=classes_id)
+                        classes = get_object_or_404(YogaClass, id=item_id)
                         print(classes)
                         print("12")
                         order_line_item = OrderLineItem(
@@ -175,7 +175,7 @@ class StripeWH_Handler:
                     elif category == 'product':
                         print("12.c")
                         quantity = item_data['quantity']
-                        product = get_object_or_404(ShopProducts(), id=classes_id)
+                        product = get_object_or_404(ShopProducts(), id=item_id)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
