@@ -56,60 +56,40 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         basket = intent.metadata.basket
-        print("1")
-        print("1.b")
-        print(basket)
         
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount/100, 2)
         save_info = intent.metadata.save_info
-        print("2")
 
         products_total = intent.metadata.products_total
         classes_total = intent.metadata.classes_total
         delivery = intent.metadata.delivery
-        print("3")
 
         # Replace Blank shipping values with 'None'
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
-        print("4")
 
         # Create User Profile from details in order form
         profile = None
         username = intent.metadata.username
-        print("5")
         if username != 'AnonymousUser':
-            print(username)
             profile = UserProfile.objects.get(user__username=username)
-            print("5.b")
-            print(profile)
             if save_info:
-                print("5.c")
-                profile.default_phone_number = shipping_details.phone,
-                print(profile.default_phone_number)
+                profile.default_phone_number = shipping_details.phone
                 profile.default_street_address1 = shipping_details.address.line1
-                print(profile.default_street_address1)
                 profile.default_street_address2 = shipping_details.address.line2
-                print(profile.default_street_address2)
                 profile.default_town_or_city = shipping_details.address.city
-                print(profile.default_town_or_city)
                 profile.default_county = shipping_details.address.state
-                print(profile.default_county)
                 profile.default_postcode = shipping_details.address.postal_code
-                print(profile.default_postcode)
                 profile.default_country = shipping_details.address.country
-                print(profile.default_country)
                 profile.save()
-                print("6")
 
         # Check if order has already been created (5 times)
         order_exists = False
-        print("7")
         attempt = 1
-        while attempt <= 6:
+        while attempt <= 5:
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -131,7 +111,6 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists: 
-            print("8")
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook recieved:{event["type"]}|'
@@ -141,7 +120,6 @@ class StripeWH_Handler:
         # Create order if not found in database
         else:
             order = None
-            print("9")
             try:
                 order = Order.objects.create(
                     user_profile=profile,
@@ -161,37 +139,22 @@ class StripeWH_Handler:
                     classes_total=classes_total,
                     delivery=delivery,
                     )
-                print("10")
-                print("10.b")
-                print(json.loads(basket).items())
                 for unique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
                     item_id = int(item_data['item_id'])
-                    print("item_id")
-                    print(item_id)
-                    print(type(item_id))
-                    print("11")
                     if category == 'class':
                         quantity = item_data['quantity']
-                        print("11.b")
-                        print(quantity)
                         classes = get_object_or_404(YogaClass, id=item_id)
-                        print(classes)
-                        print("12")
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save() 
-                        print("12.b")                
+                        order_line_item.save()           
                     elif category == 'product':
-                        print("12.c")
                         quantity = item_data['quantity']
                         product = get_object_or_404(ShopProducts, id=item_id)
-                        print("12.d")
-                        print(product)
                         order_line_item = OrderLineItem(
                             order=order,
                             category=category,
@@ -199,17 +162,13 @@ class StripeWH_Handler:
                             quantity=quantity,
                         )
                         order_line_item.save()
-                        print("13")
             except Exception as e:
                 if order:
-                    print("14")
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
                     status=500)
-                print("15")
         self._send_confirmation_email(order)
-        print("16")
         return HttpResponse(            
             content=f'Webhook received: {event["type"]} |'
             ' SUCCESS: Order created in webhook',
