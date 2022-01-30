@@ -25,7 +25,7 @@
                     <h4 class="card-title text-pink fw-bold">{{ trainer.name }}</h4>
                     <p class="card-text text-muted my-0">Years practicing: {{ trainer.years_practicing }}</p>
                     <p class="card-text text-muted my-0">Years teaching: {{ trainer.years_teaching }}</p>
-                    <p class="card-text mt-1">{{ trainer.bio }}</p>
+                    <p class="card-text mt-2">{{ trainer.bio }}</p>
                     <a href="{% url 'classes' %}?trainer={{ trainer.name }}" class="btn btn-pink">Check out {{ trainer.name }}'s classes!</a>
                     
                 </div>

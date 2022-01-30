@@ -41,13 +41,6 @@ body{
     background-color: white;
 }
 
-.mint-txt{
-    color: #8BF8B5;
-}
-.bg-mint{
-    background-color: #8BF8B5;
-}
-
 .teal-text{
     color:#01B6A3;
 }
@@ -164,7 +157,6 @@ body{
     max-height: 4.5rem;
 }
 
-
 /* ------------------------------- All auth pages */
 
 .allauth-form-inner-content label:not([for='id_remember']){
@@ -216,7 +208,7 @@ body{
     height: calc(100vh - 10rem);
     width: 100%;
     background: url('/media/home2.jpeg') no-repeat center center fixed;
-    background-size: cover; /* or contain depending on what you want */
+    background-size: cover; 
     background-position: center center;
     background-repeat: no-repeat;
     text-align:center;
@@ -249,6 +241,11 @@ body{
 	z-index: -1;
 }
 
+
+/* --------------------------About page */
+.about-image img{
+    max-height: 15rem;
+}
 /* --------------------------Basket page */
 
 .update-item, 
@@ -316,7 +313,7 @@ body{
     cursor:pointer;  
 }
 
-/*--------------------------Profile page */
+/*--------------------------Shop  page */
 
 .shop-sort{
     width: 150px !important;
