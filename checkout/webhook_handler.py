@@ -156,6 +156,9 @@ class StripeWH_Handler:
                 for unique_id, item_data in json.loads(basket).items():
                     category = item_data['category']
                     item_id = item_data['item_id']
+                    print("item_id")
+                    print(item_id)
+                    print(type(item_id))
                     print("11")
                     if category == 'class':
                         quantity = item_data['quantity']
@@ -200,7 +203,7 @@ class StripeWH_Handler:
             content=f'Webhook received: {event["type"]} |'
             ' SUCCESS: Order created in webhook',
             status=200)
-        print("17")
+        
 
     def handle_payment_intent_payment_failed(self, event):
         """
