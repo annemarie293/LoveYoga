@@ -25,27 +25,32 @@
                 <div class="table-responsive rounded mt-2">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
-                            <tr class="d-none"></tr>
+                            <tr>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                            </tr>
                         </thead> 
                         <tr>
                             <td colspan="5" class="pt-3 text-start">
                                 <h4 class="mt-2 {% if classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h4>
                             </td>
-                        </tr>  
-                        <thead class="text-black bg-grey {% if classes_total == 0 %} d-none {% endif %}">
-                            <tr>
-                                <th scope="col">Product Info</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col" class="qty-td">Qty</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
+                        </tr>                         
+                        <tr class="text-black bg-grey {% if classes_total == 0 %} d-none {% endif %}">
+                            <th scope="col">Product Info</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col" class="qty-td">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                        
                         {% for item in basket_items %}
                             {% if item.category == 'class' %}                                        
                                 <tr>
                                     <td class="py-3 w-20">
-                                        <img class="img-fluid rounded basket-image" src="{{ MEDIA_URL }}{{ item.classes.image }}">
+                                        <img class="img-fluid rounded basket-image" src="{{ MEDIA_URL }}{{ item.classes.image }}" alt="image of {{ item.classes.name }}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.classes.name }}</strong></p>  
@@ -57,7 +62,7 @@
                                         <p class="my-0">€{{ item.classes.price }}</p>
                                     </td>
                                     <td class="py-3 px-2 w-15">
-                                        <p class="my-0 my-1" id="id_qty_{{ item.unique_id }}" data-item_id="{{ item.unique_id }}">{{ item.quantity }} &nbsp
+                                        <p class="my-0 my-1" id="id_qty_{{ item.unique_id }}" data-item_id="{{ item.unique_id }}">{{ item.quantity }} &nbsp;
                                             <a class="remove-item text-danger float-end" id="remove_{{ item.unique_id }}">
                                                 <small><i class="fa fa-trash" aria-hidden="true"></i></small>
                                             </a>
@@ -81,20 +86,18 @@
                                 <h4 class="mt-2 {% if products_total == 0 %} d-none {% endif %}"><strong>Products</strong></h4>
                             </td>
                         </tr> 
-                        <thead class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
-                            <tr>
-                                <th scope="col">Product Info</th>
-                                <th scope="col" ></th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
+                        <tr class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                            <th scope="col">Product Info</th>
+                            <th scope="col" ></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
                         {% for item in basket_items %}
                             {% if item.category == 'product' %}                                        
                                 <tr>
                                     <td class="py-3 w-20">
-                                        <img class="img-fluid rounded basket-image" src="{{ MEDIA_URL }}{{ item.products.image }}">
+                                        <img class="img-fluid rounded basket-image" src="{{ MEDIA_URL }}{{ item.products.image }}" alt="image of {{ item.products.name }}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.products.name }}</strong></p>            
@@ -139,7 +142,7 @@
                                         <p class="my-0">€ {{item.products.price | line_subtotal:item.quantity}} </p>
                                     </td>
                                 </tr>
-                                </hr>
+                                
                             {% endif %}
                         {% endfor %}
                         <tr>
@@ -217,7 +220,7 @@
 {{ block.super }}
 {% include 'shop/includes/js_for_qty_change.html' %}
 
-<script type="text/javascript">
+<script>
     // Update product qty on icon click
     $('.update-item').click(function(e) {
         var form = $(this).prev('.update-form');

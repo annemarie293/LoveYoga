@@ -134,7 +134,7 @@
         </div>
     {% endif %}
 
-    <!-- main page content  -->
+    <!-- main page content -->
    <div class="mb-4 pb-4">
     {% block content %}
     {% endblock %}
@@ -157,7 +157,7 @@
 
     {% block postloadjs %}
     <!-- JS for bootstrap toasts -->
-    <script type="text/javascript">
+    <script>
         let toastElList = [].slice.call(document.querySelectorAll('.toast'))
         let toastList = toastElList.map(function (toastEl) {
             let option = {

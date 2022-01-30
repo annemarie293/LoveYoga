@@ -8,7 +8,7 @@
     </div>
     <div class="toast-body pt-0">
       <div class="row pt-2 bg-blush">
-        <strong><h5>{{ message }}</h5</strong>
+        <h5>{{ message }}</h5>
       </div>
       {% if basket_items and not on_profile %}
            <div class="row pt-2 bg-grey">
@@ -36,7 +36,7 @@
 
           <div class="row my-1">
             <div class="col-2">
-              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}">
+              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.classes.image }}" alt="image of {{ item.classes.name }}">
             </div>
             <div class="col-5">
               <p class="small text-start"><strong>{{ item.classes.name|title }}</strong></p>
@@ -54,7 +54,7 @@
 
           <div class="row my-1">
             <div class="col-2">
-              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}">
+              <img class="img-fluid rounded" src="{{ MEDIA_URL }}{{ item.products.image }}" alt="image of {{ item.products.name }}">
             </div>
             <div class="col-5">
               <p class="small text-start"><strong>{{ item.products.name|title }}</strong></p>

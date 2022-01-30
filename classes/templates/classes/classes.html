@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col my-3 py-3">           
             <div class="dropdown d-inline m-2">
-                <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuTrainer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-pink dropdown-toggle mb-2" type="button" id="dropdownMenuTrainer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter by Trainer:
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuTrainer">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="dropdown d-inline m-2">
-                <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuPractice" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-pink dropdown-toggle mb-2" type="button" id="dropdownMenuPractice" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter by Practice:
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuPractice">
@@ -40,10 +40,10 @@
                 </div>
             </div>
             <div class="dropdown d-inline m-2">
-                <button class="btn btn-outline-pink dropdown-toggle" type="button" id="dropdownMenuTrainer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-pink dropdown-toggle mb-2" type="button" id="dropdownSort" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort By:
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuTrainer">
+                <div class="dropdown-menu" aria-labelledby="dropdownSort">
                     <a href="{% url 'classes' %}" class="dropdown-item">Reset</a>
                     <a href="{% url 'classes' %}?sort=price&direction=asc" class="dropdown-item">Price: low-high</a>
                     <a href="{% url 'classes' %}?sort=price&direction=desc" class="dropdown-item">Price: high-low</a>
@@ -97,7 +97,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('.dropdown-toggle').dropdown()
 </script>
 

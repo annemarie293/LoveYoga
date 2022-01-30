@@ -77,7 +77,8 @@ body{
     display: inline;
 }
 
-#accountOptions{
+#accountOptions, 
+#accountOptions-mobile{
     color: white;
 }
 
@@ -126,6 +127,10 @@ body{
     background-color: #01B6A3;
     color:white;
 }
+.btn-teal:hover{
+    background-color: #01DFC9;
+    color:white;
+}
 
 .btn-pink{
     background-color: #E0527C;
@@ -147,8 +152,8 @@ body{
 
 .btn-outline-pink:hover {	
     background-color: white;
-    color: #E77497;
-    border: 2px solid #E77497
+    color: #ED97B1;
+    border: 2px solid #ED97B1;
 }
 
 /* --------------------------images */
@@ -301,13 +306,13 @@ body{
       color: #B4B7A4
   }
 
-  #user-order-link{
+  .user-order-link{
     text-decoration: none;
     color: black;
 
   }
 
-  #user-order-link:hover {
+  .user-order-link:hover {
     color:#FFA38B;
     text-decoration:none; 
     cursor:pointer;  

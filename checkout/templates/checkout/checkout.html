@@ -107,27 +107,31 @@
                 <div class="table-responsive rounded mt-2">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
-                            <tr class="d-none"></tr>
-                        </thead> 
+                            <tr>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                            </tr>
+                        </thead>  
                         <tr>
                             <td colspan="5" class="text-start">
                                 <h5 class="mt-2 {% if classes_total == 0 %} d-none {% endif %}"><strong>Classes</strong></h5>
                             </td>
                         </tr>  
-                        <thead class="text-black bg-grey {% if classes_total == 0 %} d-none {% endif %}">
-                            <tr>
-                                <th scope="col">Details</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
+                        <tr class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                            <th scope="col">Details</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
                         {% for item in basket_items %}
                             {% if item.category == 'class' %}                                        
                                 <tr>
                                     <td class="p-2 w-25">
-                                        <img class="img-fluid rounded order-summary-img" src="{{ MEDIA_URL }}{{ item.classes.image }}">
+                                        <img class="img-fluid rounded order-summary-img" src="{{ MEDIA_URL }}{{ item.classes.image }}" alt="image of {{ item.classes.name }}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.classes.name }}</strong></p>
@@ -153,23 +157,21 @@
                             
                         <tr>
                             <td colspan="5" class=" text-start">
-                                <h5 class="mt-2 {% if products_total == 0 %} d-none {% endif %}"><strong>Products</strong><h5>
+                                <h5 class="mt-2 {% if products_total == 0 %} d-none {% endif %}"><strong>Products</strong></h5>
                             </td>
                         </tr> 
-                        <thead class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
-                            <tr>
-                                <th scope="col">Details</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
+                        <tr class="text-black bg-grey {% if products_total == 0 %} d-none {% endif %}">
+                            <th scope="col">Details</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
                         {% for item in basket_items %}
                             {% if item.category == 'product' %}                                        
                                 <tr>
                                     <td class="p-2 w-25">
-                                        <img class="img-fluid rounded order-summary-img" src="{{ MEDIA_URL }}{{ item.products.image }}">
+                                        <img class="img-fluid rounded order-summary-img" src="{{ MEDIA_URL }}{{ item.products.image }}" alt="image of {{ item.products.name }}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.products.name }}</strong></p>
@@ -184,7 +186,6 @@
                                         <p class="my-0">€ {{item.products.price}} </p>
                                     </td>
                                 </tr>
-                                </hr>
                             {% endif %}
                         {% endfor %}
                         <tr>

@@ -51,7 +51,7 @@
                 {% for order in orders %}
                     <div class="row fw-normal py-1">
                         <div class="col-4 col-md-3">
-                            <a id="user-order-link" href="{% url 'user_orders' order.order_number %}"
+                            <a class="user-order-link" href="{% url 'user_orders' order.order_number %}"
                             title="{{ order.order_number }}">
                                 {{ order.order_number|truncatechars:10 }}
                             </a>
@@ -74,47 +74,6 @@
                     </div>
                 {% endfor %}
             </div> 
-
-           <!--- <div class="user-orders table-responsive">
-                <table class="table table-sm table-borderless">
-                    <thead class="bg-grey">
-                        <tr>
-                            <th>Order Number</th>
-                            <th>Date</th>
-                            <th>Items</th>
-                            <th>Order Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orders %}
-                            <tr class="fw-normal">
-                                <td>
-                                    <a href="{% url 'user_orders' order.order_number %}"
-                                    title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:10 }}
-                                    </a>
-                                </td>
-                                <td>{{ order.date|date:'Y-m-d H:i' }}</td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        {% for item in order.lineitems.all %}
-                                            <li class="small">
-                                                {% if item.category == 'product' %}
-                                                    {{ item.product.name|truncatechars:15 }} x {{ item.quantity }}
-                                                {% elif item.category == 'class' %}
-                                                    {{ item.classes.name|truncatechars:15 }} x {{ item.quantity }}
-                                                {% endif %}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                                <td>€{{ order.grand_total }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div> --->
-
         </div>
     </div>
 </div>

@@ -18,10 +18,10 @@
     </div>
     <div class="row">
         <div class="col-6 my-3 py-3 px-1 text-end">                
-            <button class="btn btn-outline-pink dropdown-toggle shop-sort" type="button" id="dropdownMenuTrainer" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-outline-pink dropdown-toggle shop-sort" type="button" id="dropdown-sort" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sort By:
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuTrainer">
+            <div class="dropdown-menu" aria-labelledby="dropdown-sort">
                 <a href="{% url 'shop' %}" class="dropdown-item">Reset</a>
                 <a href="{% url 'shop' %}?sort=price&direction=asc" class="dropdown-item">Price: low-high</a>
                 <a href="{% url 'shop' %}?sort=price&direction=desc" class="dropdown-item">Price: high-low</a>
