@@ -134,8 +134,25 @@
         </div>
     {% endif %}
 
+   <div class="mb-4 pb-4">
     {% block content %}
     {% endblock %}
+   </div>
+
+    <!-- footer section -->
+    <footer class="bg-blush">
+        <div class="row">
+            <div class="footer-info col m-1">
+                <h5 class="logo-font mt-2">LoveYoga</h5>
+                <p class="text-grey">2 Main Street Rathmines, &nbsp; LoveYoga@gmail.com</p>
+                <a class="fs-4 social-link m-2" href="http://www.instagram.com" target='_blank'><i class="fab fa-instagram "></i></a>
+                <a class="fs-4 social-link m-2" href="http://www.facebook.com" target='_blank'><i class="fab fa-facebook "></i></a>
+                <a class="fs-4 social-link m-2" href="http://www.twitter.com" target='_blank'><i class="fab fa-twitter "></i></a>
+                <a class="fs-4 social-link m-2" href="http://www.pinterest.com" target='_blank'><i class="fab fa-pinterest"></i></a>
+                <p class="text-grey mt-1">&copy; 2022 AM Murphy</p>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     <!-- JS for bootstrap toasts -->

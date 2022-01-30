@@ -333,3 +333,24 @@ body{
         width: 125px;
     }
   }
+
+/*-------------------------- Footer ---*/
+  footer{
+    color:white;
+    text-align: center;
+    bottom: 0;
+}
+
+footer .social-link{
+    color: white;
+    font-size: medium;
+}
+
+footer .copyright{
+    font-size: 5px;
+}
+
+/*--To push down footer on home page -*/
+.footer-push{
+    height: 80vh;
+}
