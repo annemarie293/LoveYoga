@@ -33,7 +33,7 @@ PEP8 compliance
 Python validation carried out using [PEP8 checker](http://pep8online.com/)
 - No errors, only some "blank line contains whitespace" warnings that I wasn't able to remove
 - example for checkout views.py:
-- [Pep*](/media/pep8-example-checkout-views.jpg) 
+- [Pep8](/media/pep8-example-checkout-views.jpg) 
 
  ### User Stories Testing
 
@@ -79,7 +79,7 @@ Python validation carried out using [PEP8 checker](http://pep8online.com/)
     4. If signed in during the checkout page, the user can also check the box to save the contact details to their account.
 
 
- -**Admin Users**
+ - **Admin Users**
 1. As an admin user, I want to be able to add, update and remove products, classes and trainers from the website
     1. The admin user can view the products, classes, and trainers currently listed on the site admin page.
     2. From here they can add additional records, or edit the exiting records.
