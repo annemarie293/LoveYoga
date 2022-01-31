@@ -55,9 +55,9 @@ Wireframes showing the each page across small, medium and large screen sizes.
 
  |     Page   | Wireframe | Wireframe | Wireframe |
     | ----------- | ----------- | ----------- | ----------- |
-    |Home Page     | [Large](/media/home-l.jpg ) | [Medium](/media/home-m.jpg)   | [Small](/media/home-s.jpg)   |
+    |Home Page    | [Large](/media/home-l.jpg)| [Medium](/media/home-m.jpg)  [Small](/media/home-s.jpg)   |
     |About page   | [Large](/media/about-l.jpg) | [Medium](/media/about-m.jpg)   | [Small](/media/about-s.jpg)   |
-    |Trainers/Classes/Shop page   |  [Large](/media/trainer_class_shop-l.jpg) | [Medium](/media/trainer_class_shop-m.jpg)   | [Small](/media/trainer_class_shop-s.jpg)   |
+    |Trainers/Classes/Shop page |[Large](/media/trainer_class_shop-l.jpg)|[Medium](/media/trainer_class_shop-m.jpg)|[Small](/media/trainer_class_shop-s.jpg)   |
     |Class/Product Info  |  [Large](/media/class_product_info-l.jpg) | [Medium](/media/class_product_info-m.jpg)   | [Small](/media/class_product_info-s.jpg)   |
     |Basket  | [Large](/media/basket-l.jpg) | [Medium](/media/basket-m.jpg)   | [Small](/media/basket-s.jpg)   |
     |Checkout  | [Large](/media/checkout-l.jpg) | [Medium](/media/checkout-m.jpg)   | [Small](/media/checkout-s.jpg)   |
@@ -67,7 +67,7 @@ Wireframes showing the each page across small, medium and large screen sizes.
 ### Database Schema
 Production databases stored in Heroku Postgres, while SQL lite used for development.
 
-  ![Database schema](/media/schema.jpg "Database schema")
+  ![Database schema](/media/DBschema.png "Database schema")
 ___
 
 ## **FEATURES**
@@ -95,9 +95,9 @@ ___
     - Admin users have access to edit/delete link for each trainer.
 - Classes Page:
     - Accessible to all users.
-   - A responsive grid of display cards for each yoga class, containing an image for each class, class name and price. Clicking on the class image links to the class info page.
-   - Above the grid there are dropdown links to filter by trainer or yoga practice, or to sort ascending/descending by name or price.
-   -  Admin users have access to edit/delete link for each class.
+    - A responsive grid of display cards for each yoga class, containing an image for each class, class name and price. Clicking  on the class image links to the class info page.
+     - Above the grid there are dropdown links to filter by trainer or yoga practice, or to sort ascending/descending by name or price.
+     - Admin users have access to edit/delete link for each class.
  - Classes Info Page:
     -Accessible to all users.
    - Class image is displayed on the left hand side, along with the class description if viewing on small/med screens
@@ -142,9 +142,9 @@ ___
     - There is also a pink-outline secondary button to return to the basket to make any changes.
     - Below the complete order button, there is a red alert display confirming the total amount to be charged to the card.
 - Checkout Success Page:
- - Toast message is displayed with the order confirmation number, and this is also displayed at the top of the page.
- - Order summary is displayed below, in the same style as the shopping basket.
- - Links at the bottom of the page guide the user back to the classes or shop page for further purchases.
+  - Toast message is displayed with the order confirmation number, and this is also displayed at the top of the page.
+  - Order summary is displayed below, in the same style as the shopping basket.
+  - Links at the bottom of the page guide the user back to the classes or shop page for further purchases.
 - Profile Page:
     - Only accessible to users who are logged in to their account.
     - Screen is divided into left/right sections for med/large screens, and top/bottom sections for small screens.
@@ -221,7 +221,7 @@ ___
 #### Deployed using Heroku
 
 - **Instructions**
-  1. Open the [repository](https://github.com/annemarie293/CellarClub) in GitHub, then launch in GitPod
+  1. Open the [repository](https://github.com/annemarie293/LoveYoga) in GitHub, then launch in GitPod
   2. Ensure dj_database_url is installed, then migrate your models and load fixture files.
   3. Create new superuser for the app.
   2. Login or create new account on Amazon Web Services to host static files
@@ -240,7 +240,7 @@ ___
 #### Forking the Repository
 
 - **Instructions**
-  1. Open the [repository](https://github.com/annemarie293/CellarClub) in GitHub
+  1. Open the [repository](https://github.com/annemarie293/LoveYoga) in GitHub
   2. Click on the “fork” button at the top right hand side of the page, just below the navbar.
   3. A copy of the original repository will be created to your own GitHub account.
 
