@@ -12,7 +12,8 @@ class ShopProducts(models.Model):
     category = models.CharField(max_length=7, null=True, blank=False)
     name = models.CharField(max_length=250, null=True, blank=False)
     description = models.TextField(null=True, blank=False)
-    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=False)
+    price = models.DecimalField(max_digits=6, decimal_places=2,
+                                null=True, blank=False)
     image = models.ImageField(null=True, blank=False)
 
     def __str__(self):

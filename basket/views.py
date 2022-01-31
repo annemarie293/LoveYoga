@@ -1,4 +1,5 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import (render, reverse, redirect,
+                              get_object_or_404, HttpResponse)
 from django.contrib import messages
 from shop.models import ShopProducts
 from classes.models import YogaClass
@@ -11,6 +12,7 @@ def view_basket(request):
 
     basket = request.session.get('basket', {})
     context = {
+        'basket': basket
     }
     return render(request, 'basket/view_basket.html', context)
 
@@ -24,7 +26,7 @@ def add_product_to_basket(request, item_id):
     unique_id = category + item_id
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
-   
+
     if unique_id in list(basket.keys()):
         basket[unique_id]['quantity'] += quantity
         messages.success(request,
@@ -32,25 +34,24 @@ def add_product_to_basket(request, item_id):
                           x {product.name} in your basket')
     else:
         basket[unique_id] = {'item_id': item_id,
-                             'quantity': quantity, 
+                             'quantity': quantity,
                              'category': category}
-        messages.success(request, 
+        messages.success(request,
                          f'{product.name} is now added to your basket')
-    
+
     request.session['basket'] = basket
     return redirect(redirect_url)
 
 
 def add_class_to_basket(request, item_id):
     """ Add a class to the basket"""
-    
     classes = get_object_or_404(YogaClass, id=item_id)
     quantity = int(request.POST.get('quantity'))
     category = request.POST.get('category')
     unique_id = category + item_id
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
- 
+
     if unique_id in list(basket.keys()):
         messages.info(request, f"It looks like youve already added\
                                 {classes.name} to your basket!")

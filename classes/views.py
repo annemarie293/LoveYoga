@@ -20,7 +20,6 @@ def classes(request):
     trainer = None
     practice = None
     query = None
-    sort = None
     direction = None
 
     if request.GET:
@@ -49,7 +48,8 @@ def classes(request):
                 messages.error(request,
                                'Whoops! you didnt enter any class to search')
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                        description__icontains=query)
             classes = classes.filter(queries)
 
     context = {
@@ -81,7 +81,8 @@ def add_class(request):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
@@ -108,14 +109,14 @@ def add_class(request):
 @login_required
 def edit_class(request, classes_id):
 
-    
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     classes = get_object_or_404(YogaClass, id=classes_id)
-    
+
     if request.method == 'POST':
         form = ClassForm(request.POST, request.FILES, instance=classes)
         if form.is_valid():
@@ -141,14 +142,13 @@ def edit_class(request, classes_id):
 @login_required
 def delete_class(request, classes_id):
 
-
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     classes = get_object_or_404(YogaClass, id=classes_id)
     classes.delete()
     messages.success(request, 'Class details successfully deleted')
     return redirect(reverse('classes'))
-

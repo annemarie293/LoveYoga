@@ -25,9 +25,10 @@ def add_trainer(request):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
-        
+
     if request.method == 'POST':
         form = TrainerForm(request.POST, request.FILES)
         if form.is_valid():
@@ -55,7 +56,8 @@ def edit_trainer(request, trainer_id):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     trainer = get_object_or_404(Trainer, id=trainer_id)
@@ -88,7 +90,8 @@ def delete_trainer(request, trainer_id):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     trainer = get_object_or_404(Trainer, id=trainer_id)

@@ -1,7 +1,8 @@
 import stripe
 import json
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -15,6 +16,7 @@ from .models import Order, OrderLineItem
 from basket.contexts import basket_contents
 
 # Create your views here.
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -67,7 +69,6 @@ def checkout(request):
             'country': request.POST['country'],
         }
 
-
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
@@ -111,14 +112,16 @@ def checkout(request):
 
             # Save info to the user profile if everythig is ok
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                                    args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            messages.error(request, "You havent added anything to your basket yet!")
+            messages.error(request,
+                           "You havent added anything to your basket yet!")
             return redirect(reverse('classes'))
 
     total = current_basket['grand_total']
@@ -197,7 +200,7 @@ def checkout_success(request, order_number):
                 'default_country': order.country,
             }
 
-            # Create instance of the user profile formm using above profile_data
+            # Create instance of the user profile form using above profile_data
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             # use form to update the user profile
             if user_profile_form.is_valid():

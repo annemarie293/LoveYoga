@@ -16,11 +16,12 @@ def profile(request):
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     
-    if request.method =='POST':
+    if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your new profile information has been saved')
+            messages.success(request,
+                             'Your new profile information has been saved')
 
     orders = profile.orders.all()
 
@@ -44,7 +45,8 @@ def user_orders(request, order_number):
     """
     order = get_object_or_404(Order, order_number=order_number)
 
-    messages.info(request, f'This is a record of your previous order # {order_number}')
+    messages.info(request, f'This is a record of \
+                            your previous order # {order_number}')
 
     template = "checkout/checkout_success.html"
 

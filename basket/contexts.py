@@ -4,6 +4,9 @@ from classes.models import YogaClass
 
 
 def basket_contents(request):
+    """
+    To make basket contents available across all apps
+    """
 
     basket_items = []
     classes_total = 0
@@ -23,7 +26,7 @@ def basket_contents(request):
             classes_count += quantity
             basket_items.append({
                 'unique_id': unique_id,
-                'item_id': item_id, 
+                'item_id': item_id,
                 'quantity': quantity,
                 'category': category,
                 'classes': classes
@@ -35,7 +38,7 @@ def basket_contents(request):
             products_count += quantity
             basket_items.append({
                 'unique_id': unique_id,
-                'item_id': item_id, 
+                'item_id': item_id,
                 'quantity': quantity,
                 'category': category,
                 'products': products
@@ -57,5 +60,4 @@ def basket_contents(request):
         'delivery': delivery,
         'grand_total': grand_total,
     }
-    
     return context

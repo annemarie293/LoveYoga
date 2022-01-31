@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
         self.fields['name'].widget.attrs['autofocus'] = True
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = "admin-input"
-            if field_name != 'image':                
+            if field_name != 'image':           
                 placeholder = placeholders[field_name]
                 self.fields[field_name].widget.attrs[
                         'placeholder'] = placeholder

@@ -12,6 +12,7 @@ from profiles.models import UserProfile
 import json
 import time
 
+
 class StripeWH_Handler:
     """
     To handle stripe webhooks in case of crash during order submit
@@ -56,7 +57,6 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         basket = intent.metadata.basket
-        
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount/100, 2)
@@ -110,12 +110,12 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
-        if order_exists: 
+        if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook recieved:{event["type"]}|'
                 ' SUCCESS: the verified order has been found in the database',
-                status=200       
+                status=200
                 )
         # Create order if not found in database
         else:
@@ -151,7 +151,7 @@ class StripeWH_Handler:
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save()           
+                        order_line_item.save()
                     elif category == 'product':
                         quantity = item_data['quantity']
                         product = get_object_or_404(ShopProducts, id=item_id)
@@ -169,12 +169,11 @@ class StripeWH_Handler:
                     content=f'Webhook recieved:{event["type"]}| Error: {e}',
                     status=500)
         self._send_confirmation_email(order)
-        return HttpResponse(            
+        return HttpResponse(     
             content=f'Webhook received: {event["type"]} |'
             ' SUCCESS: Order created in webhook',
             status=200)
         
-
     def handle_payment_intent_payment_failed(self, event):
         """
         To handle payment_intent_payment_failed webhook from stripe
@@ -182,5 +181,4 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook recieved: {event["type"]}', status=200
         )
-
 

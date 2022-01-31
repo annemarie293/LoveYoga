@@ -8,7 +8,7 @@ class ClassForm(forms.ModelForm):
         model = YogaClass
         fields = "__all__"
 
-    def __init__ (self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         placeholders = {
@@ -43,7 +43,7 @@ class ClassForm(forms.ModelForm):
 
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = "admin-input"
-            if field_name != 'image':                
+            if field_name != 'image':          
                 placeholder = placeholders[field_name]
                 self.fields[field_name].widget.attrs[
                         'placeholder'] = placeholder
@@ -54,4 +54,3 @@ class ClassForm(forms.ModelForm):
             if field_name == 'category':
                 self.fields[field_name].widget.attrs['class'] = "d-none"
                 self.fields[field_name].widget.attrs['value'] = 'class'
-

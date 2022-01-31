@@ -19,25 +19,27 @@ def shop(request):
 
     if request.GET:
         if 'sort' in request.GET:
-                sort = request.GET['sort']
-                sortkey = sort
-                if sortkey == 'name':
-                    sortkey = 'lower_name'
-                    shop_products = shop_products.annotate(lower_name=Lower('name'))
-                if 'direction' in request.GET:
-                    direction = request.GET['direction']
-                    if direction == 'desc':
-                        sortkey = f'-{sortkey}'
-                shop_products = shop_products.order_by(sortkey)
+            sort = request.GET['sort']
+            sortkey = sort
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                shop_products = shop_products.annotate(
+                                lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            shop_products = shop_products.order_by(sortkey)
 
         if 'q' in request.GET:
-                query = request.GET['q']
-                if not query:
-                    messages.error(request,
-                                    'Whoops! you didnt enter anything to search')
+            query = request.GET['q']
+            if not query:
+                messages.error(request,
+                               'Whoops! you didnt enter anything to search')
 
-                queries = Q(name__icontains=query) | Q(description__icontains=query)
-                shop_products = shop_products.filter(queries)
+            queries = Q(name__icontains=query) | Q(
+                        description__icontains=query)
+            shop_products = shop_products.filter(queries)
 
     context = {
         'shop_products': shop_products,
@@ -64,7 +66,8 @@ def add_product(request):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
@@ -94,7 +97,8 @@ def edit_product(request, product_id):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     product = get_object_or_404(ShopProducts, id=product_id)
@@ -127,7 +131,8 @@ def delete_product(request, product_id):
 
     # Only superuser can access this view
     if not request.user.is_superuser:
-        msgs.error(request, 'This action is restricted to site admin users')
+        messages.error(request,
+                       'This action is restricted to site admin users')
         return redirect(reverse('home'))
 
     product = get_object_or_404(ShopProducts, id=product_id)

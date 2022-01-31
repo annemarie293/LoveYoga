@@ -16,5 +16,6 @@ class Profiles(admin.ModelAdmin):
 
     ordering = ('user'),
 
+
 # Register your models here.
 admin.site.register(UserProfile, Profiles)

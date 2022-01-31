@@ -44,10 +44,10 @@ def webhook(request):
     # Get the Webhook type from Stripe
     event_type = event['type']
 
-    # Look up the key in the dictionary and assigne its value to event_handler variable
+    # Look up the key in the dictionary
+    # and assign its value to event_handler variable
     event_handler = event_map.get(event_type, handler.handle_event)
 
     # Call the event handler with the event
     response = event_handler(event)
     return response
-

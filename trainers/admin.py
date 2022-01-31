@@ -16,4 +16,3 @@ class TrainerAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Trainer, TrainerAdmin)
-
