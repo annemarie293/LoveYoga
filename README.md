@@ -55,9 +55,9 @@ Wireframes showing the each page across small, medium and large screen sizes.
 
     |     Page   | Wireframe | Wireframe | Wireframe |
     | ----------- | ----------- | ----------- | ----------- |
-    |Home Page    | [Large](/media/home-l.jpg)| [Medium](/media/home-m.jpg)  [Small](/media/home-s.jpg)   |
+    |Home Page    | [Large](/media/home-l.jpg)| [Medium](/media/home-m.jpg)      | [Small](/media/home-s.jpg)   |
     |About page   | [Large](/media/about-l.jpg) | [Medium](/media/about-m.jpg)   | [Small](/media/about-s.jpg)   |
-    |Trainers/Classes/Shop page |[Large](/media/trainer_class_shop-l.jpg)|[Medium](/media/trainer_class_shop-m.jpg)|[Small](/media/trainer_class_shop-s.jpg)   |
+    |Trainers/Classes/Shop page | [Large](/media/trainer_class_shop-l.jpg) | [Medium](/media/trainer_class_shop-m.jpg) | [Small](/media/trainer_class_shop-s.jpg)   |
     |Class/Product Info  |  [Large](/media/class_product_info-l.jpg) | [Medium](/media/class_product_info-m.jpg)   | [Small](/media/class_product_info-s.jpg)   |
     |Basket  | [Large](/media/basket-l.jpg) | [Medium](/media/basket-m.jpg)   | [Small](/media/basket-s.jpg)   |
     |Checkout  | [Large](/media/checkout-l.jpg) | [Medium](/media/checkout-m.jpg)   | [Small](/media/checkout-s.jpg)   |
