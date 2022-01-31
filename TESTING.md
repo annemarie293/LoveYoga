@@ -5,21 +5,35 @@
 HTML Validation
 - Errors found during testing:
     - There were some missing 'alt' attributes on image fieds, some duplicate IDs and a trailing closing div tag. '
-    - There was also an as the hidden "thead" for the basket/order summary did not contain the required 5 'td' cells as used in the rest of the 'tr' rows.
-    - The remainging warning is an empty H1 div for the stripe overlay spinner
- - [W3C Markup Validator](https://validator.w3.org/) 
+    - There were also some errors as the hidden "thead" for the basket/order summary sections did not contain the required 5 'td' cells as used in the rest of the 'tr' rows.
+    - There is a warning on the 'Trainers' page relating the "lang=eng" tag due to the "Lorem ipsum" placeholder text for the staff bio's. Due to time constraints I was not able to find/write bio content for these sections.
+    - The remaining warning is an empty H1 div for the stripe overlay spinner
+ - Tested using [W3C Markup Validator](https://validator.w3.org/) 
+ - [Trainers](/media/trainers-html.jpg)
+  - [Class](/media/classes-html.jpg)
+  - [Class-info](/media/class-info-html.jpg)  
+  - [Shop](/media/shop-html.jpg) 
+  - [Product-info](/media/product-info-html.jpg) 
+  - [Basket](/media/basket-html.jpg) 
+  - [Checkout](/media/checkout-html.jpg) 
+  - [Checkout Success](/media/checkout-success-html.jpg) 
+  - [Profile](/media/profile-html.jpg) 
 
 CSS Validation
 - No errors found
- - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) 
+ - Tested using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) 
+ - [Css](/media/css.jpg) 
  
 JS Validation
 - Javascript validation carried out using [JS hint](https://jshint.com/)
  - Stripe-elements.js file, only some errors from JQuery $ signs, and some warnings on using template literals in ES6
+ - [Css](/media/stripe-js-errors.jpg) 
 
 PEP8 compliance
 Python validation carried out using [PEP8 checker](http://pep8online.com/)
 - No errors, only some "blank line contains whitespace" warnings that I wasn't able to remove
+- example for checkout views.py:
+- [Pep*](/media/pep8-example-checkout-views.jpg) 
 
  ### User Stories Testing
 

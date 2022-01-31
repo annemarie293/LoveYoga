@@ -112,7 +112,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend d-none d-md-inline">
                                                     <button class="decrement-qty btn btn-sm" 
-                                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                        data-item_id="{{ item.products.id }}" id="decrement-qty_{{ item.products.id }}">
                                                         <span class="icon">
                                                             <i class="fas fa-minus"></i>
                                                         </span>
@@ -120,11 +120,11 @@
                                                 </div>
                                                 <input class="form-control qty_input text-center p-0" type="number"
                                                     name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                    data-item_id="{{ product.id }}"
-                                                    id="id_qty_{{ product.id }}">
+                                                    data-item_id="{{ item.unique_id }}"
+                                                    id="id_qty_{{ item.unique_id }}">
                                                 <div class="input-group-append d-none d-md-inline">
                                                     <button class="increment-qty btn btn-sm"
-                                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                        data-item_id="{{ item.unique_id }}" id="increment-qty_{{ item.unique_id }}">
                                                         <span class="icon">
                                                             <i class="fas fa-plus"></i>
                                                         </span>

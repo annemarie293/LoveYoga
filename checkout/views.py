@@ -21,7 +21,7 @@ from basket.contexts import basket_contents
 @require_POST
 def cache_checkout_data(request):
     try:
-        pid = request.POST.get('client_secret').split('_secret')[0]    
+        pid = request.POST.get('client_secret').split('_secret')[0]
         stripe_secret_key = settings.STRIPE_SECRET_KEY
         current_basket = basket_contents(request)
         products_total = current_basket['products_total']
@@ -51,7 +51,6 @@ def checkout(request):
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    
     current_basket = basket_contents(request)
     
     if request.method == 'POST':
@@ -91,7 +90,7 @@ def checkout(request):
                             classes=classes,
                             quantity=quantity,
                         )
-                        order_line_item.save()                    
+                        order_line_item.save()
                     elif category == 'product':
                         quantity = item_data['quantity']
                         product = get_object_or_404(ShopProducts, id=item_id)
